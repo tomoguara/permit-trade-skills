@@ -1,0 +1,82 @@
+@startuml
+title Canonical Data Store Architecture
+' High-Level Pipeline Flow: Discovery -> Ingest -> Store -> Consumption
+skin rose
+skinparam shadowing true
+
+package "Data Sources" {
+  [catalog.data.gov\n(CKAN API)] as catalog_api
+  [Socrata SODA API\n(e.g., Seattle)] as soda_api
+}
+
+package "Discovery Stage (S1)" {
+  [Discovery Engine] as discovery
+  [Jurisdiction Registry] as registry
+}
+
+package "Ingest Stage (S2)" {
+  [Sync Manager] as sync
+}
+
+package "Canonical Data Store\n(PostgreSQL + SQLAlchemy + Alembic)" {
+  [Jurisdictions Table] as jurisdictions
+  [Permits Table] as permits
+  [Status History] as status_history
+  [Sync Metadata] as sync_metadata
+  [Detail Snapshots] as detail_snapshots
+  [Skill Inferences] as skill_inferences
+  [pgvector Extension] as pgvector
+  [pg_trgm Extension] as pg_trgm
+}
+
+package "Consuming Stages" {
+  [Stage 4: Query] as stage4
+  [Stage 5: Detail] as stage5
+  [Stage 6: Skills] as stage6
+  [Stage 7: Orchestration] as stage7
+  [Stage 8: Quality] as stage8
+  [CLI & Ops] as cli
+}
+
+' Pipeline flow
+catalog_api --> discovery
+soda_api --> sync
+discovery --> registry
+registry --> jurisdictions
+sync --> permits
+sync --> status_history
+sync --> sync_metadata
+
+' Data access - all consuming stages write to the store
+stage5 --> detail_snapshots
+stage6 --> skill_inferences
+stage7 --> permits
+stage7 --> detail_snapshots
+stage7 --> skill_inferences
+stage8 --> permits
+stage8 --> skill_inferences
+stage8 --> detail_snapshots
+cli --> permits
+cli --> sync_metadata
+
+' Extensions used by store
+permits ..> pgvector : description_embedding
+permits ..> pg_trgm : description search
+
+legend right
+  <b>Flow:</b> Data Sources -> Discovery -> Ingest -> Canonical Store -> All Stages Read/Write
+  
+  <b>Key Tables:</b>
+  - jurisdictions: registered jurisdictions with field/status mappings
+  - permits: normalized permit records with lifecycle state
+  - status_history: permit status change history (append-only)
+  - sync_metadata: sync run tracking with fingerprint
+  
+  <b>Stage 3+ Tables:</b>
+  - detail_snapshots: extracted detail page content
+  - skill_inferences: LLM-generated skills with audit trail
+  - orchestration_events: agent pipeline event trail
+  - labels/build_gates/drift_alerts: evaluation infrastructure
+endlegend
+
+@enduml

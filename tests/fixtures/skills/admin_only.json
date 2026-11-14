@@ -1,0 +1,44 @@
+{
+  "name": "admin_only",
+  "about": "Negative: pure administrative text with zero trade signals; expect a logged SKILLS_FAILED (NO_SKILLS).",
+  "permit": {
+    "id": 8,
+    "jurisdiction_id": "seattle-kingcounty-wa",
+    "processing_state": "DETAIL_READY",
+    "permit_number": "7200003-CN",
+    "status": "ISSUED",
+    "permit_class": "Single Family/Duplex",
+    "permit_class_mapped": "Residential",
+    "permit_type_mapped": "Building",
+    "permit_type_desc": "Addition/Alteration",
+    "valuation": 0.0,
+    "issued_at": "2026-10-20T00:00:00",
+    "address": "812 NW 60TH ST",
+    "description": "Revision to update applicant contact information on the permit record. No change to approved scope.",
+    "detail_url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=7200003-CN"
+  },
+  "detail": {
+    "permit_number": "7200003-CN",
+    "jurisdiction": "seattle-kingcounty-wa",
+    "snapshot_id": 80,
+    "fields": {},
+    "degraded": false,
+    "notes": [],
+    "final_url": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=99003",
+    "content_text": "PERMIT: 7200003-CN\nSTATUS: Issued\nADDRESS: 812 NW 60TH ST\nCITY: SEATTLE\nSTATE: WA\nZIP: 98107\nISSUED: 2026-10-28T00:00:00.000\nDESCRIPTION: Revision to update applicant contact information on the permit record. No change to approved scope.\nCLASSIFICATION: Single Family/Duplex\nPERMIT_TYPE: Building\nPERMIT_TYPE_DESC: Addition/Alteration\nEST_PROJECT_COST: 0.0000\nPORTAL ONLY:\nApplication Information: PERMIT APPLICATION COMMON\nReview Level: Administrative\nMust this be recorded?: No\nSOURCE: https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=99003",
+    "fetch_strategy": "redirect_chase",
+    "content_hash": "493c961e34ffb3da877703a7bb64db709bcc5f16271ab3f4bd536873bebfebb4"
+  },
+  "response": {
+    "skills": [],
+    "assumptions": [
+      "The record describes an administrative revision only; no construction work is described."
+    ],
+    "overall_confidence": "low",
+    "licensing_notes": []
+  },
+  "expected": {
+    "outcome": "NO_SKILLS",
+    "llm_calls": 1
+  }
+}

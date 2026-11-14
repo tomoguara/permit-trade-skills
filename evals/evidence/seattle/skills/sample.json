@@ -1,0 +1,147 @@
+{
+  "recorded_at": "2026-11-06T20:05:34+00:00",
+  "how": "pts skills infer --permit 7083363-CN (live, local Ollama), then pts skills show --permit 7083363-CN --json",
+  "permit_number": "7083363-CN",
+  "inference": {
+    "permit_number": "7083363-CN",
+    "jurisdiction": "seattle-kingcounty-wa",
+    "model": "ollama/qwen3.8:latest",
+    "prompt_version": "skill-infer-v1",
+    "skills": [
+      {
+        "skill": "interior partition framing",
+        "trade": "Carpentry",
+        "evidence": "Construct alterations to the basement of an existing one family dwelling per plan.",
+        "confidence": "medium",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=25SCI&capID2=00000&capID3=45424"
+      },
+      {
+        "skill": "drywall hanging and finishing",
+        "trade": "Drywall",
+        "evidence": "Construct alterations to the basement of an existing one family dwelling per plan.",
+        "confidence": "medium",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=25SCI&capID2=00000&capID3=45424"
+      },
+      {
+        "skill": "interior flooring installation",
+        "trade": "Carpentry",
+        "evidence": "Construct alterations to the basement of an existing one family dwelling per plan.",
+        "confidence": "medium",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=25SCI&capID2=00000&capID3=45424"
+      }
+    ],
+    "assumptions": [
+      "The permit description 'Construct alterations to the basement' implies standard interior finishing trades (framing, drywall, flooring) but does not explicitly list them.",
+      "No electrical, plumbing, or HVAC work is explicitly described in the scope, although 'basement remodel' often involves these; they are omitted due to lack of specific textual evidence in the provided excerpt.",
+      "The scope is limited to the basement of an existing single-family dwelling."
+    ],
+    "overall_confidence": "medium",
+    "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=25SCI&capID2=00000&capID3=45424",
+    "degraded": false,
+    "licensing_notes": [
+      "The detail states: \"Who will be performing all the work?: Owner/Lessee\", indicating the work may be performed by the owner, which often affects licensing requirements."
+    ],
+    "dropped_skills": [],
+    "warnings": [],
+    "signal_check": {
+      "covered": [],
+      "signals": {
+        "Fireproofing/Spray Foam": {
+          "lines": [
+            "Other Fire Protection System: Yes",
+            "Other Type of Sprinkler System: smoke detectors, carbon monoxide detectors"
+          ],
+          "trade": "Fireproofing/Spray Foam",
+          "keywords": [
+            "fire",
+            "sprinkler"
+          ],
+          "strength": "low"
+        }
+      },
+      "first_pass_rate": 1.0,
+      "missing_high_signals": []
+    },
+    "request_id": "0d67511acab047318a8eeca528332b53",
+    "prompt_hash": "1c4e4351e940e83d7c219e5cc84b70ec3a6b1397a1008e6c1f5f75beac2db8db",
+    "completion_hash": "dc95e11bd4bfa49bd9e598d79088ddd0c4428ec492996dc0fa7574cbda594ef0",
+    "context_hash": "589a0d43aa9a48af96e2267efeeaab9468b3a320e921c3cdba5cac9d95574ea2",
+    "input_cache_key": "8711cd10d0886781d0efec72b035484fa7c3b7d2f60b5c8807edcbdff5c60be9",
+    "input_snapshot_id": 2,
+    "substrate_hash": "08579a56ac638c6e9c71662eddee114c4c504005bffa956ac794190025c2743a",
+    "review_status": "PENDING",
+    "generated_at": "2026-11-06T20:05:09.915255Z",
+    "inference_id": 15,
+    "cached": false,
+    "tokens": {},
+    "cost": null,
+    "permit_key": "seattle-kingcounty-wa:7083363-CN"
+  },
+  "contract": {
+    "permit_key": "seattle-kingcounty-wa:7083363-CN",
+    "model": "ollama/qwen3.8:latest",
+    "prompt_version": "skill-infer-v1",
+    "generated_at": "2026-11-06T20:05:09.915255Z",
+    "skills": [
+      {
+        "skill": "interior partition framing",
+        "trade": "Carpentry",
+        "evidence": "Construct alterations to the basement of an existing one family dwelling per plan.",
+        "confidence": "medium",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=25SCI&capID2=00000&capID3=45424"
+      },
+      {
+        "skill": "drywall hanging and finishing",
+        "trade": "Drywall",
+        "evidence": "Construct alterations to the basement of an existing one family dwelling per plan.",
+        "confidence": "medium",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=25SCI&capID2=00000&capID3=45424"
+      },
+      {
+        "skill": "interior flooring installation",
+        "trade": "Carpentry",
+        "evidence": "Construct alterations to the basement of an existing one family dwelling per plan.",
+        "confidence": "medium",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=25SCI&capID2=00000&capID3=45424"
+      }
+    ],
+    "assumptions": [
+      "The permit description 'Construct alterations to the basement' implies standard interior finishing trades (framing, drywall, flooring) but does not explicitly list them.",
+      "No electrical, plumbing, or HVAC work is explicitly described in the scope, although 'basement remodel' often involves these; they are omitted due to lack of specific textual evidence in the provided excerpt.",
+      "The scope is limited to the basement of an existing single-family dwelling."
+    ],
+    "overall_confidence": "medium",
+    "review_status": "PENDING",
+    "licensing_notes": [
+      "The detail states: \"Who will be performing all the work?: Owner/Lessee\", indicating the work may be performed by the owner, which often affects licensing requirements."
+    ]
+  },
+  "grounding": [
+    {
+      "skill": "interior partition framing",
+      "trade": "Carpentry",
+      "evidence": "Construct alterations to the basement of an existing one family dwelling per plan.",
+      "confidence": "medium",
+      "reasons": [],
+      "grounded": true
+    },
+    {
+      "skill": "drywall hanging and finishing",
+      "trade": "Drywall",
+      "evidence": "Construct alterations to the basement of an existing one family dwelling per plan.",
+      "confidence": "medium",
+      "reasons": [],
+      "grounded": true
+    },
+    {
+      "skill": "interior flooring installation",
+      "trade": "Carpentry",
+      "evidence": "Construct alterations to the basement of an existing one family dwelling per plan.",
+      "confidence": "medium",
+      "reasons": [],
+      "grounded": true
+    }
+  ],
+  "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=25SCI&capID2=00000&capID3=45424",
+  "processing_state": "SKILLS_INFERRED"
+}

@@ -1,0 +1,364 @@
+{
+  "recorded_at": "2026-11-06T18:34:15+00:00",
+  "test": "tests/integration/test_detail_live.py",
+  "permit_number": "7170445-CN",
+  "catalog": {
+    "address": "3641 32ND AVE W",
+    "description": "Construct alterations to existing one-family dwelling  subject-to-field inspection (STFI).",
+    "issued_at": "2026-11-05T00:00:00",
+    "detail_url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=7170445-CN"
+  },
+  "document": {
+    "permit_number": "7170445-CN",
+    "jurisdiction": "seattle-kingcounty-wa",
+    "snapshot_id": 1,
+    "final_url": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=B1789",
+    "content_text": "PERMIT: 7170445-CN\nSTATUS: Issued\nADDRESS: 3641 32ND AVE W\nCITY: SEATTLE\nSTATE: WA\nZIP: 98199\nISSUED: 2026-11-05T00:00:00.000\nAPPLIED: 2026-11-02T00:00:00.000\nEXPIRES: 2028-05-05T00:00:00.000\nDESCRIPTION: Construct alterations to existing one-family dwelling subject-to-field inspection (STFI).\nCLASSIFICATION: Single Family/Duplex\nCLASSIFICATION_MAPPED: Residential\nPERMIT_TYPE: Building\nPERMIT_TYPE_DESC: Addition/Alteration\nEST_PROJECT_COST: 150000.0000\nDETAIL_URL.URL: https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=7170445-CN\nDAYSOUTCORRECTIONS: 0\nDEPENDENTBUILDING: 0\nHOUSINGCATEGORY: Single-Family Add/Alt\nHOUSINGUNITS: 0.0\nHOUSINGUNITSADDED: 0.0\nHOUSINGUNITSREMOVED: 0.0\nLATITUDE: 47.65353626\nLOCATION1.LATITUDE: 47.65353626\nLOCATION1.LONGITUDE: -122.39851028\nLONGITUDE: -122.39851028\nNUMBERREVIEWCYCLES: 0\nPORTAL ONLY:\n# of Existing Accessible Parking: 0\n# of Existing Bicycle Parking Spots: 0\n# of Existing Offsite Parking: 0\n# of Existing Onsite Parking: 1\n# of Proposed Accessible Parking: 0\n# of Proposed Bicycle Parking Spots: 0\n# of Proposed Offsite Parking: 0\n# of Proposed Onsite Parking: 1\nAction Type: Add/Alt\nApplication Completed Date: 11/02/2026\nApplication Information: PERMIT APPLICATION COMMON\nAre there residential (non-commercial) tenants/renters currently living in the property?: No\nAre you changing the envelope?: No\nAre you doing more than 2,000 square feet of earth disturbance?: No\nChoose the Primary Property Use: Single Family/Duplex\nCompliance Category: Residential\nDescribe any other mechanical systems to be installed as part of this project.: we are not replacing mechanical systems.\nExisting Occupancy: R-3 Single Family Dwelling\nExpiration Date: 05/05/2028\nFire Alarm: Yes\nIntake Value: Alteration: 150000\nIntake Value: New: 0\nIs a certificate of occupancy required?: No\nIs any portion of the building semi-heated or unheated?: No\nIs there a commercial kitchen hood exhaust system?: No\nIs there a fume hood?: No\nIs there a spray paint booth?: No\nIs this a high-rise?: No\nIs this a substantial alteration?: No\nIs this building a Floating Residence?: No\nIs work in the right-of-way (street or alley) required?: No\nIs your development site in an environmentally critical area (ECA)?: No\nIssue Value: Alteration: 150000\nIssue Value: New: 0\nMain Existing Use of Building: Residential\nMust this be recorded?: No\nMust this be recorded?: No\nMust this be recorded?: No\nNew and Replaced Hard Surface > 750 sq ft?: No\nNumber of Added Units: 0\nNumber of Curb Cuts for This Permit: 0\nNumber of Existing Below-Grade Building Stories: 1\nNumber of Existing Building Stories: 1\nNumber of Existing Units: 1\nNumber of Mezzanines: 0\nNumber of Proposed Below-Grade Building Stories: 1\nNumber of Proposed Building Stories: 1\nNumber of Removed Units: 0\nNumber of Sleeping Rooms: 0\nOffsite Parking Location: n/a\nOther Fire Protection System: No\nOther Information: HOUSING UNITS\nParcel Information: Development Site Parcel:DV1185758 * Block:-- Lot:-- Subdivision:--\nPartial Fire Protection System: No\nPermit Issued Date: 11/05/2026\nProject Description: Kate David Construct alterations to existing one-family dwelling, subject-to-field inspection (STFI).\nProject Value: 150000\nReview Level: Field\nSprinklers Meet NFPA 13: No\nSprinklers Meet NFPA 13R: No\nTotal Intake Value: 150000\nTotal Issued Value: 150000\nType of Housing Unit: Detached Single-Family\nWhat building code was used for your design?: 2021 SRC\nWhere on your property are you working?: Within the existing single family home.\nWho will be performing all the work?: Owner/Lessee\nWill you change the building use or occupancy?: No\nWill your application include a new standard plan?: No\nWork Location: 3641 32ND AVE W 95200 *\nI have submitted an application for a building permit from the City of Seattle. I believe the work authorized by this permit is exempt from having a registered contractor. I understand that I may be waiving certain rights that I might otherwise have under state law in any decision to engage an unregistered contractor to perform construction work.:\nSOURCE: https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=B1789\n",
+    "fields": {
+      "catalog": {
+        "address": "3641 32ND AVE W",
+        "applied_date": "2026-11-02T00:00:00.000",
+        "city": "SEATTLE",
+        "classification": "Residential",
+        "description": "Construct alterations to existing one-family dwelling subject-to-field inspection (STFI).",
+        "expires_date": "2028-05-05T00:00:00.000",
+        "issued_date": "2026-11-05T00:00:00.000",
+        "permit_class": "Single Family/Duplex",
+        "permit_number": "7170445-CN",
+        "permit_type": "Building",
+        "permit_type_desc": "Addition/Alteration",
+        "state": "WA",
+        "status": "Issued",
+        "valuation": "150000.0000",
+        "zip": "98199"
+      },
+      "portal": {
+        "address": "3641 32ND AVE W 95200 *",
+        "applied_date": "11/02/2026",
+        "classification": "Single Family/Duplex",
+        "description": "Kate David Construct alterations to existing one-family dwelling, subject-to-field inspection (STFI).",
+        "expires_date": "05/05/2028",
+        "issued_date": "11/05/2026",
+        "permit_number": "7170445-CN",
+        "scope": "Add/Alt",
+        "status": "Issued",
+        "valuation": "150000"
+      },
+      "portal_pairs": [
+        [
+          "# of Existing Accessible Parking",
+          "0"
+        ],
+        [
+          "# of Existing Bicycle Parking Spots",
+          "0"
+        ],
+        [
+          "# of Existing Offsite Parking",
+          "0"
+        ],
+        [
+          "# of Existing Onsite Parking",
+          "1"
+        ],
+        [
+          "# of Proposed Accessible Parking",
+          "0"
+        ],
+        [
+          "# of Proposed Bicycle Parking Spots",
+          "0"
+        ],
+        [
+          "# of Proposed Offsite Parking",
+          "0"
+        ],
+        [
+          "# of Proposed Onsite Parking",
+          "1"
+        ],
+        [
+          "Action Type",
+          "Add/Alt"
+        ],
+        [
+          "Application Completed Date",
+          "11/02/2026"
+        ],
+        [
+          "Application Information",
+          "PERMIT APPLICATION COMMON"
+        ],
+        [
+          "Are there residential (non-commercial) tenants/renters currently living in the property?",
+          "No"
+        ],
+        [
+          "Are you changing the envelope?",
+          "No"
+        ],
+        [
+          "Are you doing more than 2,000 square feet of earth disturbance?",
+          "No"
+        ],
+        [
+          "Choose the Primary Property Use",
+          "Single Family/Duplex"
+        ],
+        [
+          "Compliance Category",
+          "Residential"
+        ],
+        [
+          "Describe any other mechanical systems to be installed as part of this project.",
+          "we are not replacing mechanical systems."
+        ],
+        [
+          "Existing Occupancy",
+          "R-3 Single Family Dwelling"
+        ],
+        [
+          "Expiration Date",
+          "05/05/2028"
+        ],
+        [
+          "Fire Alarm",
+          "Yes"
+        ],
+        [
+          "Intake Value: Alteration",
+          "150000"
+        ],
+        [
+          "Intake Value: New",
+          "0"
+        ],
+        [
+          "Is a certificate of occupancy required?",
+          "No"
+        ],
+        [
+          "Is any portion of the building semi-heated or unheated?",
+          "No"
+        ],
+        [
+          "Is there a commercial kitchen hood exhaust system?",
+          "No"
+        ],
+        [
+          "Is there a fume hood?",
+          "No"
+        ],
+        [
+          "Is there a spray paint booth?",
+          "No"
+        ],
+        [
+          "Is this a high-rise?",
+          "No"
+        ],
+        [
+          "Is this a substantial alteration?",
+          "No"
+        ],
+        [
+          "Is this building a Floating Residence?",
+          "No"
+        ],
+        [
+          "Is work in the right-of-way (street or alley) required?",
+          "No"
+        ],
+        [
+          "Is your development site in an environmentally critical area (ECA)?",
+          "No"
+        ],
+        [
+          "Issue Value: Alteration",
+          "150000"
+        ],
+        [
+          "Issue Value: New",
+          "0"
+        ],
+        [
+          "Main Existing Use of Building",
+          "Residential"
+        ],
+        [
+          "Must this be recorded?",
+          "No"
+        ],
+        [
+          "Must this be recorded?",
+          "No"
+        ],
+        [
+          "Must this be recorded?",
+          "No"
+        ],
+        [
+          "New and Replaced Hard Surface > 750 sq ft?",
+          "No"
+        ],
+        [
+          "Number of Added Units",
+          "0"
+        ],
+        [
+          "Number of Curb Cuts for This Permit",
+          "0"
+        ],
+        [
+          "Number of Existing Below-Grade Building Stories",
+          "1"
+        ],
+        [
+          "Number of Existing Building Stories",
+          "1"
+        ],
+        [
+          "Number of Existing Units",
+          "1"
+        ],
+        [
+          "Number of Mezzanines",
+          "0"
+        ],
+        [
+          "Number of Proposed Below-Grade Building Stories",
+          "1"
+        ],
+        [
+          "Number of Proposed Building Stories",
+          "1"
+        ],
+        [
+          "Number of Removed Units",
+          "0"
+        ],
+        [
+          "Number of Sleeping Rooms",
+          "0"
+        ],
+        [
+          "Offsite Parking Location",
+          "n/a"
+        ],
+        [
+          "Other Fire Protection System",
+          "No"
+        ],
+        [
+          "Other Information",
+          "HOUSING UNITS"
+        ],
+        [
+          "Parcel Information",
+          "Development Site Parcel:DV1185758 * Block:-- Lot:-- Subdivision:--"
+        ],
+        [
+          "Partial Fire Protection System",
+          "No"
+        ],
+        [
+          "Permit Issued Date",
+          "11/05/2026"
+        ],
+        [
+          "Project Description",
+          "Kate David Construct alterations to existing one-family dwelling, subject-to-field inspection (STFI)."
+        ],
+        [
+          "Project Value",
+          "150000"
+        ],
+        [
+          "Record Number",
+          "7170445-CN"
+        ],
+        [
+          "Record Status",
+          "Issued"
+        ],
+        [
+          "Review Level",
+          "Field"
+        ],
+        [
+          "Sprinklers Meet NFPA 13",
+          "No"
+        ],
+        [
+          "Sprinklers Meet NFPA 13R",
+          "No"
+        ],
+        [
+          "Total Intake Value",
+          "150000"
+        ],
+        [
+          "Total Issued Value",
+          "150000"
+        ],
+        [
+          "Type of Housing Unit",
+          "Detached Single-Family"
+        ],
+        [
+          "What building code was used for your design?",
+          "2021 SRC"
+        ],
+        [
+          "Where on your property are you working?",
+          "Within the existing single family home."
+        ],
+        [
+          "Who will be performing all the work?",
+          "Owner/Lessee"
+        ],
+        [
+          "Will you change the building use or occupancy?",
+          "No"
+        ],
+        [
+          "Will your application include a new standard plan?",
+          "No"
+        ],
+        [
+          "Work Location",
+          "3641 32ND AVE W 95200 *"
+        ]
+      ],
+      "attachments": [],
+      "portal_source": "dom"
+    },
+    "fetch_strategy": "redirect_chase",
+    "fetched_at": "2026-11-06T18:34:15.614031Z",
+    "content_hash": "f94a5acbcd670e2df8dcaaa63f9bf7c70e0fba9eb00d6bbce290eda2a96d9467",
+    "degraded": false,
+    "notes": [],
+    "signals": {
+      "count": 5,
+      "min_signals": 4,
+      "anchor": true,
+      "passed": true,
+      "matched": {
+        "anchor": true,
+        "address": true,
+        "date": true,
+        "description": true,
+        "other": true
+      },
+      "details": {
+        "anchor": "record number field '7170445-CN'",
+        "address_overlap": 1.0,
+        "description": {
+          "shared": 9,
+          "jaccard": 0.818
+        }
+      }
+    }
+  },
+  "missing_citations": []
+}

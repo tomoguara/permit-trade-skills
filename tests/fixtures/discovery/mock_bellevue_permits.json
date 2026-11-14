@@ -1,0 +1,142 @@
+[
+  {
+    ":id": "row-0",
+    "permit_number": "BLV-24000",
+    "status": "Issued",
+    "work_description": "Mock permit 0: replace water heater and add bathroom fan",
+    "site_address": "100 Main St",
+    "city": "Bellevue",
+    "zip": "98004",
+    "issue_date": "2026-01-15T00:00:00.000",
+    "estimated_cost": "5000",
+    "detail_link": {
+      "url": "https://permits.example-bellevue.test/record/BLV-24000"
+    }
+  },
+  {
+    ":id": "row-1",
+    "permit_number": "BLV-24001",
+    "status": "Finaled",
+    "work_description": "Mock permit 1: replace water heater and add bathroom fan",
+    "site_address": "101 Main St",
+    "city": "Bellevue",
+    "zip": "98004",
+    "issue_date": "2026-02-15T00:00:00.000",
+    "estimated_cost": "6000",
+    "detail_link": {
+      "url": "https://permits.example-bellevue.test/record/BLV-24001"
+    }
+  },
+  {
+    ":id": "row-2",
+    "permit_number": "BLV-24002",
+    "status": "In Review",
+    "work_description": "Mock permit 2: replace water heater and add bathroom fan",
+    "site_address": "102 Main St",
+    "city": "Bellevue",
+    "zip": "98004",
+    "issue_date": "2026-03-15T00:00:00.000",
+    "estimated_cost": "7000",
+    "detail_link": {
+      "url": "https://permits.example-bellevue.test/record/BLV-24002"
+    }
+  },
+  {
+    ":id": "row-3",
+    "permit_number": "BLV-24003",
+    "status": "Void",
+    "work_description": "Mock permit 3: replace water heater and add bathroom fan",
+    "site_address": "103 Main St",
+    "city": "Bellevue",
+    "zip": "98004",
+    "issue_date": "2026-04-15T00:00:00.000",
+    "estimated_cost": "8000",
+    "detail_link": {
+      "url": "https://permits.example-bellevue.test/record/BLV-24003"
+    }
+  },
+  {
+    ":id": "row-4",
+    "permit_number": "BLV-24004",
+    "status": "Expired",
+    "work_description": "Mock permit 4: replace water heater and add bathroom fan",
+    "site_address": "104 Main St",
+    "city": "Bellevue",
+    "zip": "98004",
+    "issue_date": "2026-05-15T00:00:00.000",
+    "estimated_cost": "9000",
+    "detail_link": {
+      "url": "https://permits.example-bellevue.test/record/BLV-24004"
+    }
+  },
+  {
+    ":id": "row-5",
+    "permit_number": "BLV-24005",
+    "status": "Issued",
+    "work_description": "Mock permit 5: replace water heater and add bathroom fan",
+    "site_address": "105 Main St",
+    "city": "Bellevue",
+    "zip": "98004",
+    "issue_date": "2026-06-15T00:00:00.000",
+    "estimated_cost": "10000",
+    "detail_link": {
+      "url": "https://permits.example-bellevue.test/record/BLV-24005"
+    }
+  },
+  {
+    ":id": "row-6",
+    "permit_number": "BLV-24006",
+    "status": "Application Received",
+    "work_description": "Mock permit 6: replace water heater and add bathroom fan",
+    "site_address": "106 Main St",
+    "city": "Bellevue",
+    "zip": "98004",
+    "issue_date": "2026-07-15T00:00:00.000",
+    "estimated_cost": "11000",
+    "detail_link": {
+      "url": "https://permits.example-bellevue.test/record/BLV-24006"
+    }
+  },
+  {
+    ":id": "row-7",
+    "permit_number": "BLV-24007",
+    "status": "Issued",
+    "work_description": "Mock permit 7: replace water heater and add bathroom fan",
+    "site_address": "107 Main St",
+    "city": "Bellevue",
+    "zip": "98004",
+    "issue_date": "2026-08-15T00:00:00.000",
+    "estimated_cost": "12000",
+    "detail_link": {
+      "url": "https://permits.example-bellevue.test/record/BLV-24007"
+    }
+  },
+  {
+    ":id": "row-8",
+    "permit_number": "BLV-24008",
+    "status": "Under Inspection",
+    "work_description": "Mock permit 8: replace water heater and add bathroom fan",
+    "site_address": "108 Main St",
+    "city": "Bellevue",
+    "zip": "98004",
+    "issue_date": "2026-09-15T00:00:00.000",
+    "estimated_cost": "13000",
+    "detail_link": {
+      "url": "https://permits.example-bellevue.test/record/BLV-24008"
+    }
+  },
+  {
+    ":id": "row-9",
+    "permit_number": "BLV-24009",
+    "status": "Mystery Hold",
+    "work_description": "Mock permit 9: replace water heater and add bathroom fan",
+    "site_address": "109 Main St",
+    "city": "Bellevue",
+    "zip": "98004",
+    "issue_date": "2026-01-15T00:00:00.000",
+    "estimated_cost": "14000",
+    "detail_link": {
+      "url": "https://permits.example-bellevue.test/record/BLV-24009"
+    }
+  }
+]

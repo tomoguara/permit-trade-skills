@@ -1,0 +1,2073 @@
+{
+  "suite": "H3",
+  "run_id": "eval-h3-20261111T013630-5b3518",
+  "jurisdiction": "seattle-kingcounty-wa",
+  "build_id": "live-2026-11-10",
+  "metrics": {
+    "full_match": 1.0,
+    "exact_match": 0.9333,
+    "unfulfilled_capture": 1.0,
+    "row_count_ok": 1.0,
+    "close": 0.0
+  },
+  "counts": {
+    "golden_rows": 30,
+    "active": 30,
+    "superseded": 0,
+    "errors": 0
+  },
+  "info": {
+    "duration_ms": 212886
+  },
+  "warnings": [],
+  "model": "ollama/qwen3.8:latest",
+  "prompt_version": "nlu-parse-v5",
+  "llm_calls": 30,
+  "cache_hits": 0,
+  "started_at": "2026-11-11T01:36:30.504650Z",
+  "finished_at": "2026-11-11T01:40:03.390982Z",
+  "items_total": 30,
+  "items_failed": 0,
+  "worst": [],
+  "items": [
+    {
+      "key": "nl-01",
+      "question": "Which building permits were issued in Seattle in the last 90 days for residential additions over $50k?",
+      "cache_key": "ccb75de19b5d2241a6904da4b787b4c430d35de485f88d19abbd3eca5d05d274",
+      "input_hash": "ad2713ce880d2ab65d1a13477ab86625e1663c34674fce877e9c75e81ace00b0",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 98,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "ISSUED"
+            ],
+            "statuses_exclude": null,
+            "permit_class": "Residential",
+            "permit_type": null,
+            "desc_keyword": "addition",
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": "2026-08-12",
+            "issued_before": null,
+            "min_cost": 50000,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [
+            "residential: interpreted as permit_class=Residential"
+          ],
+          "unrecognized_entities": [],
+          "assumptions": [
+            "assumed 'last 90 days' = issued_after 2026-08-12"
+          ],
+          "jurisdiction_in_question": "Seattle",
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "2cf2d43b68844179851e19604bc62724"
+      },
+      "got": {
+        "status": [
+          "issued"
+        ],
+        "permit_class": [
+          "residential"
+        ],
+        "desc_keyword": "addition",
+        "issued_after": "2026-08-12",
+        "min_cost": 50000.0
+      },
+      "want": {
+        "status": [
+          "issued"
+        ],
+        "permit_class": [
+          "residential"
+        ],
+        "desc_keyword": "addition",
+        "issued_after": "2026-08-12",
+        "min_cost": 50000.0
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 98,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-02",
+      "question": "Show me pending permits in Seattle",
+      "cache_key": "c2f3dc370190cb8cf68223e9f9826bf82b2953e20eaf170e052a56df33206ba0",
+      "input_hash": "eb8b080e568dc10eae0673802d47ed445828ec0b95f48d11a2190a887c4c193a",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 17877,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "PENDING"
+            ],
+            "statuses_exclude": null,
+            "permit_class": null,
+            "permit_type": null,
+            "desc_keyword": null,
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": null,
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [],
+          "jurisdiction_in_question": "Seattle",
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "9de687d3b2454911a7971a60d4b164bc"
+      },
+      "got": {
+        "status": [
+          "pending"
+        ]
+      },
+      "want": {
+        "status": [
+          "pending"
+        ]
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 17877,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-03",
+      "question": "List completed permits issued in 2025",
+      "cache_key": "17a08d2b2474b2f1304fb121b5789227ebfb39e6fcc17aa03fd8d3af41c382e3",
+      "input_hash": "c02d6858f791972efdf58c80004d21a49cef4421d526db8be3ddd8518abad869",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 4032,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "COMPLETED"
+            ],
+            "statuses_exclude": null,
+            "permit_class": null,
+            "permit_type": null,
+            "desc_keyword": null,
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": "2025-01-01",
+            "issued_before": "2026-01-01",
+            "min_cost": null,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [
+            "interpreted 'completed' as status COMPLETED",
+            "interpreted 'issued in 2025' as issued_after 2025-01-01 and issued_before 2026-01-01"
+          ],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "d64a6eeb578a4c818343f0b8235aa048"
+      },
+      "got": {
+        "status": [
+          "completed"
+        ],
+        "issued_after": "2025-01-01",
+        "issued_before": "2026-01-01"
+      },
+      "want": {
+        "status": [
+          "completed"
+        ],
+        "issued_after": "2025-01-01",
+        "issued_before": "2026-01-01"
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 4032,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-04",
+      "question": "Which permits are currently under inspection?",
+      "cache_key": "6aa07f29ebecf65ff3a19b23273a110f14b86163f10d2e42d75be2310bde17d6",
+      "input_hash": "36e0df08549592348338b685a12baa95f4f23b7118987786d06dd1dfb39f983c",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 0,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "IN_INSPECTION"
+            ],
+            "statuses_exclude": null,
+            "permit_class": null,
+            "permit_type": null,
+            "desc_keyword": null,
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": null,
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "b282d57e466345a4abe68c4bf8d7606c"
+      },
+      "got": {
+        "status": [
+          "in_inspection"
+        ]
+      },
+      "want": {
+        "status": [
+          "in_inspection"
+        ]
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 0,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-05",
+      "question": "Find expired residential permits",
+      "cache_key": "c32feea6a3ea1abb9a2c5000032fb32c8a4525d3402f4394e9b2e06832ae1d9d",
+      "input_hash": "64924597c0a7ba5e2b83cc9baf91fd161bb443899cde5950c1a00c92f2205e51",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 9285,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "EXPIRED"
+            ],
+            "statuses_exclude": null,
+            "permit_class": "Residential",
+            "permit_type": null,
+            "desc_keyword": null,
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": null,
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [
+            "residential: interpreted as permit_class=Residential"
+          ],
+          "unrecognized_entities": [],
+          "assumptions": [],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "2123fe9d21584c73984276b908cbdd24"
+      },
+      "got": {
+        "status": [
+          "expired"
+        ],
+        "permit_class": [
+          "residential"
+        ]
+      },
+      "want": {
+        "status": [
+          "expired"
+        ],
+        "permit_class": [
+          "residential"
+        ]
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 9285,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-06",
+      "question": "Show canceled commercial permits",
+      "cache_key": "fc59461e612bb396025cacb25f99f803a4bd6c7372e14d1b93bbb06c36a3979e",
+      "input_hash": "e5411ec40a23edb85e4e124c6b0fe6e8f9dcb4ea87cfc2cae8260427308e0dfb",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 2339,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "CANCELED"
+            ],
+            "statuses_exclude": null,
+            "permit_class": "Commercial",
+            "permit_type": null,
+            "desc_keyword": null,
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": null,
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "ffce187fc62b4cb6ad6653c017c18ed3"
+      },
+      "got": {
+        "status": [
+          "canceled"
+        ],
+        "permit_class": [
+          "commercial"
+        ]
+      },
+      "want": {
+        "status": [
+          "canceled"
+        ],
+        "permit_class": [
+          "commercial"
+        ]
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 2339,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-07",
+      "question": "Demolition permits issued since 2026-01-01",
+      "cache_key": "c64d0d052db58b85b0c81364718374135715b13c203e686c6832b2866cd097ec",
+      "input_hash": "0dc60026a826c9b6dd0906196b19f7b02500f5de6249e91f48dc13444f07f384",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 312,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "ISSUED"
+            ],
+            "statuses_exclude": null,
+            "permit_class": null,
+            "permit_type": "Demolition",
+            "desc_keyword": null,
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": "2026-01-01",
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "37a086b146e14631a6bd97db8685fc86"
+      },
+      "got": {
+        "status": [
+          "issued"
+        ],
+        "permit_type": [
+          "demolition"
+        ],
+        "issued_after": "2026-01-01"
+      },
+      "want": {
+        "status": [
+          "issued"
+        ],
+        "permit_type": [
+          "demolition"
+        ],
+        "issued_after": "2026-01-01"
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 312,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-08",
+      "question": "Issued permits near the Space Needle",
+      "cache_key": "fe04e719efa88f142cd5329a03458db6c198e7c36b9b1d4e59fef411e8800043",
+      "input_hash": "ce0a8c11cd7ceca0264a73f2c25a2a290536f511c95ae98c0d4b220a8a9bf38b",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 8488,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "ISSUED"
+            ],
+            "statuses_exclude": null,
+            "permit_class": null,
+            "permit_type": null,
+            "desc_keyword": null,
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": null,
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [
+            "near the Space Needle"
+          ],
+          "assumptions": [],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": true,
+          "clarification": "I cannot filter by proximity to landmarks like the Space Needle; please specify a ZIP code or city instead."
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "4ee404a62e6e4426aea21baf00d4c821"
+      },
+      "got": {
+        "status": [
+          "issued"
+        ]
+      },
+      "want": {
+        "status": [
+          "issued"
+        ]
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [
+        "near the Space Needle"
+      ],
+      "unfulfilled_captured": true,
+      "actual_total": 8488,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-09",
+      "question": "What are the most expensive permits issued this year?",
+      "cache_key": "729c1c2d703ca71d558e16d3c3dd7a65db3ae0d83cbc63b7f200c188f2b8c409",
+      "input_hash": "105636d71b9f8d000111787ef7c48a28a2a5fa1267c26672a552bfcba6a19a95",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 4131,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "ISSUED"
+            ],
+            "statuses_exclude": null,
+            "permit_class": null,
+            "permit_type": null,
+            "desc_keyword": null,
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": "2026-01-01",
+            "issued_before": "2027-01-01",
+            "min_cost": null,
+            "max_cost": null,
+            "sort": "cost_desc",
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [
+            "interpreted 'this year' as issued_after 2026-01-01 and issued_before 2027-01-01"
+          ],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "6efa62cdb7de4d289c00906152e1ae70"
+      },
+      "got": {
+        "status": [
+          "issued"
+        ],
+        "issued_after": "2026-01-01",
+        "issued_before": "2027-01-01",
+        "sort": "cost_desc"
+      },
+      "want": {
+        "status": [
+          "issued"
+        ],
+        "issued_after": "2026-01-01",
+        "sort": "cost_desc"
+      },
+      "exact": false,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 4131,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-10",
+      "question": "Permits for ADU construction that were issued in the last 30 days",
+      "cache_key": "de1fdd7abda48b37c2953e761e4ad955f62ae97a2d8cd3ff821555a32fee4292",
+      "input_hash": "861229de966bc6ac4432036621dfc66d1b2ccf4f132528b92a6856c9f7b1c2b4",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 11,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "ISSUED"
+            ],
+            "statuses_exclude": null,
+            "permit_class": null,
+            "permit_type": null,
+            "desc_keyword": "ADU",
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": "2026-10-11",
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [
+            "interpreted 'last 30 days' as issued_after 2026-10-11 (today 2026-11-10 minus 30 days)"
+          ],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "a723b6acf9b640e0be40690060af6d33"
+      },
+      "got": {
+        "status": [
+          "issued"
+        ],
+        "desc_keyword": "adu",
+        "issued_after": "2026-10-11"
+      },
+      "want": {
+        "status": [
+          "issued"
+        ],
+        "desc_keyword": "adu",
+        "issued_after": "2026-10-11"
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 11,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-11",
+      "question": "Show solar panel permits",
+      "cache_key": "af4aa5391a8790b0a186c37396b00981a90f2afe3018a83d1ec124c03d711edc",
+      "input_hash": "64dd920927e4dd71e296598a0635d885a91666e5435a71af8b7d2fde4a078220",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 166,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": null,
+            "statuses_exclude": null,
+            "permit_class": null,
+            "permit_type": null,
+            "desc_keyword": "solar",
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": null,
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "c0b63c5bb7aa429a999bfd03c13b5a5a"
+      },
+      "got": {
+        "desc_keyword": "solar"
+      },
+      "want": {
+        "desc_keyword": "solar"
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 166,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-12",
+      "question": "Pending permits applied for in the last 60 days",
+      "cache_key": "c7eef23e8d774186a6781e503d09b2c1c77b91d80bec0e722a74435d31ef618c",
+      "input_hash": "8669fda5fd8a1b6f6c71da72a2eacc184a95d74d8729e6e74fc55454d6d8d8bf",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 633,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "PENDING"
+            ],
+            "statuses_exclude": null,
+            "permit_class": null,
+            "permit_type": null,
+            "desc_keyword": null,
+            "city": null,
+            "zip": null,
+            "applied_after": "2026-09-11",
+            "applied_before": null,
+            "issued_after": null,
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [
+            "assumed 'last 60 days' = applied_after 2026-09-11 (today 2026-11-10 minus 60 days)"
+          ],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "4bb10dd291d84ef5b9d3c31a409ebc2e"
+      },
+      "got": {
+        "status": [
+          "pending"
+        ],
+        "applied_after": "2026-09-11"
+      },
+      "want": {
+        "status": [
+          "pending"
+        ],
+        "applied_after": "2026-09-11"
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 633,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-13",
+      "question": "Issued permits in ZIP 98122 under $10,000",
+      "cache_key": "2e9ab54ee82191ad9e59b63cadb1c19f0019825d2fbe018ca1cec74f8e052959",
+      "input_hash": "163301c8ae72ec1682132cbeaf12f3d5babb61eb602a02c480f1a1bdc0d5a020",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 37,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "ISSUED"
+            ],
+            "statuses_exclude": null,
+            "permit_class": null,
+            "permit_type": null,
+            "desc_keyword": null,
+            "city": null,
+            "zip": "98122",
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": null,
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": 10000,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "a7ef63bb6def491c9b2ad03f4b677b8c"
+      },
+      "got": {
+        "status": [
+          "issued"
+        ],
+        "zip": "98122",
+        "max_cost": 10000.0
+      },
+      "want": {
+        "status": [
+          "issued"
+        ],
+        "zip": "98122",
+        "max_cost": 10000.0
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 37,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-14",
+      "question": "Show me closed permits",
+      "cache_key": "ee00c322bd0656db08de1460c968c75725357751232aa5270dbabdf8a4cf186e",
+      "input_hash": "3739f5459ca137d08c5e408bdd43d8a01692348462a15b7b57a2a236263aa882",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 144108,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "COMPLETED"
+            ],
+            "statuses_exclude": null,
+            "permit_class": null,
+            "permit_type": null,
+            "desc_keyword": null,
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": null,
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [
+            "'closed' = status COMPLETED"
+          ],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "0dac9a3431d7477fbd7a51225a2d83b2"
+      },
+      "got": {
+        "status": [
+          "completed"
+        ]
+      },
+      "want": {
+        "status": [
+          "completed"
+        ]
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 144108,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-15",
+      "question": "Issued non-residential permits over $1 million",
+      "cache_key": "e53b8f0730de63348e5b7c7bac1725991bd3fe86782732b513a6772bd07a68b4",
+      "input_hash": "4e153f51d2906a896782b19170490c40b4701f0a03b260eb058022c5757c909c",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 296,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "ISSUED"
+            ],
+            "statuses_exclude": [
+              "CANCELED"
+            ],
+            "permit_class": "Non-Residential",
+            "permit_type": null,
+            "desc_keyword": null,
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": null,
+            "issued_before": null,
+            "min_cost": 1000000,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [
+            "interpreted 'non-residential' as permit_class=Non-Residential"
+          ],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "941c290f79884f8ebb424e98e521d48e"
+      },
+      "got": {
+        "status": [
+          "issued"
+        ],
+        "statuses_exclude": [
+          "canceled"
+        ],
+        "permit_class": [
+          "non-residential"
+        ],
+        "min_cost": 1000000.0
+      },
+      "want": {
+        "status": [
+          "issued"
+        ],
+        "permit_class": [
+          "non-residential"
+        ],
+        "min_cost": 1000000.0
+      },
+      "exact": false,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 296,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-16",
+      "question": "Residential permits that are not canceled or expired",
+      "cache_key": "ba84884b756e7971de4831a28850858422938ed9d0b79d1f5aca4e9736d9f9bc",
+      "input_hash": "23bc991d91929b25e8aefc47c3eed451341c629264ebdda3af88e4657cb16ebe",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 118932,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": null,
+            "statuses_exclude": [
+              "CANCELED",
+              "EXPIRED"
+            ],
+            "permit_class": "Residential",
+            "permit_type": null,
+            "desc_keyword": null,
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": null,
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [
+            "residential: interpreted as permit_class=Residential"
+          ],
+          "unrecognized_entities": [],
+          "assumptions": [],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "84df2342deb149409581883e98769337"
+      },
+      "got": {
+        "statuses_exclude": [
+          "canceled",
+          "expired"
+        ],
+        "permit_class": [
+          "residential"
+        ]
+      },
+      "want": {
+        "statuses_exclude": [
+          "canceled",
+          "expired"
+        ],
+        "permit_class": [
+          "residential"
+        ]
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 118932,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-17",
+      "question": "Basement permits issued since June 1, 2026",
+      "cache_key": "8de442f6e96c1ad92cd10b7a55e8e9bf37ec6d1547e63dae462af41b6a876baa",
+      "input_hash": "f947cbd636aabbdf7db419972453dfb5da99adfc8b632ad2a672c1e35a7b255e",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 88,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "ISSUED"
+            ],
+            "statuses_exclude": null,
+            "permit_class": null,
+            "permit_type": null,
+            "desc_keyword": "basement",
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": "2026-06-01",
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [
+            "interpreted 'basement permits' as permits with 'basement' in the description, not a specific permit_type"
+          ],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "09f2409dd09b418994eb66d8baef7c12"
+      },
+      "got": {
+        "status": [
+          "issued"
+        ],
+        "desc_keyword": "basement",
+        "issued_after": "2026-06-01"
+      },
+      "want": {
+        "status": [
+          "issued"
+        ],
+        "desc_keyword": "basement",
+        "issued_after": "2026-06-01"
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 88,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-18",
+      "question": "Show the newest pending permit applications",
+      "cache_key": "8b4d7f35ee0d3145e69b87c1e08b831525cc4088fd0c2529fe1e18e8ac8e5208",
+      "input_hash": "103213bfa6485d8ac16e273a55b494a3a2689b99aed28eb8924745831e3d0384",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 17877,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "PENDING"
+            ],
+            "statuses_exclude": null,
+            "permit_class": null,
+            "permit_type": null,
+            "desc_keyword": null,
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": null,
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": null,
+            "sort": "applied_desc",
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "2b37e7db1b7f43e9a7aa42e034f63652"
+      },
+      "got": {
+        "status": [
+          "pending"
+        ],
+        "sort": "applied_desc"
+      },
+      "want": {
+        "status": [
+          "pending"
+        ],
+        "sort": "applied_desc"
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 17877,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-19",
+      "question": "Roof permits issued last month",
+      "cache_key": "0ae49840e509cdce6d7b128cc7da573ba5a7a30acbd6091f883785c931967f94",
+      "input_hash": "edddc3812d1f66c4c1839130c95bac0b4dddbb7baf870801b0bcc8617dc86a93",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 17,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "ISSUED"
+            ],
+            "statuses_exclude": null,
+            "permit_class": null,
+            "permit_type": "Roof",
+            "desc_keyword": null,
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": "2026-10-01",
+            "issued_before": "2026-11-01",
+            "min_cost": null,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [
+            "'last month' resolved to the previous calendar month (October 2026) based on today's date 2026-11-10"
+          ],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "1d6190eb21b84146af828294decda93c"
+      },
+      "got": {
+        "status": [
+          "issued"
+        ],
+        "permit_type": [
+          "roof"
+        ],
+        "issued_after": "2026-10-01",
+        "issued_before": "2026-11-01"
+      },
+      "want": {
+        "status": [
+          "issued"
+        ],
+        "permit_type": [
+          "roof"
+        ],
+        "issued_after": "2026-10-01",
+        "issued_before": "2026-11-01"
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 17,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-20",
+      "question": "Issued residential permits in the last 90 days",
+      "cache_key": "fe0d28a84cb000c0a62286b7e1c24671a9a0cf68af0661532039996b829ec587",
+      "input_hash": "cf3dfa0b742066cbd26ff3282f6d12fb5694968337edcb867003bc5d8e1600cd",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 1108,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "ISSUED"
+            ],
+            "statuses_exclude": null,
+            "permit_class": "Residential",
+            "permit_type": null,
+            "desc_keyword": null,
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": "2026-08-12",
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [
+            "residential: interpreted as permit_class=Residential"
+          ],
+          "unrecognized_entities": [],
+          "assumptions": [
+            "assumed 'last 90 days' = issued_after 2026-08-12"
+          ],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "e5a970490a38448ca9ae50a9095fb03c"
+      },
+      "got": {
+        "status": [
+          "issued"
+        ],
+        "permit_class": [
+          "residential"
+        ],
+        "issued_after": "2026-08-12"
+      },
+      "want": {
+        "status": [
+          "issued"
+        ],
+        "permit_class": [
+          "residential"
+        ],
+        "issued_after": "2026-08-12"
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 1108,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-21",
+      "question": "Grading permits issued since January 2026",
+      "cache_key": "295217aafa7d7f36ba8e310c9408f9e38f91ebc54eec8973064baf06a0e4a9cf",
+      "input_hash": "53015ec29198a3e3ecb8565c6aa5148275dc4327527cabf2028c420b823d545e",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 17,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "ISSUED"
+            ],
+            "statuses_exclude": null,
+            "permit_class": null,
+            "permit_type": "Grading",
+            "desc_keyword": null,
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": "2026-01-01",
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [
+            "'since January 2026' interpreted as issued_after 2026-01-01"
+          ],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "1ba378a1f72d46c18704e7a7409a0e9c"
+      },
+      "got": {
+        "status": [
+          "issued"
+        ],
+        "permit_type": [
+          "grading"
+        ],
+        "issued_after": "2026-01-01"
+      },
+      "want": {
+        "status": [
+          "issued"
+        ],
+        "permit_type": [
+          "grading"
+        ],
+        "issued_after": "2026-01-01"
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 17,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-22",
+      "question": "Show expired permits in ZIP 98103",
+      "cache_key": "d9701600129383956517309e2e390d175165e58eab6c815beb733ffcb20d1b19",
+      "input_hash": "760ba463aa4760041520a0b7f8c1d2a96d2f9e663796983ba93ead37174264ca",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 907,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "EXPIRED"
+            ],
+            "statuses_exclude": null,
+            "permit_class": null,
+            "permit_type": null,
+            "desc_keyword": null,
+            "city": null,
+            "zip": "98103",
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": null,
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "1b3a7f9ed6764bf4b42f6000311bb157"
+      },
+      "got": {
+        "status": [
+          "expired"
+        ],
+        "zip": "98103"
+      },
+      "want": {
+        "status": [
+          "expired"
+        ],
+        "zip": "98103"
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 907,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-23",
+      "question": "Issued multifamily permits over $500,000",
+      "cache_key": "be107dde3aa3c8d0658a58a2a7f1d714c9fc9cbab1504dabf838a376f65ff7a9",
+      "input_hash": "551a017e03806e621c29aa2850a47f779e696bf8b6a225ad68a5e58ea9ac1bdb",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 438,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "ISSUED"
+            ],
+            "statuses_exclude": null,
+            "permit_class": "Multifamily",
+            "permit_type": null,
+            "desc_keyword": null,
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": null,
+            "issued_before": null,
+            "min_cost": 500000,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "42c23b70808c425a96cd0fd4eedbdf97"
+      },
+      "got": {
+        "status": [
+          "issued"
+        ],
+        "permit_class": [
+          "multifamily"
+        ],
+        "min_cost": 500000.0
+      },
+      "want": {
+        "status": [
+          "issued"
+        ],
+        "permit_class": [
+          "multifamily"
+        ],
+        "min_cost": 500000.0
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 438,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-24",
+      "question": "Which permits for deck work were issued in the last 60 days?",
+      "cache_key": "1a0710e0b8309f7c559b51684442042e96f81939c439678232ce4e9c226e365d",
+      "input_hash": "117baaedf2a94ef72797b83ce2518fd9771da3b68ec8712c0a5b6ad5c1f736d8",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 43,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "ISSUED"
+            ],
+            "statuses_exclude": null,
+            "permit_class": null,
+            "permit_type": null,
+            "desc_keyword": "deck",
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": "2026-09-11",
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [
+            "interpreted 'deck work' as desc_keyword 'deck'",
+            "interpreted 'last 60 days' as issued_after 2026-09-11 (today 2026-11-10 minus 60 days)"
+          ],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "5c693f24db1949868c1d180998404b76"
+      },
+      "got": {
+        "status": [
+          "issued"
+        ],
+        "desc_keyword": "deck",
+        "issued_after": "2026-09-11"
+      },
+      "want": {
+        "status": [
+          "issued"
+        ],
+        "desc_keyword": "deck",
+        "issued_after": "2026-09-11"
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 43,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-25",
+      "question": "Pending demolition permits",
+      "cache_key": "c44442ea125bb3133ec3208c346f1baab624a5538961fc221cc406d722705eec",
+      "input_hash": "a6df2c02a76a3d86022a246f844940d068c09f9bc49c4806268d261235991182",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 2769,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "PENDING"
+            ],
+            "statuses_exclude": null,
+            "permit_class": null,
+            "permit_type": "Demolition",
+            "desc_keyword": null,
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": null,
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "0d4e454d293e45c5be5a8f1e6a08926d"
+      },
+      "got": {
+        "status": [
+          "pending"
+        ],
+        "permit_type": [
+          "demolition"
+        ]
+      },
+      "want": {
+        "status": [
+          "pending"
+        ],
+        "permit_type": [
+          "demolition"
+        ]
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 2769,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-26",
+      "question": "Completed roof permits under $20,000",
+      "cache_key": "ba0c887a1642edafa6e8d5eac870e5375ea0ee82e40e2078b7efad9ab26463e1",
+      "input_hash": "a111eee5d8bbe4f1d5d4086d96d9e630daed12a00ea0e07287edd9932dd704ca",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 454,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "COMPLETED"
+            ],
+            "statuses_exclude": null,
+            "permit_class": null,
+            "permit_type": "Roof",
+            "desc_keyword": null,
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": null,
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": 20000,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "cd0e8d36f7194bdd94eb90b4ac3b4411"
+      },
+      "got": {
+        "status": [
+          "completed"
+        ],
+        "permit_type": [
+          "roof"
+        ],
+        "max_cost": 20000.0
+      },
+      "want": {
+        "status": [
+          "completed"
+        ],
+        "permit_type": [
+          "roof"
+        ],
+        "max_cost": 20000.0
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 454,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-27",
+      "question": "Show the most recently applied-for permits in ZIP 98118",
+      "cache_key": "bc925f8b204ef37c5dfadacc442c400866e628477d1792dd1394dce395911a4b",
+      "input_hash": "8a42df20d17f3eca062493fc9f49c1eff9562246c1ae808ff76859d341594e73",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 10568,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": null,
+            "statuses_exclude": null,
+            "permit_class": null,
+            "permit_type": null,
+            "desc_keyword": null,
+            "city": null,
+            "zip": "98118",
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": null,
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": null,
+            "sort": "applied_desc",
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "43732779cd794881a1c2b036770badb8"
+      },
+      "got": {
+        "zip": "98118",
+        "sort": "applied_desc"
+      },
+      "want": {
+        "zip": "98118",
+        "sort": "applied_desc"
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 10568,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-28",
+      "question": "Canceled permits applied for since 2026-01-01",
+      "cache_key": "1834c116a6485eb1acdbf8c98ad5a5e58fc920a6d6826ae64b78dd8c3ce7d492",
+      "input_hash": "d4c17875a958f3d4a4309b33a521af42c255e5b5c1c1b0e5f45c38dc85d215fb",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 53,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "CANCELED"
+            ],
+            "statuses_exclude": null,
+            "permit_class": null,
+            "permit_type": null,
+            "desc_keyword": null,
+            "city": null,
+            "zip": null,
+            "applied_after": "2026-01-01",
+            "applied_before": null,
+            "issued_after": null,
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [
+            "interpreted 'applied for' as filtering by application date (applied_after)"
+          ],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "774880cdd1704029900c89196cdf7d76"
+      },
+      "got": {
+        "status": [
+          "canceled"
+        ],
+        "applied_after": "2026-01-01"
+      },
+      "want": {
+        "status": [
+          "canceled"
+        ],
+        "applied_after": "2026-01-01"
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 53,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-29",
+      "question": "Issued permits that mention a garage",
+      "cache_key": "150d7f7f3f9ec51876ce7e67bb1502a79b07975cff3c019feb9f1dfadb10264a",
+      "input_hash": "ab01c20ff81f496b12e57580fa635bc35ef8b8a922d2b226ffd56d43af57d98e",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 474,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "ISSUED"
+            ],
+            "statuses_exclude": null,
+            "permit_class": null,
+            "permit_type": null,
+            "desc_keyword": "garage",
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": null,
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [],
+          "unrecognized_entities": [],
+          "assumptions": [],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": false,
+          "clarification": null
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "7ce7077ab666407685efd807dafc924b"
+      },
+      "got": {
+        "status": [
+          "issued"
+        ],
+        "desc_keyword": "garage"
+      },
+      "want": {
+        "status": [
+          "issued"
+        ],
+        "desc_keyword": "garage"
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [],
+      "unfulfilled_captured": true,
+      "actual_total": 474,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "nl-30",
+      "question": "Issued residential permits within 2 miles of Green Lake",
+      "cache_key": "ea25cdfc1c1c5d9f5fa8f254097bcf7f845de9992b8aff0cc0c4dc7cf430fdf5",
+      "input_hash": "1167903cdb9f6ccd459fa27f27c8127441e4ceab68f08a5e189f811fe0e34466",
+      "model": "ollama/qwen3.8:latest",
+      "prompt_version": "nlu-parse-v5",
+      "gold_total": 6291,
+      "parse": {
+        "parse": {
+          "permit_query": {
+            "status": [
+              "ISSUED"
+            ],
+            "statuses_exclude": null,
+            "permit_class": "Residential",
+            "permit_type": null,
+            "desc_keyword": null,
+            "city": null,
+            "zip": null,
+            "applied_after": null,
+            "applied_before": null,
+            "issued_after": null,
+            "issued_before": null,
+            "min_cost": null,
+            "max_cost": null,
+            "sort": null,
+            "limit": null
+          },
+          "ambiguous_terms": [
+            "residential: interpreted as permit_class=Residential"
+          ],
+          "unrecognized_entities": [
+            "within 2 miles of Green Lake"
+          ],
+          "assumptions": [],
+          "jurisdiction_in_question": null,
+          "core_requirement_unfulfillable": true,
+          "clarification": "I cannot filter by proximity to landmarks like Green Lake; please specify a ZIP code or city instead."
+        },
+        "model": "ollama/qwen3.8:latest",
+        "request_id": "1d1c136ea56b4151b06bfb2507198cbe"
+      },
+      "got": {
+        "status": [
+          "issued"
+        ],
+        "permit_class": [
+          "residential"
+        ]
+      },
+      "want": {
+        "status": [
+          "issued"
+        ],
+        "permit_class": [
+          "residential"
+        ]
+      },
+      "exact": true,
+      "param_match": true,
+      "unfulfilled": [
+        "within 2 miles of Green Lake"
+      ],
+      "unfulfilled_captured": true,
+      "actual_total": 6291,
+      "row_deviation": 0.0,
+      "row_ok": true,
+      "full_match": true,
+      "close": false,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    }
+  ]
+}

@@ -1,0 +1,316 @@
+@startuml schema-er
+' ============================================================================
+' Canonical store: entity-relationship diagram
+' Companion to: docs/schema.md (D1)
+' Source of truth for the schema: src/permit_trade_skills/discovery/registry.py
+' Render: java -jar /opt/plantuml/plantuml.jar -tsvg docs/diagrams/schema-er.puml
+' ============================================================================
+
+hide circle
+hide empty members
+skinparam shadowing true
+skinparam linetype ortho
+skinparam ranksep 40
+skinparam nodesep 30
+skinparam ArrowColor #444444
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #555555
+  HeaderBackgroundColor #D9EAD9
+}
+
+entity "jurisdictions" as jurisdictions {
+  * id : varchar <<PK>> -- slug, e.g. seattle-kingcounty-wa
+  --
+  name : varchar
+  platform_type : varchar -- socrata|ckan|other
+  field_map : jsonb
+  status_map : jsonb
+  detail_strategy : jsonb
+  config_version : int -- CHECK >= 1; bumped on re-registration
+  is_active : bool
+}
+
+entity "permits" as permits {
+  * id : bigint <<PK>>
+  --
+  * jurisdiction_id : varchar <<FK>>
+  jurisdiction_slug : varchar
+  permit_number : varchar -- UNIQUE with jurisdiction_id
+  status : varchar -- PENDING|ISSUED|IN_INSPECTION|CANCELED|EXPIRED|COMPLETED|UNKNOWN
+  status_raw : varchar
+  applied_at / issued_at / expires_at / completed_at : timestamp
+  description : text
+  description_embedding : vector(384)
+  valuation : float
+  latitude / longitude : float
+  geo : point -- generated
+  raw_row : json -- verbatim source row
+  raw_hash : varchar
+  warnings : jsonb
+  processing_state : varchar -- lifecycle (CAS via advance_state)
+  state_error : jsonb
+  run_id : varchar -- last sync that changed the row
+}
+
+entity "status_history" as status_history {
+  * id : bigint <<PK>>
+  --
+  * permit_id : bigint <<FK>>
+  from_status : varchar
+  to_status : varchar
+  raw_status : varchar
+  run_id : varchar
+  changed_at : timestamp
+}
+
+entity "sync_metadata" as sync_metadata {
+  * id : bigint <<PK>>
+  --
+  run_id : varchar
+  * jurisdiction_id : varchar <<FK>>
+  mode : varchar -- full|incremental|dry_run
+  inserted / updated / unchanged : int
+  status_transitions : jsonb
+  cursor_before / cursor_after : varchar
+  max_applied_at / max_synced_at : timestamp
+  fingerprint : varchar -- pulled set; identical pull = no-op
+  started_at : timestamp
+}
+
+entity "detail_snapshots" as detail_snapshots {
+  * id : bigint <<PK>>
+  --
+  * permit_id : bigint <<FK>>
+  fetch_strategy : varchar -- soda_row|redirect_chase|playwright
+  content_text : text -- citation substrate (Stage 06)
+  fields : jsonb
+  degraded : bool
+  notes : jsonb
+  signals : jsonb -- F2 validation report
+  source_hash : varchar -- permits.raw_hash used (TTL probe)
+  raw_html : text -- NULLed after 90 days
+  raw_responses : jsonb -- NULLed after 90 days
+  content_hash : varchar -- UNIQUE with permit_id
+  run_id : varchar
+  fetched_at : timestamp
+}
+
+entity "detail_fetch_runs" as detail_fetch_runs {
+  * run_id : varchar <<PK>>
+  --
+  * jurisdiction_id : varchar <<FK>>
+  trigger : varchar -- cli|service
+  params : jsonb
+  status : varchar -- running|completed|failed
+  total / ok / failed / skipped : int
+  started_at : timestamp
+  completed_at : timestamp
+}
+
+entity "detail_fetch_results" as detail_fetch_results {
+  * id : bigint <<PK>>
+  --
+  * run_id : varchar <<FK>> -- UNIQUE with permit_id
+  * permit_id : bigint <<FK>>
+  snapshot_id : bigint <<FK>>
+  outcome : varchar -- ok|failed|skipped
+  fetch_strategy : varchar
+  error : varchar
+  retryable : bool
+  attempts : jsonb
+}
+
+entity "skill_inferences" as skill_inferences {
+  * id : bigint <<PK>>
+  --
+  * permit_id : bigint <<FK>>
+  input_snapshot_id : bigint <<FK>>
+  prompt_version : varchar
+  model : varchar
+  skills : jsonb
+  assumptions : jsonb
+  overall_confidence : varchar -- high|medium|low
+  degraded : bool
+  input_cache_key : varchar -- UNIQUE (permit_id, input_cache_key)
+  context_hash, prompt_hash, completion_hash : varchar
+  substrate_text : text -- degraded only
+  dropped_skills, warnings, signal_check : jsonb
+  review_status : varchar -- PENDING|APPROVED|REJECTED|NEEDS_HUMAN
+  reviewer, reviewed_at, review_note
+  proposed_by : varchar -- agent|human
+  proposed_decision : varchar -- approve|reject|needs_human
+  created_at : timestamp
+}
+
+entity "orchestration_events" as orchestration_events {
+  * id : bigint <<PK>>
+  --
+  run_id : varchar -- pipeline-... | agent-... | review-...
+  permit_id : bigint <<FK>>
+  event : varchar
+  from_state, to_state : varchar
+  tool : varchar
+  params_json, result_json : jsonb
+  ok : bool
+  error_code : varchar
+  retryable : bool
+  latency_ms : int
+  created_at : timestamp
+}
+
+entity "pipeline_runs" as pipeline_runs {
+  * run_id : varchar <<PK>>
+  --
+  * jurisdiction_id : varchar <<FK>>
+  status : varchar -- running|completed|stopped|failed
+  planned, completed, failed, skipped, queued : int
+  llm_calls : int
+  tokens : jsonb
+  est_cost : numeric
+  started_at, finished_at : timestamp
+}
+
+entity "retry_backlog" as retry_backlog {
+  * permit_id : bigint <<PK, FK>>
+  --
+  stage : varchar -- detail|skill_infer
+  attempts : int
+  next_retry_at : timestamp
+  exhausted : bool
+  last_error : jsonb
+  created_at, updated_at : timestamp
+}
+
+entity "eval_results" as eval_results {
+  * id : bigint <<PK>>
+  --
+  run_id : varchar -- eval-h1-... (one suite run)
+  suite : varchar -- H1..H7|judge
+  build_id : varchar -- the gate's build
+  permit_id : bigint <<FK>>
+  metric : jsonb -- "item"|"summary"|metric name
+  item_key : varchar
+  value : numeric
+  threshold : numeric
+  passed : bool
+  input_hash, model, prompt_version : varchar
+  cache_key : varchar -- LLM result reuse
+  payload : jsonb
+  created_at : timestamp
+}
+
+entity "labels" as labels {
+  * id : bigint <<PK>>
+  --
+  * jurisdiction_id : varchar <<FK>>
+  permit_id : bigint <<FK>>
+  kind : varchar -- trade_set|nl_query|extraction_checklist
+  item_key : varchar -- permit number or question id
+  role : varchar -- labeler|adjudicator
+  payload : jsonb
+  labeled_by : varchar
+  label_version : int
+  pinned_input_hash : varchar
+  superseded_by : bigint <<FK>> -- labels.id
+  created_at : timestamp
+}
+
+entity "build_gates" as build_gates {
+  * id : bigint <<PK>>
+  --
+  build_id : varchar
+  status : varchar -- PASS|CONDITIONAL|FAIL
+  report : jsonb
+  signed_off_by, signed_off_at, sign_off_note
+  created_at : timestamp
+}
+
+entity "drift_alerts" as drift_alerts {
+  * id : bigint <<PK>>
+  --
+  jurisdiction_id : varchar <<FK>>
+  detector : varchar
+  severity : varchar -- info|warning|critical
+  suspected_cause : varchar
+  message : text
+  measured, baseline : jsonb
+  window_start, window_end : timestamp
+  notified : bool
+  acknowledged_by, acknowledged_at
+  created_at : timestamp
+}
+
+entity "nlu_cache" as nlu_cache {
+  * key : varchar <<PK>> -- sha256(question, jurisdiction, versions, model, day)
+  --
+  question : text
+  jurisdiction : varchar
+  schema_version : varchar
+  model : varchar
+  response : jsonb -- the NLU parse
+  created_at : timestamp
+  expires_at : timestamp -- 24h TTL; pruned by pts db prune
+}
+
+entity "jurisdiction_versions" as jurisdiction_versions {
+  * id : bigint <<PK>>
+  --
+  * jurisdiction_id : varchar <<FK>>
+  config_version : int -- UNIQUE with jurisdiction_id
+  config : jsonb -- replaced config (no api_key)
+  replaced_by : varchar -- e.g. pts seeds seattle
+  created_at : timestamp -- when it was replaced
+}
+
+entity "discovery_runs" as discovery_runs #F2F2F2 {
+}
+entity "probes" as probes #F2F2F2 {
+}
+entity "status_maps" as status_maps #F2F2F2 {
+}
+
+jurisdictions ||--o{ permits
+jurisdictions ||--o{ sync_metadata
+jurisdictions |o--o{ discovery_runs
+jurisdictions ||--o{ jurisdiction_versions
+jurisdictions ||--o{ probes
+jurisdictions ||--o{ status_maps
+permits ||--o{ status_history
+permits ||--o{ detail_snapshots
+permits ||--o{ skill_inferences
+permits |o--o{ eval_results
+detail_snapshots |o--o{ skill_inferences
+jurisdictions ||--o{ detail_fetch_runs
+detail_fetch_runs ||--o{ detail_fetch_results
+permits ||--o{ detail_fetch_results
+detail_snapshots |o--o{ detail_fetch_results
+jurisdictions ||--o{ pipeline_runs
+permits |o--o{ orchestration_events
+permits ||--o| retry_backlog
+jurisdictions ||--o{ labels
+permits |o--o{ labels
+jurisdictions |o--o{ drift_alerts
+
+legend right
+  On delete: permits, sync_metadata, status_history, detail_snapshots,
+  skill_inferences and eval_results CASCADE from their parent;
+  skill_inferences.input_snapshot_id is SET NULL.
+  Stage 05 (migration 0004): detail_fetch_runs / detail_fetch_results
+  (the run ledger) CASCADE; detail_fetch_results.snapshot_id is SET NULL.
+  Grey tables: Stage 1 discovery (columns omitted).
+  Stage 01 (migration 0006): jurisdiction_versions (config history,
+  CASCADE); discovery_runs.jurisdiction_id nullable until registration.
+  Stage 02 (migration 0007): sync_metadata high-water marks + fingerprint.
+  nlu_cache (Stage 04, migration 0003) has no foreign keys.
+  Stage 06 (migration 0005): skill_inferences audit columns.
+  Stage 07 (migration 0008): orchestration_events (permit_id SET NULL;
+  run_id joins pipeline_runs.run_id for worker runs, no FK),
+  pipeline_runs and retry_backlog (CASCADE), skill_inferences.proposed_*.
+  Stage 08 (migration 0009): labels (permit_id and superseded_by SET NULL;
+  one current row per kind/item/role/labeler), build_gates (no FK),
+  drift_alerts (CASCADE), eval_results suite/build/cache columns.
+  Full column list: the ORM models in discovery/registry.py.
+endlegend
+
+@enduml

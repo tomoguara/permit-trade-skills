@@ -1,0 +1,109 @@
+@startuml Quality, Evaluation & Monitoring Component Diagram
+title Quality, Evaluation & Monitoring (Stage 08) - Component Architecture
+skin rose
+skinparam shadowing true
+
+package "CLI" {
+  [pts quality\\n(gate/signoff)] as cli_quality
+  [pts eval\\n(run/judge)] as cli_eval
+  [pts label\\n(annotate)] as cli_label
+  [pts alerts\\n(check)] as cli_alerts
+}
+
+package "Evaluation Module" {
+  [harnesses\\nH1-H7] as harness
+  [judge\\nLLM-as-judge] as judge
+  [gate\\nRelease Gate] as gate
+  [drift\\nDetectors] as drift
+  [diagnose\\nTriage] as diagnose
+}
+
+database "eval_results" as db_results
+database "build_gates" as db_gates
+database "drift_alerts" as db_alerts
+database "permits/snapshots" as db_main
+
+package "Golden Sets" {
+  [Dataset A\\ntrade-set.jsonl] as golden_a
+  [Dataset B\\nnl-query.jsonl] as golden_b
+  [Dataset C\\nextraction.jsonl] as golden_c
+}
+
+package "Store" {
+  [SqlEvalStore] as store
+}
+
+package "Services" {
+  [ReviewService] as review
+  [Grounding Gate] as grounding
+}
+
+' === Main pipeline flow ===
+golden_a --> harness
+golden_b --> harness
+golden_c --> harness
+harness --> db_results
+harness --> grounding
+grounding --> harness
+
+judge --> db_results
+judge --> db_main : verify
+
+' === Release gate ===
+db_results --> gate
+gate --> db_gates
+
+' === Monitoring ===
+db_results --> drift
+drift --> db_alerts
+db_alerts --> diagnose
+
+' === Human review ===
+judge --> review : NEEDS_HUMAN
+harness --> review : H1 flags
+review --> db_main
+
+' === CLI commands ===
+cli_eval --> harness
+cli_eval --> judge
+cli_eval --> drift
+cli_eval --> diagnose
+cli_quality --> gate
+cli_label --> golden_a
+
+' === Store layer ===
+store --> db_main
+store --> db_results
+store --> db_gates
+store --> db_alerts
+
+' === Helper notes ===
+note top of golden_a
+  **Golden Sets (JSONL files)**
+  - Dataset A: Trade labels
+  - Dataset B: NL queries
+  - Dataset C: Extraction checklists
+end note
+
+note top of gate
+  **Release Gate**
+  - PASS (0), FAIL (1), CONDITIONAL (2)
+  - Hard criteria: block promotion
+  - Soft criteria: need sign-off
+end note
+
+note top of drift
+  **Drift Detectors**
+  - degraded_share, confidence_shift
+  - unknown_status, h2_recall
+  - Webhook notifications
+end note
+
+legend right
+  <b>CLI:</b> pts quality, pts eval, pts label, pts alerts<br/>
+  <b>Module:</b> harnesses H1-H7, judge, gate, drift, diagnose<br/>
+  <b>Data:</b> eval_results, build_gates, drift_alerts<br/>
+  <b>Store:</b> SqlEvalStore implementation
+endlegend
+
+@enduml

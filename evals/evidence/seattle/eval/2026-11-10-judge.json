@@ -1,0 +1,1113 @@
+{
+  "suite": "judge",
+  "run_id": "eval-judge-20261111T014005-df239f",
+  "jurisdiction": "seattle-kingcounty-wa",
+  "build_id": "live-2026-11-10",
+  "metrics": {
+    "sample_rate": 0.3333,
+    "mean_capability_phrase": 1.9608,
+    "mean_evidence_supports": 1.5686,
+    "mean_evidence_best": 1.9412,
+    "mean_assumptions_honest": 2.0,
+    "flags": 1.0
+  },
+  "counts": {
+    "inferences": 33,
+    "sampled": 11,
+    "judged": 11,
+    "flagged_rows": 1,
+    "flagged_gate_passed": 1,
+    "auto_rejected": 0
+  },
+  "info": {},
+  "warnings": [],
+  "model": "ollama/gemma4:31b",
+  "prompt_version": "eval-judge-v1",
+  "llm_calls": 11,
+  "cache_hits": 0,
+  "started_at": null,
+  "finished_at": null,
+  "items_total": 11,
+  "items_failed": 1,
+  "worst": [
+    {
+      "key": "7166643-CN#11",
+      "score": 0.8571,
+      "reason": "'fire alarm system integration': A 'Yes' in a form field indicates the presence of a system, not that work/integration is required for this permit. (grounding gate passed: quote matches but does not support)"
+    }
+  ],
+  "items": [
+    {
+      "key": "7147491-CN#21",
+      "permit_id": 187535,
+      "permit_number": "7147491-CN",
+      "inference_id": 21,
+      "overall_confidence": "medium",
+      "generator_model": "ollama/qwen3.8:latest",
+      "auto_rejected": false,
+      "rubric": {
+        "skills": [
+          {
+            "index": 0,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Concrete formwork and pouring for spread footings is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The detail explicitly lists 'Foundation Type: Spread Footing'."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the only mention of the foundation type in the text."
+            }
+          },
+          {
+            "index": 1,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Wood frame construction is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 1,
+              "reason": "Type VB construction typically implies wood frame, but the text does not explicitly state 'wood'."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "Type VB is the most relevant indicator of construction material provided."
+            }
+          },
+          {
+            "index": 2,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Earthwork and grading are concrete trade capabilities."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The detail confirms more than 2,000 square feet of earth disturbance."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the direct evidence for earthwork."
+            }
+          },
+          {
+            "index": 3,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Hard surface paving is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The detail confirms new/replaced hard surface exceeding 750 sq ft."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the direct evidence for paving."
+            }
+          },
+          {
+            "index": 4,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Deck construction is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The detail explicitly lists 'deck' as an occupancy type."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the only mention of a deck in the text."
+            }
+          },
+          {
+            "index": 5,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Residential sprinkler system installation is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The detail explicitly lists 'Sprinkler Standard: Type 13 Dwelling'."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the most specific evidence for the sprinkler system."
+            }
+          }
+        ],
+        "assumptions_honest": {
+          "score": 2,
+          "reason": "The assumptions accurately reflect that other trades are implied by the project type but not explicitly detailed in the text."
+        }
+      },
+      "request_id": "b23e75076e8c4f108a6f36e69e22eee2",
+      "cache_key": "646744162b18313db27e1806b6aa61ed133038705e224746e28eab379c168489",
+      "input_hash": "646744162b18313db27e1806b6aa61ed133038705e224746e28eab379c168489",
+      "model": "ollama/gemma4:31b",
+      "prompt_version": "eval-judge-v1",
+      "flags": [],
+      "passed": true,
+      "score": 0.9737,
+      "reason": null,
+      "one_liner": "evidence_supports=1 on 'wood frame construction': Type VB construction typically implies wood frame, but the text does not explicitly state 'wood'."
+    },
+    {
+      "key": "7145216-CN#24",
+      "permit_id": 181623,
+      "permit_number": "7145216-CN",
+      "inference_id": 24,
+      "overall_confidence": "medium",
+      "generator_model": "ollama/qwen3.8:latest",
+      "auto_rejected": false,
+      "rubric": {
+        "skills": [
+          {
+            "index": 0,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Concrete formwork and pouring for spread footings is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The detail explicitly lists 'Foundation Type: Spread Footing'."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the only mention of the foundation type in the text."
+            }
+          },
+          {
+            "index": 1,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Structural framing for multi-story wood construction is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 1,
+              "reason": "The number of stories implies framing is needed, but doesn't explicitly state the material is wood (though common for residential)."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "The number of stories is the most relevant piece of evidence for the scale of framing."
+            }
+          },
+          {
+            "index": 2,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Wood frame structural assembly is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 1,
+              "reason": "Type VB construction typically refers to wood frame, but it is a classification rather than a direct instruction to assemble wood frames."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "Construction type is the primary indicator of the building's structural material."
+            }
+          },
+          {
+            "index": 3,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Deck construction is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The detail explicitly lists 'Floor or Area: Deck'."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the direct mention of a deck in the permit."
+            }
+          },
+          {
+            "index": 4,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Site earthwork and grading is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The permit confirms more than 2,000 sq ft of earth disturbance is occurring."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "The earth disturbance question is the most direct evidence for grading work."
+            }
+          },
+          {
+            "index": 5,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Curb cut installation is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The detail provides specific dimensions and location for a curb cut."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "The specific curb cut size and location is the best evidence."
+            }
+          },
+          {
+            "index": 6,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Hard surface paving is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The permit confirms new/replaced hard surface exceeds 750 sq ft."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "The hard surface square footage question is the direct evidence for paving."
+            }
+          }
+        ],
+        "assumptions_honest": {
+          "score": 2,
+          "reason": "The assumptions accurately reflect that standard residential trades were omitted due to lack of explicit evidence in the text."
+        }
+      },
+      "request_id": "8a65498ca52741f4af55e53eb985325a",
+      "cache_key": "6a384a20ad0507209d1258549b8ffe0d6b85d4dbefd6c5468a261ad2c47397ad",
+      "input_hash": "6a384a20ad0507209d1258549b8ffe0d6b85d4dbefd6c5468a261ad2c47397ad",
+      "model": "ollama/gemma4:31b",
+      "prompt_version": "eval-judge-v1",
+      "flags": [],
+      "passed": true,
+      "score": 0.9545,
+      "reason": null,
+      "one_liner": "evidence_supports=1 on 'structural framing for multi-story wood frame construction': The number of stories implies framing is needed, but doesn't explicitly state the material is wood (though common for residential)."
+    },
+    {
+      "key": "7159979-CN#29",
+      "permit_id": 194461,
+      "permit_number": "7159979-CN",
+      "inference_id": 29,
+      "overall_confidence": "medium",
+      "generator_model": "ollama/qwen3.8:latest",
+      "auto_rejected": false,
+      "rubric": {
+        "skills": [
+          {
+            "index": 0,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "This is a concrete trade capability involving the physical logistics of moving temporary structures."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The quote explicitly mentions the placement and removal of temporary units."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the most direct evidence for this specific skill in the text."
+            }
+          },
+          {
+            "index": 1,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Site preparation is a concrete trade capability required for installing portable structures."
+            },
+            "evidence_supports": {
+              "score": 1,
+              "reason": "The quote mentions constructing temporary facilities, which implies site prep, but does not explicitly state it."
+            },
+            "evidence_best": {
+              "score": 1,
+              "reason": "The section describing the work location ('In between the buildings on the west side of the parking area') provides better context for site preparation than the general project description."
+            }
+          }
+        ],
+        "assumptions_honest": {
+          "score": 2,
+          "reason": "The assumptions accurately reflect the limitations and specifics of the permit detail provided."
+        }
+      },
+      "request_id": "bbbf9417eec04762b37eb27a472974c3",
+      "cache_key": "38eb4d3011e541cea05f460484fecc73b25ae88d5e94c25f1a4ff263afbabf9f",
+      "input_hash": "38eb4d3011e541cea05f460484fecc73b25ae88d5e94c25f1a4ff263afbabf9f",
+      "model": "ollama/gemma4:31b",
+      "prompt_version": "eval-judge-v1",
+      "flags": [],
+      "passed": true,
+      "score": 0.8571,
+      "reason": null,
+      "one_liner": "evidence_supports=1 on 'site preparation for portable structures': The quote mentions constructing temporary facilities, which implies site prep, but does not explicitly state it."
+    },
+    {
+      "key": "7143986-CN#22",
+      "permit_id": 182611,
+      "permit_number": "7143986-CN",
+      "inference_id": 22,
+      "overall_confidence": "medium",
+      "generator_model": "ollama/qwen3.8:latest",
+      "auto_rejected": false,
+      "rubric": {
+        "skills": [
+          {
+            "index": 0,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Concrete trade capability regarding the installation of paving surfaces."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The quote explicitly mentions 're-paving' of the parking and path of travel."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the most direct statement of the paving work required."
+            }
+          },
+          {
+            "index": 1,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Concrete trade capability regarding the marking of pavement."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The quote explicitly mentions 're-striping' of the parking and path of travel."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the most direct statement of the striping work required."
+            }
+          },
+          {
+            "index": 2,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Concrete trade capability regarding earthwork and surface preparation."
+            },
+            "evidence_supports": {
+              "score": 1,
+              "reason": "The quote confirms hard surface replacement, which usually requires prep, but does not explicitly mention grading."
+            },
+            "evidence_best": {
+              "score": 0,
+              "reason": "The 'Project Description' or 'Total Disturbed Area' fields would be better evidence for site preparation than a yes/no checkbox for hard surface."
+            }
+          }
+        ],
+        "assumptions_honest": {
+          "score": 2,
+          "reason": "The assumptions accurately reflect the inferences made and the lack of specific material details in the text."
+        }
+      },
+      "request_id": "668e422dbe95495d96bb78d4f05b5f20",
+      "cache_key": "cac15a62ca5c244b00489a763fea2f30cf94126840301928bf8ca7c300974d41",
+      "input_hash": "cac15a62ca5c244b00489a763fea2f30cf94126840301928bf8ca7c300974d41",
+      "model": "ollama/gemma4:31b",
+      "prompt_version": "eval-judge-v1",
+      "flags": [],
+      "passed": true,
+      "score": 0.85,
+      "reason": null,
+      "one_liner": "evidence_best=0 on 'site preparation and grading': The 'Project Description' or 'Total Disturbed Area' fields would be better evidence for site preparation than a yes/no checkbox for hard surface."
+    },
+    {
+      "key": "7147489-CN#8",
+      "permit_id": 193781,
+      "permit_number": "7147489-CN",
+      "inference_id": 8,
+      "overall_confidence": "medium",
+      "generator_model": "ollama/qwen3.8:latest",
+      "auto_rejected": false,
+      "rubric": {
+        "skills": [
+          {
+            "index": 0,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Concrete formwork and pouring for spread footings is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The detail explicitly lists 'Foundation Type: Spread Footing'."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the only mention of the foundation type in the text."
+            }
+          },
+          {
+            "index": 1,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Wood frame structural assembly is a concrete framing capability."
+            },
+            "evidence_supports": {
+              "score": 1,
+              "reason": "Type VB construction typically implies wood frame, but it is an indirect inference from a building code classification."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the only text referring to the construction type."
+            }
+          },
+          {
+            "index": 2,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Installing residential sprinkler systems is a concrete plumbing capability."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The detail explicitly mentions 'Sprinkler Standard: Type 13 Dwelling'."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the most direct evidence for sprinkler installation."
+            }
+          },
+          {
+            "index": 3,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Earthwork and grading are concrete site-prep capabilities."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The detail confirms more than 2,000 sq ft of earth disturbance is occurring."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the only mention of earth disturbance."
+            }
+          },
+          {
+            "index": 4,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Paving and hard surface installation is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The detail confirms new/replaced hard surface exceeds 750 sq ft."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the only mention of hard surface installation."
+            }
+          },
+          {
+            "index": 5,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Roofing installation is a concrete roofing capability."
+            },
+            "evidence_supports": {
+              "score": 1,
+              "reason": "Mentioning '3-Roof' as a floor or area implies a roof exists, but is indirect evidence of the installation process."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the only mention of the roof in the detail."
+            }
+          },
+          {
+            "index": 6,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Deck construction is a concrete carpentry capability."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The detail explicitly lists 'deck' as an occupancy type."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the only mention of a deck."
+            }
+          }
+        ],
+        "assumptions_honest": {
+          "score": 2,
+          "reason": "The assumptions accurately reflect the inferences made from the building code and permit fields."
+        }
+      },
+      "request_id": "b128613426234244bcf687a3d04a7119",
+      "cache_key": "1520afb6f0473288fd1d8c9a9907f2032b3016bfd532a425ff99063c9494b89c",
+      "input_hash": "1520afb6f0473288fd1d8c9a9907f2032b3016bfd532a425ff99063c9494b89c",
+      "model": "ollama/gemma4:31b",
+      "prompt_version": "eval-judge-v1",
+      "flags": [],
+      "passed": true,
+      "score": 0.9545,
+      "reason": null,
+      "one_liner": "evidence_supports=1 on 'wood frame structural assembly': Type VB construction typically implies wood frame, but it is an indirect inference from a building code classification."
+    },
+    {
+      "key": "7128921-CN#1",
+      "permit_id": 192431,
+      "permit_number": "7128921-CN",
+      "inference_id": 1,
+      "overall_confidence": "medium",
+      "generator_model": "ollama/qwen3.8:latest",
+      "auto_rejected": false,
+      "rubric": {
+        "skills": [
+          {
+            "index": 0,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Concrete foundation construction is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 1,
+              "reason": "Building a new dwelling implies a foundation, but the quote does not explicitly mention concrete work."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "The quote is the only description of the work scope available in the detail."
+            }
+          },
+          {
+            "index": 1,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Structural framing is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 1,
+              "reason": "Building a new dwelling implies framing, but the quote does not explicitly mention it."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "The quote is the only description of the work scope available in the detail."
+            }
+          },
+          {
+            "index": 2,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Roofing installation is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 1,
+              "reason": "Building a new dwelling implies roofing, but the quote does not explicitly mention it."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "The quote is the only description of the work scope available in the detail."
+            }
+          },
+          {
+            "index": 3,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Drywall hanging and finishing is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 1,
+              "reason": "Building a new dwelling implies interior finishing, but the quote does not explicitly mention drywall."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "The quote is the only description of the work scope available in the detail."
+            }
+          },
+          {
+            "index": 4,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Electrical rough-in and finish is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 1,
+              "reason": "Building a new dwelling implies electrical work, but the quote does not explicitly mention it."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "The quote is the only description of the work scope available in the detail."
+            }
+          },
+          {
+            "index": 5,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Plumbing rough-in and finish is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 1,
+              "reason": "Building a new dwelling implies plumbing work, but the quote does not explicitly mention it."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "The quote is the only description of the work scope available in the detail."
+            }
+          },
+          {
+            "index": 6,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "HVAC installation is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 1,
+              "reason": "Building a new dwelling implies HVAC work, but the quote does not explicitly mention it."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "The quote is the only description of the work scope available in the detail."
+            }
+          }
+        ],
+        "assumptions_honest": {
+          "score": 2,
+          "reason": "The assumptions accurately reflect that the skills are inferred from the general nature of constructing a new dwelling."
+        }
+      },
+      "request_id": "01cb4b0d428a4d55a0d0332a9b534f3c",
+      "cache_key": "8c0a8e44c404b16bbe2429c37508733137bdb36470494482eaf806a8856ef616",
+      "input_hash": "8c0a8e44c404b16bbe2429c37508733137bdb36470494482eaf806a8856ef616",
+      "model": "ollama/gemma4:31b",
+      "prompt_version": "eval-judge-v1",
+      "flags": [],
+      "passed": true,
+      "score": 0.8409,
+      "reason": null,
+      "one_liner": "evidence_supports=1 on 'residential foundation construction': Building a new dwelling implies a foundation, but the quote does not explicitly mention concrete work."
+    },
+    {
+      "key": "7147488-CN#9",
+      "permit_id": 193780,
+      "permit_number": "7147488-CN",
+      "inference_id": 9,
+      "overall_confidence": "medium",
+      "generator_model": "ollama/qwen3.8:latest",
+      "auto_rejected": false,
+      "rubric": {
+        "skills": [
+          {
+            "index": 0,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Concrete formwork and pouring for spread footings is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The detail explicitly lists 'Foundation Type: Spread Footing'."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the only mention of the foundation type in the text."
+            }
+          },
+          {
+            "index": 1,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Wood frame structural assembly is a concrete framing capability."
+            },
+            "evidence_supports": {
+              "score": 1,
+              "reason": "Type VB construction typically implies wood frame, but it is an indirect inference from a building code classification."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the only text referring to the construction type."
+            }
+          },
+          {
+            "index": 2,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Installing residential sprinkler systems is a specific plumbing/fire protection capability."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The detail explicitly mentions 'Sprinkler Standard: Type 13 Dwelling'."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the most direct evidence for sprinkler installation."
+            }
+          },
+          {
+            "index": 3,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Earthwork and grading are concrete site-prep capabilities."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The detail confirms 'Yes' to more than 2,000 square feet of earth disturbance."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the only mention of earth disturbance."
+            }
+          },
+          {
+            "index": 4,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Hard surface paving is a concrete/paving capability."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The detail confirms 'Yes' to new and replaced hard surface over 750 sq ft."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the only mention of hard surface paving."
+            }
+          },
+          {
+            "index": 5,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Roofing installation is a concrete roofing capability."
+            },
+            "evidence_supports": {
+              "score": 1,
+              "reason": "Mentioning '3-Roof' as a floor or area implies a roof exists, but doesn't explicitly state installation work."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the only mention of the roof in the detail."
+            }
+          },
+          {
+            "index": 6,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Deck construction is a concrete carpentry capability."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The detail explicitly lists 'Other Occupancy Type: deck'."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the only mention of a deck."
+            }
+          }
+        ],
+        "assumptions_honest": {
+          "score": 2,
+          "reason": "The assumptions accurately reflect the inferences made from the construction type and the absence of other trades."
+        }
+      },
+      "request_id": "3011e09a209541709b653e3ac375518b",
+      "cache_key": "37e49a160769ed644ec8e899bd1b45be5995c8e9270f7ee7682850924819de83",
+      "input_hash": "37e49a160769ed644ec8e899bd1b45be5995c8e9270f7ee7682850924819de83",
+      "model": "ollama/gemma4:31b",
+      "prompt_version": "eval-judge-v1",
+      "flags": [],
+      "passed": true,
+      "score": 0.9545,
+      "reason": null,
+      "one_liner": "evidence_supports=1 on 'wood frame structural assembly': Type VB construction typically implies wood frame, but it is an indirect inference from a building code classification."
+    },
+    {
+      "key": "7145215-CN#2",
+      "permit_id": 194713,
+      "permit_number": "7145215-CN",
+      "inference_id": 2,
+      "overall_confidence": "low",
+      "generator_model": "ollama/qwen3.8:latest",
+      "auto_rejected": false,
+      "rubric": {
+        "skills": [
+          {
+            "index": 0,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Concrete formwork and pouring for spread footings is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The detail explicitly lists 'Spread Footing' as the foundation type."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the only mention of the foundation type in the text."
+            }
+          },
+          {
+            "index": 1,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Earthwork and grading are concrete trade capabilities."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "Confirmation of more than 2,000 sq ft of earth disturbance directly implies grading/earthwork."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the only mention of earth disturbance in the text."
+            }
+          },
+          {
+            "index": 2,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Hard surface paving is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The detail confirms new/replaced hard surface exceeding 750 sq ft."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the most direct evidence for paving work."
+            }
+          },
+          {
+            "index": 3,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Curb cut construction is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The detail provides specific dimensions and location for a curb cut."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the most specific evidence for curb cut work."
+            }
+          },
+          {
+            "index": 4,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Residential framing for a two-story building is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 1,
+              "reason": "The number of stories implies framing is required, but does not explicitly state the task."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "The story count is the only evidence available for the scale of framing."
+            }
+          },
+          {
+            "index": 5,
+            "capability_phrase": {
+              "score": 1,
+              "reason": "Building envelope construction is a capability, though slightly vague."
+            },
+            "evidence_supports": {
+              "score": 1,
+              "reason": "Constructing a dwelling implies an envelope, but the quote is a general project description."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "The general project description is the only source for the overall scope of construction."
+            }
+          }
+        ],
+        "assumptions_honest": {
+          "score": 2,
+          "reason": "The assumptions accurately reflect the absence of specific trade details and the level of inference used for framing/carpentry."
+        }
+      },
+      "request_id": "c633a346551a4b5dad926cc85f571235",
+      "cache_key": "ca593a5b987d9ac4be162312f26aa9a6776e6987b433015b32b4728bd0d0b705",
+      "input_hash": "ca593a5b987d9ac4be162312f26aa9a6776e6987b433015b32b4728bd0d0b705",
+      "model": "ollama/gemma4:31b",
+      "prompt_version": "eval-judge-v1",
+      "flags": [],
+      "passed": true,
+      "score": 0.9211,
+      "reason": null,
+      "one_liner": "evidence_supports=1 on 'two-story residential framing': The number of stories implies framing is required, but does not explicitly state the task."
+    },
+    {
+      "key": "7166643-CN#11",
+      "permit_id": 192807,
+      "permit_number": "7166643-CN",
+      "inference_id": 11,
+      "overall_confidence": "low",
+      "generator_model": "ollama/qwen3.8:latest",
+      "auto_rejected": false,
+      "rubric": {
+        "skills": [
+          {
+            "index": 0,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Assembling a temporary structure is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The description explicitly requires the installation of a temporary phone booth."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "The project description is the most direct evidence for this skill."
+            }
+          },
+          {
+            "index": 1,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Integrating a fire alarm system is a concrete electrical trade capability."
+            },
+            "evidence_supports": {
+              "score": 0,
+              "reason": "A 'Yes' in a form field indicates the presence of a system, not that work/integration is required for this permit."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "No other text mentions fire alarms."
+            }
+          }
+        ],
+        "assumptions_honest": {
+          "score": 2,
+          "reason": "The assumptions accurately reflect the gaps in the detail text and the logic used for inference."
+        }
+      },
+      "request_id": "c62f83badad2411982aeec9883d9535a",
+      "cache_key": "b78fc435cf04b21ef5cae40218b22a73206a1663a76ec6e422b53e3bbce6c814",
+      "input_hash": "b78fc435cf04b21ef5cae40218b22a73206a1663a76ec6e422b53e3bbce6c814",
+      "model": "ollama/gemma4:31b",
+      "prompt_version": "eval-judge-v1",
+      "flags": [
+        {
+          "index": 1,
+          "skill": "fire alarm system integration",
+          "judge_reason": "A 'Yes' in a form field indicates the presence of a system, not that work/integration is required for this permit.",
+          "gate_passed": true,
+          "gate_reasons": []
+        }
+      ],
+      "passed": false,
+      "score": 0.8571,
+      "reason": "'fire alarm system integration': A 'Yes' in a form field indicates the presence of a system, not that work/integration is required for this permit. (grounding gate passed: quote matches but does not support)",
+      "one_liner": "evidence_supports=0 on 'fire alarm system integration': A 'Yes' in a form field indicates the presence of a system, not that work/integration is required for this permit.",
+      "flagged": true,
+      "review_status": "NEEDS_HUMAN"
+    },
+    {
+      "key": "7170086-BK#19",
+      "permit_id": 189651,
+      "permit_number": "7170086-BK",
+      "inference_id": 19,
+      "overall_confidence": "low",
+      "generator_model": "ollama/qwen3.8:latest",
+      "auto_rejected": false,
+      "rubric": {
+        "skills": [
+          {
+            "index": 0,
+            "capability_phrase": {
+              "score": 1,
+              "reason": "The phrase describes a general project type rather than a specific concrete trade task."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The quote explicitly mentions constructing tenant improvements for the specified client."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the primary description of the work and no more specific trade tasks are listed in the detail."
+            }
+          }
+        ],
+        "assumptions_honest": {
+          "score": 2,
+          "reason": "The assumptions accurately reflect that the permit is a general blanket permit with no specific trade breakdown provided in the text."
+        }
+      },
+      "request_id": "8971aad1ef67403cb0e720c57cd747fe",
+      "cache_key": "b75b7371538d25a801a1fa81b2ba1d0ed96754c0c6aa476a92efaa0a8210bc07",
+      "input_hash": "b75b7371538d25a801a1fa81b2ba1d0ed96754c0c6aa476a92efaa0a8210bc07",
+      "model": "ollama/gemma4:31b",
+      "prompt_version": "eval-judge-v1",
+      "flags": [],
+      "passed": true,
+      "score": 0.875,
+      "reason": null,
+      "one_liner": "capability_phrase=1 on 'commercial tenant improvement construction': The phrase describes a general project type rather than a specific concrete trade task."
+    },
+    {
+      "key": "7136281-DM#23",
+      "permit_id": 179561,
+      "permit_number": "7136281-DM",
+      "inference_id": 23,
+      "overall_confidence": "low",
+      "generator_model": "ollama/qwen3.8:latest",
+      "auto_rejected": false,
+      "rubric": {
+        "skills": [
+          {
+            "index": 0,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "This is a concrete trade capability describing the demolition of a specific structure type."
+            },
+            "evidence_supports": {
+              "score": 2,
+              "reason": "The quote explicitly states the intent to demolish the existing one family dwelling."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "This is the most direct statement of the primary scope of work in the detail."
+            }
+          },
+          {
+            "index": 1,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Site preparation and ground disturbance management are concrete trade capabilities."
+            },
+            "evidence_supports": {
+              "score": 1,
+              "reason": "The quote is a 'Yes' answer to a question about the amount of disturbance, which implies the work exists but doesn't describe the skill."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "No other text describes ground disturbance more specifically."
+            }
+          },
+          {
+            "index": 2,
+            "capability_phrase": {
+              "score": 2,
+              "reason": "Hard surface removal or replacement is a concrete trade capability."
+            },
+            "evidence_supports": {
+              "score": 1,
+              "reason": "The quote is a 'Yes' answer to a threshold question, implying the work is required but not explicitly describing the action."
+            },
+            "evidence_best": {
+              "score": 2,
+              "reason": "No other text describes hard surface work more specifically."
+            }
+          }
+        ],
+        "assumptions_honest": {
+          "score": 2,
+          "reason": "The assumptions accurately reflect the constraints of the permit detail and the model's omissions."
+        }
+      },
+      "request_id": "64fbe93e926a472bbb46aede51d63732",
+      "cache_key": "d15fc3264dfacac935ed3c3726fa00238ad2c194c313fa87597000d499903cf9",
+      "input_hash": "d15fc3264dfacac935ed3c3726fa00238ad2c194c313fa87597000d499903cf9",
+      "model": "ollama/gemma4:31b",
+      "prompt_version": "eval-judge-v1",
+      "flags": [],
+      "passed": true,
+      "score": 0.9,
+      "reason": null,
+      "one_liner": "evidence_supports=1 on 'site preparation and ground disturbance management': The quote is a 'Yes' answer to a question about the amount of disturbance, which implies the work exists but doesn't describe the skill."
+    }
+  ]
+}

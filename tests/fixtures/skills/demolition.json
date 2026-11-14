@@ -1,0 +1,74 @@
+{
+  "name": "demolition",
+  "about": "Real Seattle record 7136975-DM: demolition of a single-family house with a basement.",
+  "permit": {
+    "id": 3,
+    "jurisdiction_id": "seattle-kingcounty-wa",
+    "processing_state": "DETAIL_READY",
+    "permit_number": "7136975-DM",
+    "status": "ISSUED",
+    "permit_class": "Single Family/Duplex",
+    "permit_class_mapped": "Residential",
+    "permit_type_mapped": "Demolition",
+    "permit_type_desc": "Demolition",
+    "valuation": 550000,
+    "issued_at": "2026-09-23T00:00:00",
+    "address": "2614 E PIKE ST",
+    "description": "Demolish existing structure(s)  subject to field inspection [STFI]",
+    "detail_url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=7136975-DM"
+  },
+  "detail": {
+    "permit_number": "7136975-DM",
+    "jurisdiction": "seattle-kingcounty-wa",
+    "snapshot_id": 30,
+    "fields": {},
+    "degraded": false,
+    "notes": [],
+    "final_url": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=32963",
+    "content_text": "PERMIT: 7136975-DM\nSTATUS: Issued\nADDRESS: 2614 E PIKE ST\nCITY: SEATTLE\nSTATE: WA\nZIP: 98122\nISSUED: 2026-09-23T00:00:00.000\nAPPLIED: 2026-08-04T00:00:00.000\nEXPIRES: 2028-03-23T00:00:00.000\nDESCRIPTION: Demolish existing structure(s) subject to field inspection [STFI]\nCLASSIFICATION: Single Family/Duplex\nCLASSIFICATION_MAPPED: Residential\nPERMIT_TYPE: Demolition\nPERMIT_TYPE_DESC: Demolition\nEST_PROJECT_COST: 550000.0000\nDETAIL_URL.URL: https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=7136975-DM\nDAYSOUTCORRECTIONS: 0\nDEPENDENTBUILDING: 0\nHOUSINGCATEGORY: N/A\nHOUSINGUNITS: -1.0\nHOUSINGUNITSADDED: 0.0\nHOUSINGUNITSREMOVED: 1.0\nLATITUDE: 47.61430938\nLOCATION1.LATITUDE: 47.61430938\nLOCATION1.LONGITUDE: -122.29804283\nLONGITUDE: -122.29804283\nNUMBERREVIEWCYCLES: 0\nREADYTOISSUEDATE: 2026-09-15T00:00:00.000\nPORTAL ONLY:\nApplication Completed Date: 08/04/2026\nApplication Information: PERMIT APPLICATION COMMON\nAre there residential (non-commercial) tenants/renters currently living in the property?: No\nChoose the Primary Property Use: Single Family/Duplex\nExpiration Date: 03/23/2028\nFoundation Type: Basement\nIs the ground disturbance in an environmentally critical area?: No\nIs this a Light Rail Temporary Use for Construction application?: No\nIs this building a Floating Residence?: No\nIs work in the right-of-way (street or alley) required?: No\nMust this be recorded?: No\nMust this be recorded?: No\nMust this be recorded?: No\nNew and Replaced Hard Surface > 750 sq ft?: No\nNumber of Added Units: 0\nNumber of Existing Units: 0\nNumber of Removed Units: 1\nNumber of Sleeping Rooms: 0\nOther Information: REQUIRED DOCUMENTS\nParcel Information: Development Site Parcel:DV1132841 * Block:-- Lot:-- Subdivision:--\nPermit Issued Date: 09/23/2026\nProject Description: Demolition Permit Demolish existing structure(s), subject to field inspection [STFI]\nProject Value: 550000\nReview Level: Field\nType of Demolition: Demolition\nType of Housing Unit: Detached\nWhat is the amount of ground disturbance?: Yes\nWho will be performing all the work?: Owner/Lessee\nWork Location: 2614 E PIKE ST 137341 *\nI have submitted an application for a building permit from the City of Seattle. I believe the work authorized by this permit is exempt from having a registered contractor. I understand that I may be waiving certain rights that I might otherwise have under state law in any decision to engage an unregistered contractor to perform construction work.:\nI, the owner or owner’s authorized representative of the property referenced in this submission, give the City of Seattle Department of Planning and Development permission to conduct a Pre-Application Site Visit. I agree that: 1) electronic filing constitutes an authorizing signature; 2) I will inform all tenants of the site visit prior to the inspection being conducted; and 3) if conditions such as uncontrolled dogs or uncooperative tenants hinder the inspector’s ability to conduct the site visit, the site visit will not occur and the site visit fee may be forfeited.:\nSOURCE: https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=32963\n",
+    "fetch_strategy": "redirect_chase",
+    "content_hash": "540416d205fad1c005f87ea3568833bdc946506798545948a343188c1f84eb47"
+  },
+  "response": {
+    "skills": [
+      {
+        "skill": "Demolition of the existing single-family structure and debris removal",
+        "trade": "Demolition",
+        "evidence": "Demolish existing structure(s) subject to field inspection [STFI]",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=32963",
+        "confidence": "high"
+      },
+      {
+        "skill": "Basement foundation removal and backfill",
+        "trade": "Concrete",
+        "evidence": "Foundation Type: Basement",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=32963",
+        "confidence": "low"
+      }
+    ],
+    "assumptions": [
+      "Foundation removal is assumed from 'Foundation Type: Basement'; the record does not say whether the foundation is removed.",
+      "Utility disconnects are not described; none inferred."
+    ],
+    "overall_confidence": "medium",
+    "licensing_notes": []
+  },
+  "expected": {
+    "outcome": "accepted",
+    "present": [
+      [
+        "demolition"
+      ]
+    ],
+    "absent": [
+      "electrical",
+      "plumbing",
+      "roofing"
+    ],
+    "overall_in": [
+      "low"
+    ],
+    "skills": 2,
+    "dropped": 0
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "suite": "H6",
+  "run_id": "eval-h6-20261111T013626-b1d5cb",
+  "jurisdiction": "seattle-kingcounty-wa",
+  "build_id": "live-2026-11-10",
+  "metrics": {
+    "loss": 0.0,
+    "unknown_share": 0.0,
+    "status_max_share_diff": 0.0
+  },
+  "counts": {
+    "source_rows": 194184,
+    "store_rows": 194184,
+    "missing": 0
+  },
+  "info": {
+    "source": "file:wa-seattle-building-permits.json",
+    "status_shares": {
+      "CANCELED": {
+        "source": 0.0506,
+        "store": 0.0506
+      },
+      "COMPLETED": {
+        "source": 0.7421,
+        "store": 0.7421
+      },
+      "EXPIRED": {
+        "source": 0.0715,
+        "store": 0.0715
+      },
+      "ISSUED": {
+        "source": 0.0437,
+        "store": 0.0437
+      },
+      "PENDING": {
+        "source": 0.0921,
+        "store": 0.0921
+      }
+    },
+    "previous_unknown_share": 0.0,
+    "latest_sync": {
+      "run_id": "05c30ec1-d606-42d4-9b85-046e3287f643",
+      "mode": "full",
+      "pull_count": 194184,
+      "inserted": 194184,
+      "updated": 0,
+      "unchanged": 0,
+      "dropped": 0,
+      "started_at": "2026-11-10 12:20:03.205077"
+    },
+    "duration_ms": 2083
+  },
+  "warnings": [],
+  "model": null,
+  "prompt_version": null,
+  "llm_calls": 0,
+  "cache_hits": 0,
+  "started_at": "2026-11-11T01:36:26.195348Z",
+  "finished_at": "2026-11-11T01:36:28.279177Z",
+  "items_total": 0,
+  "items_failed": 0,
+  "worst": [],
+  "items": []
+}

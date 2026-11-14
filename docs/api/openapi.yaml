@@ -1,0 +1,1434 @@
+openapi: 3.1.0
+info:
+  title: Permit Trade Skills API
+  description: 'Building-permit query API (Stage 04).
+
+
+    Structured search with keyset paging, per-status counts, single-permit
+
+    detail, and a natural-language endpoint whose parse is echoed back
+
+    (template-rendered, never LLM-written). See docs/api.md for the cookbook.
+
+    '
+  version: 0.1.0
+paths:
+  /api/v1/jurisdictions:
+    get:
+      tags:
+      - query
+      summary: List active jurisdictions
+      operationId: list_jurisdictions_api_v1_jurisdictions_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JurisdictionsResponse'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '422':
+          description: Unprocessable Content
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '429':
+          description: Too Many Requests
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '500':
+          description: Internal Server Error
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '503':
+          description: Service Unavailable
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+  /api/v1/permits:
+    get:
+      tags:
+      - query
+      summary: Structured permit search (keyset paging)
+      operationId: search_permits_api_v1_permits_get
+      parameters:
+      - name: jurisdiction
+        in: query
+        required: true
+        schema:
+          type: string
+          description: Jurisdiction slug, e.g. seattle-kingcounty-wa
+          title: Jurisdiction
+        description: Jurisdiction slug, e.g. seattle-kingcounty-wa
+      - name: status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Canonical statuses, comma-separated (ISSUED,PENDING)
+          title: Status
+        description: Canonical statuses, comma-separated (ISSUED,PENDING)
+      - name: statuses_exclude
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Statuses to exclude, comma-separated
+          title: Statuses Exclude
+        description: Statuses to exclude, comma-separated
+      - name: permit_class
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Raw or mapped class, case-insensitive, csv
+          title: Permit Class
+        description: Raw or mapped class, case-insensitive, csv
+      - name: permit_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Mapped type or type description, csv
+          title: Permit Type
+        description: Mapped type or type description, csv
+      - name: desc_keyword
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Case-insensitive substring of description
+          title: Desc Keyword
+        description: Case-insensitive substring of description
+      - name: trade
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Trades from the latest skill inference, csv, case-insensitive
+            (Carpentry,Electrical); permits without an inference never match
+          title: Trade
+        description: Trades from the latest skill inference, csv, case-insensitive
+          (Carpentry,Electrical); permits without an inference never match
+      - name: trade_min_confidence
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: 'low | medium | high: minimum confidence of the matching skill'
+          title: Trade Min Confidence
+        description: 'low | medium | high: minimum confidence of the matching skill'
+      - name: trade_match
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: 'any (default): a permit needs one of the trades; all: it needs
+            every one'
+          title: Trade Match
+        description: 'any (default): a permit needs one of the trades; all: it needs
+          every one'
+      - name: city
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Case-insensitive substring of the address city
+          title: City
+        description: Case-insensitive substring of the address city
+      - name: zip
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Exact ZIP code
+          title: Zip
+        description: Exact ZIP code
+      - name: applied_after
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: ISO date, inclusive
+          title: Applied After
+        description: ISO date, inclusive
+      - name: applied_before
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: ISO date, exclusive
+          title: Applied Before
+        description: ISO date, exclusive
+      - name: issued_after
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: ISO date, inclusive
+          title: Issued After
+        description: ISO date, inclusive
+      - name: issued_before
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: ISO date, exclusive
+          title: Issued Before
+        description: ISO date, exclusive
+      - name: min_cost
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Minimum valuation (est. project cost)
+          title: Min Cost
+        description: Minimum valuation (est. project cost)
+      - name: max_cost
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: Maximum valuation (est. project cost)
+          title: Max Cost
+        description: Maximum valuation (est. project cost)
+      - name: state
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Processing lifecycle states, csv (ops)
+          title: State
+        description: Processing lifecycle states, csv (ops)
+      - name: sort
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: issued_at_desc (default) | applied_desc | cost_desc | number_asc
+          title: Sort
+        description: issued_at_desc (default) | applied_desc | cost_desc | number_asc
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: Rows per page, default 25, clamped to 1..200
+          title: Page Size
+        description: Rows per page, default 25, clamped to 1..200
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: next_cursor from the previous page
+          title: Cursor
+        description: next_cursor from the previous page
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermitsResponse'
+        '404':
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
+        '429':
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Too Many Requests
+        '500':
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Internal Server Error
+        '503':
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
+  /api/v1/permits/{permit_number}:
+    get:
+      tags:
+      - query
+      summary: One permit with status history, snapshot and inference
+      operationId: get_permit_api_v1_permits__permit_number__get
+      parameters:
+      - name: permit_number
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Permit Number
+      - name: jurisdiction
+        in: query
+        required: true
+        schema:
+          type: string
+          description: Jurisdiction slug
+          title: Jurisdiction
+        description: Jurisdiction slug
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermitDetailResponse'
+        '404':
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
+        '429':
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Too Many Requests
+        '500':
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Internal Server Error
+        '503':
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
+  /api/v1/status-counts:
+    get:
+      tags:
+      - query
+      summary: Permit counts per canonical status
+      operationId: status_counts_api_v1_status_counts_get
+      parameters:
+      - name: jurisdiction
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Jurisdiction
+      - name: since
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: ISO date, inclusive
+          title: Since
+        description: ISO date, inclusive
+      - name: until
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: ISO date, exclusive
+          title: Until
+        description: ISO date, exclusive
+      - name: date_field
+        in: query
+        required: false
+        schema:
+          type: string
+          description: 'Window column: applied_at | issued_at'
+          default: applied_at
+          title: Date Field
+        description: 'Window column: applied_at | issued_at'
+      - name: permit_class
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Permit Class
+      - name: permit_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Permit Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusCountsResponse'
+        '404':
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Not Found
+        '422':
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Unprocessable Content
+        '429':
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Too Many Requests
+        '500':
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Internal Server Error
+        '503':
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+          description: Service Unavailable
+  /api/v1/query:
+    post:
+      tags:
+      - query
+      summary: Natural-language permit query
+      operationId: nl_query_api_v1_query_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResponse'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '422':
+          description: Unprocessable Content
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '429':
+          description: Too Many Requests
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '500':
+          description: Internal Server Error
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '503':
+          description: Service Unavailable
+          content:
+            application/problem+json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+  /health:
+    get:
+      tags:
+      - ops
+      summary: Liveness check
+      operationId: health_health_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+                title: Response Health Health Get
+  /metrics:
+    get:
+      tags:
+      - ops
+      summary: Prometheus metrics (Stage 08)
+      operationId: metrics_metrics_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            text/plain:
+              schema:
+                type: string
+components:
+  schemas:
+    Clarification:
+      properties:
+        text:
+          type: string
+          title: Text
+        llm_generated:
+          type: boolean
+          title: Llm Generated
+          default: true
+      additionalProperties: false
+      type: object
+      required:
+      - text
+      title: Clarification
+    DetailSnapshotInfo:
+      properties:
+        present:
+          type: boolean
+          title: Present
+        fetched_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Fetched At
+        final_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Final Url
+        fetch_strategy:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Fetch Strategy
+      additionalProperties: false
+      type: object
+      required:
+      - present
+      title: DetailSnapshotInfo
+    Jurisdiction:
+      properties:
+        slug:
+          type: string
+          title: Slug
+        name:
+          type: string
+          title: Name
+        county:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: County
+        state:
+          type: string
+          title: State
+        platform:
+          type: string
+          title: Platform
+        dataset_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Dataset Id
+        record_count:
+          type: integer
+          title: Record Count
+        last_synced_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Last Synced At
+      additionalProperties: false
+      type: object
+      required:
+      - slug
+      - name
+      - county
+      - state
+      - platform
+      - dataset_id
+      - record_count
+      - last_synced_at
+      title: Jurisdiction
+    JurisdictionsResponse:
+      properties:
+        jurisdictions:
+          items:
+            $ref: '#/components/schemas/Jurisdiction'
+          type: array
+          title: Jurisdictions
+        count:
+          type: integer
+          title: Count
+        trace_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Trace Id
+      additionalProperties: false
+      type: object
+      required:
+      - jurisdictions
+      - count
+      title: JurisdictionsResponse
+    NluInfo:
+      properties:
+        model:
+          type: string
+          title: Model
+        prompt_version:
+          type: string
+          title: Prompt Version
+        schema_version:
+          type: string
+          title: Schema Version
+        cached:
+          type: boolean
+          title: Cached
+        request_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Request Id
+      additionalProperties: false
+      type: object
+      required:
+      - model
+      - prompt_version
+      - schema_version
+      - cached
+      title: NluInfo
+    PermitDetail:
+      properties:
+        permit_number:
+          type: string
+          title: Permit Number
+        status_raw:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Status Raw
+        status:
+          type: string
+          title: Status
+        permit_class:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Permit Class
+        permit_class_mapped:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Permit Class Mapped
+        permit_type_mapped:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Permit Type Mapped
+        permit_type_desc:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Permit Type Desc
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        valuation:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Valuation
+        applied_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Applied At
+        issued_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Issued At
+        expires_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Expires At
+        completed_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Completed At
+        address:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Address
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+        zip_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Zip Code
+        detail_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Detail Url
+        processing_state:
+          type: string
+          title: Processing State
+        trade_confidence:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Trade Confidence
+          description: 'Trade queries only: the best confidence of each requested
+            trade in the permit''s latest skill inference (trades it lacks are omitted)'
+        state:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: State
+          description: Address state (e.g. WA)
+        latitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Latitude
+        longitude:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Longitude
+        housing_units:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Housing Units
+        housing_units_added:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Housing Units Added
+        housing_units_removed:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Housing Units Removed
+        housing_category:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Housing Category
+        work_class:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Work Class
+        contractor_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Contractor Name
+        warnings:
+          items: {}
+          type: array
+          title: Warnings
+        state_updated_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: State Updated At
+        state_error:
+          anyOf:
+          - {}
+          - type: 'null'
+          title: State Error
+        source_updated_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Source Updated At
+        synced_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Synced At
+      additionalProperties: false
+      type: object
+      required:
+      - permit_number
+      - status_raw
+      - status
+      - permit_class
+      - permit_class_mapped
+      - permit_type_mapped
+      - permit_type_desc
+      - description
+      - valuation
+      - applied_at
+      - issued_at
+      - expires_at
+      - completed_at
+      - address
+      - city
+      - zip_code
+      - detail_url
+      - processing_state
+      - state
+      - latitude
+      - longitude
+      - housing_units
+      - housing_units_added
+      - housing_units_removed
+      - housing_category
+      - work_class
+      - contractor_name
+      - warnings
+      - state_updated_at
+      - state_error
+      - source_updated_at
+      - synced_at
+      title: PermitDetail
+    PermitDetailResponse:
+      properties:
+        jurisdiction:
+          type: string
+          title: Jurisdiction
+        permit:
+          $ref: '#/components/schemas/PermitDetail'
+        status_history:
+          items:
+            $ref: '#/components/schemas/StatusChange'
+          type: array
+          title: Status History
+        detail_snapshot:
+          $ref: '#/components/schemas/DetailSnapshotInfo'
+        skill_inference:
+          anyOf:
+          - $ref: '#/components/schemas/SkillInferenceInfo'
+          - type: 'null'
+        trace_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Trace Id
+      additionalProperties: false
+      type: object
+      required:
+      - jurisdiction
+      - permit
+      - status_history
+      - detail_snapshot
+      - skill_inference
+      title: PermitDetailResponse
+    PermitRow:
+      properties:
+        permit_number:
+          type: string
+          title: Permit Number
+        status_raw:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Status Raw
+        status:
+          type: string
+          title: Status
+        permit_class:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Permit Class
+        permit_class_mapped:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Permit Class Mapped
+        permit_type_mapped:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Permit Type Mapped
+        permit_type_desc:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Permit Type Desc
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        valuation:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Valuation
+        applied_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Applied At
+        issued_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Issued At
+        expires_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Expires At
+        completed_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Completed At
+        address:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Address
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+        zip_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Zip Code
+        detail_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Detail Url
+        processing_state:
+          type: string
+          title: Processing State
+        trade_confidence:
+          anyOf:
+          - additionalProperties:
+              type: string
+            type: object
+          - type: 'null'
+          title: Trade Confidence
+          description: 'Trade queries only: the best confidence of each requested
+            trade in the permit''s latest skill inference (trades it lacks are omitted)'
+      additionalProperties: false
+      type: object
+      required:
+      - permit_number
+      - status_raw
+      - status
+      - permit_class
+      - permit_class_mapped
+      - permit_type_mapped
+      - permit_type_desc
+      - description
+      - valuation
+      - applied_at
+      - issued_at
+      - expires_at
+      - completed_at
+      - address
+      - city
+      - zip_code
+      - detail_url
+      - processing_state
+      title: PermitRow
+    PermitsResponse:
+      properties:
+        jurisdiction:
+          type: string
+          title: Jurisdiction
+        query:
+          additionalProperties: true
+          type: object
+          title: Query
+          description: The exact PermitQuery executed (set fields only)
+        total_estimate:
+          type: integer
+          title: Total Estimate
+          description: Planner estimate of all matching rows (not exact); exact when
+            trade_coverage is set
+        count:
+          type: integer
+          title: Count
+        next_cursor:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Cursor
+          description: Opaque keyset token for the next page; null on the last page
+        rows:
+          items:
+            $ref: '#/components/schemas/PermitRow'
+          type: array
+          title: Rows
+        trade_coverage:
+          anyOf:
+          - $ref: '#/components/schemas/TradeCoverage'
+          - type: 'null'
+          description: 'Set when the query filters by trade: inference coverage of
+            the candidates'
+        trace_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Trace Id
+      additionalProperties: false
+      type: object
+      required:
+      - jurisdiction
+      - query
+      - total_estimate
+      - count
+      - next_cursor
+      - rows
+      title: PermitsResponse
+    Problem:
+      properties:
+        type:
+          type: string
+          title: Type
+          default: about:blank
+        title:
+          type: string
+          title: Title
+        status:
+          type: integer
+          title: Status
+        error_code:
+          type: string
+          title: Error Code
+        message:
+          type: string
+          title: Message
+        trace_id:
+          type: string
+          title: Trace Id
+        retryable:
+          type: boolean
+          title: Retryable
+          default: false
+        registered_jurisdictions:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Registered Jurisdictions
+        candidates:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Candidates
+      additionalProperties: false
+      type: object
+      required:
+      - title
+      - status
+      - error_code
+      - message
+      - trace_id
+      title: Problem
+      description: RFC 9457-style problem body (`application/problem+json`).
+    QueryRequest:
+      properties:
+        question:
+          type: string
+          maxLength: 1000
+          minLength: 1
+          title: Question
+        jurisdiction:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Jurisdiction
+        page_size:
+          anyOf:
+          - type: integer
+            minimum: 1.0
+          - type: 'null'
+          title: Page Size
+        cursor:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Cursor
+      additionalProperties: false
+      type: object
+      required:
+      - question
+      title: QueryRequest
+    QueryResponse:
+      properties:
+        jurisdiction:
+          type: string
+          title: Jurisdiction
+        query:
+          additionalProperties: true
+          type: object
+          title: Query
+          description: The exact PermitQuery executed (set fields only)
+        total_estimate:
+          type: integer
+          title: Total Estimate
+          description: Planner estimate of all matching rows (not exact); exact when
+            trade_coverage is set
+        count:
+          type: integer
+          title: Count
+        next_cursor:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Cursor
+          description: Opaque keyset token for the next page; null on the last page
+        rows:
+          items:
+            $ref: '#/components/schemas/PermitRow'
+          type: array
+          title: Rows
+        trade_coverage:
+          anyOf:
+          - $ref: '#/components/schemas/TradeCoverage'
+          - type: 'null'
+          description: 'Set when the query filters by trade: inference coverage of
+            the candidates'
+        trace_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Trace Id
+        question:
+          type: string
+          title: Question
+        echo:
+          type: string
+          title: Echo
+          description: Template-rendered from `query` (never LLM-written)
+        interpreted:
+          additionalProperties: true
+          type: object
+          title: Interpreted
+          description: The NLU's permit_query, before validation
+        unfulfilled_filters:
+          items:
+            type: string
+          type: array
+          title: Unfulfilled Filters
+        assumptions:
+          items:
+            type: string
+          type: array
+          title: Assumptions
+        ambiguous_terms:
+          items:
+            type: string
+          type: array
+          title: Ambiguous Terms
+        executed:
+          type: boolean
+          title: Executed
+          description: False when the core requirement could not be expressed as a
+            query
+        clarification:
+          anyOf:
+          - $ref: '#/components/schemas/Clarification'
+          - type: 'null'
+        nlu:
+          $ref: '#/components/schemas/NluInfo'
+      additionalProperties: false
+      type: object
+      required:
+      - jurisdiction
+      - query
+      - total_estimate
+      - count
+      - next_cursor
+      - rows
+      - question
+      - echo
+      - interpreted
+      - unfulfilled_filters
+      - assumptions
+      - ambiguous_terms
+      - executed
+      - clarification
+      - nlu
+      title: QueryResponse
+    SkillInferenceInfo:
+      properties:
+        id:
+          type: integer
+          title: Id
+        model:
+          type: string
+          title: Model
+        prompt_version:
+          type: string
+          title: Prompt Version
+        review_status:
+          type: string
+          title: Review Status
+        created_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Created At
+        skills:
+          items:
+            additionalProperties: true
+            type: object
+          type: array
+          title: Skills
+        assumptions:
+          items: {}
+          type: array
+          title: Assumptions
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - model
+      - prompt_version
+      - review_status
+      - created_at
+      - skills
+      - assumptions
+      title: SkillInferenceInfo
+    StatusChange:
+      properties:
+        from_status:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: From Status
+        to_status:
+          type: string
+          title: To Status
+        raw_status:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Raw Status
+        changed_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Changed At
+        changed_by:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Changed By
+        run_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Run Id
+      additionalProperties: false
+      type: object
+      required:
+      - from_status
+      - to_status
+      - raw_status
+      - changed_at
+      - changed_by
+      - run_id
+      title: StatusChange
+    StatusCountsResponse:
+      properties:
+        jurisdiction:
+          type: string
+          title: Jurisdiction
+        since:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Since
+        until:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Until
+        date_field:
+          type: string
+          title: Date Field
+        filters:
+          additionalProperties: true
+          type: object
+          title: Filters
+        counts:
+          additionalProperties:
+            type: integer
+          type: object
+          title: Counts
+          description: Every canonical status (0 when none); UNKNOWN only when > 0
+        total:
+          type: integer
+          title: Total
+        trace_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Trace Id
+      additionalProperties: false
+      type: object
+      required:
+      - jurisdiction
+      - since
+      - until
+      - date_field
+      - filters
+      - counts
+      - total
+      title: StatusCountsResponse
+    TradeCoverage:
+      properties:
+        candidates:
+          type: integer
+          title: Candidates
+          description: Permits matching every filter except trade (exact)
+        inferred:
+          type: integer
+          title: Inferred
+          description: Of those, permits with a usable (non-REJECTED) skill inference
+        not_inferred:
+          type: integer
+          title: Not Inferred
+          description: 'candidates - inferred: never matched by trade, whatever their
+            work'
+        note:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Note
+          description: Warning shown when not_inferred > 0
+      additionalProperties: false
+      type: object
+      required:
+      - candidates
+      - inferred
+      - not_inferred
+      title: TradeCoverage
+      description: How much of the result set the `trade` filter could see (trade
+        filters only).

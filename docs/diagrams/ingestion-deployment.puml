@@ -1,0 +1,67 @@
+@startuml Ingestion Deployment Diagram
+title Ingestion & Sync Stage - External Systems
+skin rose
+skinparam shadowing true
+
+package "External Data Sources" {
+  [Socrata SODA API\n(Seattle Open Data)] as soda_api
+  [Local JSON File\n(export)] as local_json
+}
+
+package "External Services" {
+  [Hugging Face Hub\nSentence Transformers] as hf_hub
+}
+
+package "External Database" {
+  [PostgreSQL + pgvector\npermit_trade_skills DB] as postgres
+}
+
+package "User" {
+  [Data Engineer] as user
+}
+
+' Data Sources
+user --> soda_api : requests permit data\n(when API available)
+user --> local_json : provides export file\n(--local-file)
+soda_api --> user : returns permit rows
+local_json --> user : provides permit data
+
+' Embeddings
+hf_hub --> user : downloads model\n(all-MiniLM-L6-v2, 384-dim)
+user --> hf_hub : loads embedding model
+
+' Database
+postgres --> user : stores permits\n(sync upsert)
+postgres --> user : stores sync_metadata\n(run reports)
+postgres --> user : stores embeddings\n(description_embedding)
+postgres --> user : status_history\n(status changes)
+
+legend right
+  <b>External Systems:</b>
+  - <b>Socrata SODA API:</b> Live data source for Seattle permits (cos-data.seattle.gov)
+    - Currently down - using local export fallback
+    - Rate-limited with per-host limiter
+  - <b>Local JSON:</b> Downloaded export for offline/sync testing
+    - 193,249 rows for Seattle
+    - Mode: full sync (no cursor)
+  - <b>Hugging Face Hub:</b> Source for embedding models
+    - Model: all-MiniLM-L6-v2 (384 dimensions)
+    - Downloaded on first sync
+    - HF_TOKEN env var for authenticated downloads
+  - <b>PostgreSQL + pgvector:</b> Canonical data store
+    - Tables: permits, sync_metadata, status_history
+    - Vector index: none (exact scan for accuracy)
+
+  <b>Data Flow:</b>
+  1. Data Engineer provides data source (API or local file)
+  2. System downloads embedding model from Hugging Face
+  3. System reads permits and upserts to PostgreSQL
+  4. Sync reports and status history stored in PostgreSQL
+
+  <b>Configuration:</b>
+  - Database URL: PERMIT_TRADE_SKILLS_DB_URL or --db-url
+  - User-Agent: configured in ingest.user_agent setting
+  - Rate limiting: settings ingest.rate_limit_per_minute
+endlegend
+
+@enduml

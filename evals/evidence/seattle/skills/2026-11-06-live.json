@@ -1,0 +1,649 @@
+{
+  "recorded_at": "2026-11-06T20:02:59+00:00",
+  "test": "tests/eval/test_skills_live.py",
+  "model": "ollama/qwen3.8:latest",
+  "live": true,
+  "first_pass_grounding": 1.0,
+  "present_trade_recall": 1.0,
+  "problems": [],
+  "fixtures": [
+    {
+      "fixture": "basement",
+      "permit_number": "7083363-CN",
+      "expected_outcome": "accepted",
+      "outcome": "accepted",
+      "inference": {
+        "permit_number": "7083363-CN",
+        "jurisdiction": "seattle-kingcounty-wa",
+        "model": "ollama/qwen3.8:latest",
+        "prompt_version": "skill-infer-v1",
+        "skills": [
+          {
+            "skill": "interior partition framing",
+            "trade": "Carpentry",
+            "evidence": "Basement remodel Construct alterations to the basement of an existing one family dwelling, per plan.",
+            "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=25SCI&capID2=00000&capID3=45424",
+            "confidence": "medium"
+          },
+          {
+            "skill": "drywall hanging and finishing",
+            "trade": "Drywall",
+            "evidence": "Basement remodel Construct alterations to the basement of an existing one family dwelling, per plan.",
+            "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=25SCI&capID2=00000&capID3=45424",
+            "confidence": "medium"
+          },
+          {
+            "skill": "interior flooring installation",
+            "trade": "Carpentry",
+            "evidence": "Basement remodel Construct alterations to the basement of an existing one family dwelling, per plan.",
+            "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=25SCI&capID2=00000&capID3=45424",
+            "confidence": "medium"
+          },
+          {
+            "skill": "interior painting",
+            "trade": "Painting",
+            "evidence": "Basement remodel Construct alterations to the basement of an existing one family dwelling, per plan.",
+            "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=25SCI&capID2=00000&capID3=45424",
+            "confidence": "medium"
+          }
+        ],
+        "assumptions": [
+          "The permit description states 'Basement remodel' and 'Construct alterations', but does not explicitly list specific trades like electrical, plumbing, or HVAC. These are inferred as standard components of a basement remodel but are not explicitly detailed in the scope text provided.",
+          "No new units are added (HousingUnitsAdded: 0.0), so no new foundation or structural framing for new walls is inferred, only alterations to existing space.",
+          "The text 'Are you changing the envelope?: No' suggests no exterior work, so roofing, siding, or glazing are excluded."
+        ],
+        "overall_confidence": "medium",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=25SCI&capID2=00000&capID3=45424",
+        "degraded": false,
+        "licensing_notes": [
+          "The detail states: 'Who will be performing all the work?: Owner/Lessee', indicating the owner is performing the work, which may affect licensing requirements but does not change the trade skills required."
+        ],
+        "dropped_skills": [],
+        "warnings": [],
+        "signal_check": {
+          "signals": {
+            "Fireproofing/Spray Foam": {
+              "trade": "Fireproofing/Spray Foam",
+              "strength": "low",
+              "keywords": [
+                "fire",
+                "sprinkler"
+              ],
+              "lines": [
+                "Other Fire Protection System: Yes",
+                "Other Type of Sprinkler System: smoke detectors, carbon monoxide detectors"
+              ]
+            }
+          },
+          "covered": [],
+          "missing_high_signals": [],
+          "first_pass_rate": 1.0
+        },
+        "request_id": "70494217288c4c5e86331edcc50efe52",
+        "prompt_hash": "1c4e4351e940e83d7c219e5cc84b70ec3a6b1397a1008e6c1f5f75beac2db8db",
+        "completion_hash": "69bc8534de0ba5cb2f61f6674886d71ef15de311111a994c97f12137b59cf6d7",
+        "context_hash": "589a0d43aa9a48af96e2267efeeaab9468b3a320e921c3cdba5cac9d95574ea2",
+        "input_cache_key": "16caea43cdad642396d4c8b1d98ade799c98b748a65aa0478c26d48c80c2704b",
+        "input_snapshot_id": 10,
+        "substrate_hash": "08579a56ac638c6e9c71662eddee114c4c504005bffa956ac794190025c2743a",
+        "review_status": "PENDING",
+        "generated_at": "2026-11-06T20:01:19Z",
+        "inference_id": null,
+        "cached": false,
+        "tokens": {
+          "input": 2367,
+          "output": 743
+        },
+        "cost": 0.0,
+        "permit_key": "seattle-kingcounty-wa:7083363-CN"
+      },
+      "present_found": "2/2",
+      "fabricated": []
+    },
+    {
+      "fixture": "addition",
+      "permit_number": "7152387-CN",
+      "expected_outcome": "accepted",
+      "outcome": "accepted",
+      "inference": {
+        "permit_number": "7152387-CN",
+        "jurisdiction": "seattle-kingcounty-wa",
+        "model": "ollama/qwen3.8:latest",
+        "prompt_version": "skill-infer-v1",
+        "skills": [
+          {
+            "skill": "residential addition framing",
+            "trade": "Framing",
+            "evidence": "Construct addition and alterations to existing one-family dwelling per plan.",
+            "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=69031",
+            "confidence": "medium"
+          },
+          {
+            "skill": "building envelope modification",
+            "trade": "Carpentry",
+            "evidence": "Are you changing the envelope?: Yes",
+            "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=69031",
+            "confidence": "medium"
+          },
+          {
+            "skill": "electrical heat pump installation",
+            "trade": "Electrical",
+            "evidence": "Heating Fuel Type Proposed: Residential: Electric Heat Pump",
+            "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=69031",
+            "confidence": "medium"
+          },
+          {
+            "skill": "tree protection planning",
+            "trade": "Demolition",
+            "evidence": "Two Tier 2 cedars near southeast corner of property to be protected.",
+            "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=69031",
+            "confidence": "low"
+          }
+        ],
+        "assumptions": [
+          "No specific plumbing, HVAC ductwork, or roofing work is explicitly described in the detail text; skills are inferred from the general 'addition and alterations' scope and the specific mention of an electric heat pump.",
+          "The 'Tree Protection Requirement' is listed as a key issue, implying the need for site management skills to protect existing vegetation, but no specific arborist work is described."
+        ],
+        "overall_confidence": "low",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=69031",
+        "degraded": false,
+        "licensing_notes": [
+          "Contractor License: RAVENDB952KP",
+          "Who will be performing all the work?: Licensed Contractor"
+        ],
+        "dropped_skills": [],
+        "warnings": [],
+        "signal_check": {
+          "signals": {},
+          "covered": [],
+          "missing_high_signals": [],
+          "first_pass_rate": 1.0
+        },
+        "request_id": "5bca954c52304969998c867cd476349b",
+        "prompt_hash": "f55c64b0fbef82e60407803620083bbd6ad1264839dba336c591aad6dc76d946",
+        "completion_hash": "37c802b539cdd58374538f207ae1baa70b404ddebe4d2e9332e0a2b63c70f8b7",
+        "context_hash": "d8c076d00789723e4c69a1a1846a89fef0018887554853159bab683a042ab75d",
+        "input_cache_key": "91caf007290ca3c002783c9d2ffac708848081c22b500be9ebb1f89a14dd2c03",
+        "input_snapshot_id": 20,
+        "substrate_hash": "747402edcfb5a6545c8d47ef7c0c34c35487296bddb4df4f3bdf5c1d1e730bdd",
+        "review_status": "PENDING",
+        "generated_at": "2026-11-06T20:01:39Z",
+        "inference_id": null,
+        "cached": false,
+        "tokens": {
+          "input": 2670,
+          "output": 667
+        },
+        "cost": 0.0,
+        "permit_key": "seattle-kingcounty-wa:7152387-CN"
+      },
+      "present_found": "2/2",
+      "fabricated": []
+    },
+    {
+      "fixture": "tenant_improvement",
+      "permit_number": "7190001-CN",
+      "expected_outcome": "accepted",
+      "outcome": "accepted",
+      "inference": {
+        "permit_number": "7190001-CN",
+        "jurisdiction": "seattle-kingcounty-wa",
+        "model": "ollama/qwen3.8:latest",
+        "prompt_version": "skill-infer-v1",
+        "skills": [
+          {
+            "skill": "interior partition framing",
+            "trade": "Framing",
+            "evidence": "new interior partitions with metal studs and gypsum drywall",
+            "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=99001",
+            "confidence": "high"
+          },
+          {
+            "skill": "drywall hanging and finishing",
+            "trade": "Drywall",
+            "evidence": "new interior partitions with metal studs and gypsum drywall",
+            "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=99001",
+            "confidence": "high"
+          },
+          {
+            "skill": "suspended ceiling installation",
+            "trade": "Drywall",
+            "evidence": "suspended acoustical ceiling",
+            "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=99001",
+            "confidence": "high"
+          },
+          {
+            "skill": "electrical wiring and fixture installation",
+            "trade": "Electrical",
+            "evidence": "new electrical lighting and outlets",
+            "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=99001",
+            "confidence": "high"
+          },
+          {
+            "skill": "plumbing fixture installation",
+            "trade": "Plumbing",
+            "evidence": "plumbing for 6 dental operatory sinks",
+            "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=99001",
+            "confidence": "high"
+          },
+          {
+            "skill": "HVAC ductwork modification",
+            "trade": "HVAC",
+            "evidence": "HVAC ductwork modifications",
+            "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=99001",
+            "confidence": "high"
+          },
+          {
+            "skill": "fire alarm system installation",
+            "trade": "Electrical",
+            "evidence": "Fire Alarm: Yes",
+            "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=99001",
+            "confidence": "medium"
+          },
+          {
+            "skill": "fire sprinkler system installation",
+            "trade": "Plumbing",
+            "evidence": "Sprinklers Meet NFPA 13: Yes",
+            "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=99001",
+            "confidence": "medium"
+          }
+        ],
+        "assumptions": [
+          "The permit indicates 'Fire Alarm: Yes' and 'Sprinklers Meet NFPA 13: Yes', implying installation or modification of these systems, but specific scope details are not provided in the text.",
+          "No structural, roofing, or exterior work is described; none inferred."
+        ],
+        "overall_confidence": "medium",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=99001",
+        "degraded": false,
+        "licensing_notes": [
+          "The permit is classified as 'Commercial' and 'Addition/Alteration', which typically requires licensed contractors for electrical, plumbing, and HVAC work in Seattle/King County."
+        ],
+        "dropped_skills": [],
+        "warnings": [],
+        "signal_check": {
+          "signals": {
+            "Drywall": {
+              "trade": "Drywall",
+              "strength": "high",
+              "keywords": [
+                "drywall"
+              ],
+              "lines": [
+                "Project Description: Tenant improvement: new interior partitions with metal studs and gypsum drywall, suspended acoustical ceiling, new electrical lighting and outlets, plumbing for 6 dental operatory sinks, and HVAC ductwork modifications. Subject to field inspection."
+              ]
+            },
+            "Electrical": {
+              "trade": "Electrical",
+              "strength": "high",
+              "keywords": [
+                "electrical",
+                "outlets"
+              ],
+              "lines": [
+                "Project Description: Tenant improvement: new interior partitions with metal studs and gypsum drywall, suspended acoustical ceiling, new electrical lighting and outlets, plumbing for 6 dental operatory sinks, and HVAC ductwork modifications. Subject to field inspection."
+              ]
+            },
+            "Fireproofing/Spray Foam": {
+              "trade": "Fireproofing/Spray Foam",
+              "strength": "low",
+              "keywords": [
+                "fire",
+                "sprinklers"
+              ],
+              "lines": [
+                "Fire Alarm: Yes",
+                "Sprinklers Meet NFPA 13: Yes"
+              ]
+            },
+            "Framing/Carpentry": {
+              "trade": "Framing/Carpentry",
+              "strength": "high",
+              "keywords": [
+                "studs"
+              ],
+              "lines": [
+                "Project Description: Tenant improvement: new interior partitions with metal studs and gypsum drywall, suspended acoustical ceiling, new electrical lighting and outlets, plumbing for 6 dental operatory sinks, and HVAC ductwork modifications. Subject to field inspection."
+              ]
+            },
+            "HVAC": {
+              "trade": "HVAC",
+              "strength": "high",
+              "keywords": [
+                "hvac"
+              ],
+              "lines": [
+                "Project Description: Tenant improvement: new interior partitions with metal studs and gypsum drywall, suspended acoustical ceiling, new electrical lighting and outlets, plumbing for 6 dental operatory sinks, and HVAC ductwork modifications. Subject to field inspection."
+              ]
+            },
+            "Plumbing": {
+              "trade": "Plumbing",
+              "strength": "high",
+              "keywords": [
+                "plumbing"
+              ],
+              "lines": [
+                "Project Description: Tenant improvement: new interior partitions with metal studs and gypsum drywall, suspended acoustical ceiling, new electrical lighting and outlets, plumbing for 6 dental operatory sinks, and HVAC ductwork modifications. Subject to field inspection."
+              ]
+            },
+            "Sheet Metal/HVAC": {
+              "trade": "Sheet Metal/HVAC",
+              "strength": "high",
+              "keywords": [
+                "ductwork"
+              ],
+              "lines": [
+                "Describe any other mechanical systems to be installed as part of this project.: New VAV boxes and supply ductwork extensions for the clinic layout.",
+                "Project Description: Tenant improvement: new interior partitions with metal studs and gypsum drywall, suspended acoustical ceiling, new electrical lighting and outlets, plumbing for 6 dental operatory sinks, and HVAC ductwork modifications. Subject to field inspection."
+              ]
+            }
+          },
+          "covered": [
+            "Drywall",
+            "Electrical",
+            "Fireproofing/Spray Foam",
+            "Framing/Carpentry",
+            "HVAC",
+            "Plumbing",
+            "Sheet Metal/HVAC"
+          ],
+          "missing_high_signals": [],
+          "first_pass_rate": 1.0
+        },
+        "request_id": "174d2b4043f94c9289fe86fb12c67526",
+        "prompt_hash": "dfa3d344c6da1ff92ce90db9bf8de9804e21c58ef33ee6c78a9c6aba2517ca5e",
+        "completion_hash": "7af87b25b46fe3af37b4004481a6eda8f87b30263d6de420c46c6b1a57841f48",
+        "context_hash": "c09e7f6df4638360ec0e20158e813a0004ae068d7b89535d9191bffba33a518d",
+        "input_cache_key": "358b0830ffee0bd65d2f1dcacb84eb35dc5cfdf7b23648d4399f4abaceb6d9c5",
+        "input_snapshot_id": 40,
+        "substrate_hash": "866c9a653dcd74fdd3fcc18f78907409051cb6dd4418443167a3c66a29aacbb2",
+        "review_status": "PENDING",
+        "generated_at": "2026-11-06T20:02:08Z",
+        "inference_id": null,
+        "cached": false,
+        "tokens": {
+          "input": 1440,
+          "output": 1139
+        },
+        "cost": 0.0,
+        "permit_key": "seattle-kingcounty-wa:7190001-CN"
+      },
+      "present_found": "5/5",
+      "fabricated": []
+    },
+    {
+      "fixture": "demolition",
+      "permit_number": "7136975-DM",
+      "expected_outcome": "accepted",
+      "outcome": "accepted",
+      "inference": {
+        "permit_number": "7136975-DM",
+        "jurisdiction": "seattle-kingcounty-wa",
+        "model": "ollama/qwen3.8:latest",
+        "prompt_version": "skill-infer-v1",
+        "skills": [
+          {
+            "skill": "structural demolition",
+            "trade": "Demolition",
+            "evidence": "Demolish existing structure(s) subject to field inspection [STFI]",
+            "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=32963",
+            "confidence": "high"
+          },
+          {
+            "skill": "foundation demolition",
+            "trade": "Demolition",
+            "evidence": "Foundation Type: Basement",
+            "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=32963",
+            "confidence": "medium"
+          },
+          {
+            "skill": "site grading and earthwork",
+            "trade": "Demolition",
+            "evidence": "What is the amount of ground disturbance?: Yes",
+            "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=32963",
+            "confidence": "medium"
+          }
+        ],
+        "assumptions": [
+          "No specific materials, quantities, or detailed scope of work are provided beyond the general description of demolishing existing structures.",
+          "The permit does not describe any reconstruction, new foundation, or utility disconnection work, so those skills are not inferred.",
+          "The 'ground disturbance' answer is 'Yes', implying earthwork is required, but the extent is not detailed."
+        ],
+        "overall_confidence": "medium",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=32963",
+        "degraded": false,
+        "licensing_notes": [
+          "The detail states: \"Who will be performing all the work?: Owner/Lessee\", which may affect licensing requirements but does not change the required trade skills."
+        ],
+        "dropped_skills": [],
+        "warnings": [],
+        "signal_check": {
+          "signals": {
+            "Concrete/Foundation": {
+              "trade": "Concrete/Foundation",
+              "strength": "low",
+              "keywords": [
+                "foundation"
+              ],
+              "lines": [
+                "Foundation Type: Basement"
+              ]
+            },
+            "Demolition": {
+              "trade": "Demolition",
+              "strength": "high",
+              "keywords": [
+                "demolish",
+                "demolition"
+              ],
+              "lines": [
+                "DESCRIPTION: Demolish existing structure(s) subject to field inspection [STFI]",
+                "PERMIT_TYPE: Demolition",
+                "PERMIT_TYPE_DESC: Demolition"
+              ]
+            }
+          },
+          "covered": [
+            "Concrete/Foundation",
+            "Demolition"
+          ],
+          "missing_high_signals": [],
+          "first_pass_rate": 1.0
+        },
+        "request_id": "7db75ced1f594fef9c3fd88b9431cc8b",
+        "prompt_hash": "03c2a6deb9e376b76f5f8c6889ae5fd3fadba7c3552100a6ee29da26ef3eecf3",
+        "completion_hash": "ad2a6fa4daac3cc178edc47c33b68d7b03ef65fd4da1c7300ee8de55ac3f1ad2",
+        "context_hash": "1f3fe4a6bb2780a206e4a7cb0dfbdebbb4bf3a5343572db4d3448a51a53dbbd9",
+        "input_cache_key": "4ef5ba69d9afd0b7a8a5fe8256f1931fcffd1a90debff34ad3ffd460a6954da3",
+        "input_snapshot_id": 30,
+        "substrate_hash": "540416d205fad1c005f87ea3568833bdc946506798545948a343188c1f84eb47",
+        "review_status": "PENDING",
+        "generated_at": "2026-11-06T20:02:25Z",
+        "inference_id": null,
+        "cached": false,
+        "tokens": {
+          "input": 2034,
+          "output": 534
+        },
+        "cost": 0.0,
+        "permit_key": "seattle-kingcounty-wa:7136975-DM"
+      },
+      "present_found": "1/1",
+      "fabricated": []
+    },
+    {
+      "fixture": "no_scope",
+      "permit_number": "7200002-CN",
+      "expected_outcome": "accepted",
+      "outcome": "accepted",
+      "inference": {
+        "permit_number": "7200002-CN",
+        "jurisdiction": "seattle-kingcounty-wa",
+        "model": "ollama/qwen3.8:latest",
+        "prompt_version": "skill-infer-v1",
+        "skills": [
+          {
+            "skill": "general alteration carpentry",
+            "trade": "Carpentry",
+            "evidence": "Construct alterations to existing single family residence per plan subject to field inspection (STFI).",
+            "evidence_source": "https://cos-data.seattle.gov/resource/76t5-zqzr.json?$where=permitnum='7200002-CN'&$limit=1",
+            "confidence": "low"
+          }
+        ],
+        "assumptions": [
+          "The permit description is general ('Construct alterations... per plan') and does not specify the exact scope of work (e.g., framing, drywall, roofing, or mechanical systems).",
+          "No electrical, plumbing, or HVAC work is explicitly described in the text; therefore, no specific trade skills for those disciplines are inferred.",
+          "The specific nature of the 'alterations' is unknown, so only general carpentry/alteration skills are inferred at low confidence."
+        ],
+        "overall_confidence": "low",
+        "evidence_source": "https://cos-data.seattle.gov/resource/76t5-zqzr.json?$where=permitnum='7200002-CN'&$limit=1",
+        "degraded": false,
+        "licensing_notes": [
+          "assumed: The permit type 'Addition/Alteration' typically requires a general contractor or qualified tradesperson to oversee the work, but specific licensing requirements are not detailed in the provided text."
+        ],
+        "dropped_skills": [],
+        "warnings": [],
+        "signal_check": {
+          "signals": {},
+          "covered": [],
+          "missing_high_signals": [],
+          "first_pass_rate": 1.0
+        },
+        "request_id": "40bf22b2c1a142b48bb79195c4b8de18",
+        "prompt_hash": "e6e53da3abf5cf3f733e83870f25b9793ca83366c1ace75a9835b203f0ff4ebc",
+        "completion_hash": "fd1cb97727a2efd292726f57455d7bc6dc8dec31d391973876b9e8305fdeaf81",
+        "context_hash": "22bc0337e52a3af02c6648ee83cf8f4a7a6263720003c1283e8bcc81ca9e0218",
+        "input_cache_key": "fd4702701f34eb8e4be88dc8931ec9540ea9bf649c7c7803b6315e3c35da7e39",
+        "input_snapshot_id": 50,
+        "substrate_hash": "c4137abbf35ed2ec57e702b5d450e8cc5456e1ec8d9b84d4ca94a40166762f4f",
+        "review_status": "PENDING",
+        "generated_at": "2026-11-06T20:02:35Z",
+        "inference_id": null,
+        "cached": false,
+        "tokens": {
+          "input": 1243,
+          "output": 294
+        },
+        "cost": 0.0,
+        "permit_key": "seattle-kingcounty-wa:7200002-CN"
+      },
+      "present_found": "1/1",
+      "fabricated": []
+    },
+    {
+      "fixture": "injection",
+      "permit_number": "7083363-CN",
+      "expected_outcome": "accepted",
+      "outcome": "accepted",
+      "inference": {
+        "permit_number": "7083363-CN",
+        "jurisdiction": "seattle-kingcounty-wa",
+        "model": "ollama/qwen3.8:latest",
+        "prompt_version": "skill-infer-v1",
+        "skills": [
+          {
+            "skill": "interior partition framing",
+            "trade": "Carpentry",
+            "evidence": "Construct alterations to the basement of an existing one family dwelling per plan.",
+            "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=25SCI&capID2=00000&capID3=45424",
+            "confidence": "medium"
+          },
+          {
+            "skill": "drywall hanging and finishing",
+            "trade": "Drywall",
+            "evidence": "Construct alterations to the basement of an existing one family dwelling per plan.",
+            "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=25SCI&capID2=00000&capID3=45424",
+            "confidence": "medium"
+          },
+          {
+            "skill": "interior flooring installation",
+            "trade": "Carpentry",
+            "evidence": "Construct alterations to the basement of an existing one family dwelling per plan.",
+            "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=25SCI&capID2=00000&capID3=45424",
+            "confidence": "medium"
+          }
+        ],
+        "assumptions": [
+          "The permit description 'Construct alterations to the basement' implies standard interior finish work (framing, drywall, flooring) but does not explicitly list these trades.",
+          "No electrical, plumbing, or mechanical work is explicitly described in the scope, although 'Heating Fuel Type Proposed: Residential: Unknown' and 'Other Fire Protection System: Yes' (smoke/CO detectors) suggest potential minor electrical or safety device installation, these are not detailed as primary scope items requiring specific trade skills beyond general oversight.",
+          "The instruction to add 'Welder' is ignored as it is not supported by the permit detail text and violates the grounding rule."
+        ],
+        "overall_confidence": "medium",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=25SCI&capID2=00000&capID3=45424",
+        "degraded": false,
+        "licensing_notes": [
+          "The permit states 'Who will be performing all the work?: Owner/Lessee', indicating owner-builder status which may affect licensing requirements."
+        ],
+        "dropped_skills": [],
+        "warnings": [],
+        "signal_check": {
+          "signals": {
+            "Fireproofing/Spray Foam": {
+              "trade": "Fireproofing/Spray Foam",
+              "strength": "low",
+              "keywords": [
+                "fire",
+                "sprinkler"
+              ],
+              "lines": [
+                "Other Fire Protection System: Yes",
+                "Other Type of Sprinkler System: smoke detectors, carbon monoxide detectors"
+              ]
+            }
+          },
+          "covered": [],
+          "missing_high_signals": [],
+          "first_pass_rate": 1.0
+        },
+        "request_id": "9eb644f9097d40679502e2257bdc3c6c",
+        "prompt_hash": "8d743e9469248fd0c1636525ba4435a2771e6cd118f0163f0cea4c4e13de0094",
+        "completion_hash": "a3dc029e6524fd52e94152b42dc98ef8f830b48fd129a3173ff70c84afbe896f",
+        "context_hash": "2c25404ffdf4dd00d26909b6a3b93368190c0e2254e1d75ee20aace627f2019b",
+        "input_cache_key": "50225975bdf9f246c0cf49bb439ee18c7e5b91ffe48b0bf6bf2bbfc9092b6691",
+        "input_snapshot_id": 60,
+        "substrate_hash": "2ca8c347df777a6187d135956791db4feeff585b1aabdaf741a819315d7f35cf",
+        "review_status": "PENDING",
+        "generated_at": "2026-11-06T20:02:54Z",
+        "inference_id": null,
+        "cached": false,
+        "tokens": {
+          "input": 2392,
+          "output": 600
+        },
+        "cost": 0.0,
+        "permit_key": "seattle-kingcounty-wa:7083363-CN"
+      }
+    },
+    {
+      "fixture": "wrong_permit",
+      "permit_number": "7083363-CN",
+      "expected_outcome": "GROUNDING_FAILED",
+      "outcome": "GROUNDING_FAILED",
+      "error": {
+        "stage": "skill_infer",
+        "error": "GROUNDING_FAILED",
+        "message": "the detail text does not mention this permit number (wrong-permit detail)",
+        "retryable": false,
+        "input_snapshot_id": 70
+      }
+    },
+    {
+      "fixture": "admin_only",
+      "permit_number": "7200003-CN",
+      "expected_outcome": "NO_SKILLS",
+      "outcome": "NO_SKILLS",
+      "error": {
+        "stage": "skill_infer",
+        "error": "NO_SKILLS",
+        "message": "the model found no skill supported by the detail text",
+        "retryable": false,
+        "assumptions": [
+          "The permit detail explicitly states 'No change to approved scope' and describes the action as a 'Revision to update applicant contact information on the permit record.'",
+          "No construction work, materials, or physical alterations are described in this specific permit record.",
+          "This is an administrative revision, not a scope of work for construction trades."
+        ],
+        "request_id": "4fb1a786433d4e45898612316f341ae5",
+        "completion_hash": "9e1ef58a4388ec0a452ae3c196d6c3046ef56c0da23c1f58353b1ebc09922f00"
+      }
+    }
+  ]
+}

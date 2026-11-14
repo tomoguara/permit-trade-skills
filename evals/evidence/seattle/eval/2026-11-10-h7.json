@@ -1,0 +1,31 @@
+{
+  "suite": "H7",
+  "run_id": "eval-h7-20261111T013623-6fe7f0",
+  "jurisdiction": "seattle-kingcounty-wa",
+  "build_id": "live-2026-11-10",
+  "metrics": {
+    "violations": 0.0,
+    "illegal_transitions": 0.0,
+    "self_approvals": 0.0
+  },
+  "counts": {},
+  "info": {
+    "delegated_tests": [
+      "tests/unit/test_pipeline_states.py",
+      "tests/unit/test_review_hitl.py",
+      "tests/integration/test_pipeline_worker.py::test_five_permit_fixture_ac3"
+    ],
+    "duration_ms": 28
+  },
+  "warnings": [],
+  "model": null,
+  "prompt_version": null,
+  "llm_calls": 0,
+  "cache_hits": 0,
+  "started_at": "2026-11-11T01:36:23.997928Z",
+  "finished_at": "2026-11-11T01:36:24.026128Z",
+  "items_total": 0,
+  "items_failed": 0,
+  "worst": [],
+  "items": []
+}

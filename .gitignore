@@ -1,0 +1,27 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode
+
+# Docker (container env files, not the compose file)
+script/.env.*
+
+# Generated test fixtures and DB backups
+tests/fixtures/*.jsonl.gz
+backups/
+/logs/
+
+# Downloaded permit exports (see README step 4); too large for git
+data/*.json

@@ -1,0 +1,86 @@
+@startuml detail-flow
+' ============================================================================
+' Stage 05: per-permit detail extraction pipeline (DetailPipeline.process)
+' Companion to: docs/detail.md (F1-F4)
+' Render: java -jar /opt/plantuml/plantuml.jar -tsvg docs/diagrams/detail-flow.puml
+' ============================================================================
+
+skinparam shadowing false
+skinparam ArrowColor #444444
+skinparam activity {
+  BackgroundColor #FFFFFF
+  BorderColor #555555
+  DiamondBackgroundColor #F7F7F7
+  DiamondBorderColor #888888
+}
+skinparam partition {
+  BorderColor #888888
+  BackgroundColor #FAFAFA
+}
+skinparam note {
+  BackgroundColor #FFF9E6
+  BorderColor #C9B87A
+}
+
+start
+:permit (catalog row) + registry config
+(fetch_strategy, allowed_hosts, field_order);
+if (latest snapshot younger than min_snapshot_age\nand built from the same raw_hash?) then (yes, not --force)
+  :outcome **skipped**: ledger row,
+  return the stored DetailDocument;
+  stop
+else (no)
+endif
+
+partition "for each strategy in the plan (e.g. redirect_chase, then soda_row)" {
+  :rate-limit token for the host;
+  :fetch (one attempt);
+  note right
+    redirect_chase: every redirect hop checked
+    against allowed_hosts before it is requested;
+    robots.txt; CAPTCHA -> HUMAN_GATE (host gated 1h)
+  end note
+  while (retryable failure and budget left?) is (yes)
+    :sleep (backoff 1s, 3s; Retry-After, capped);
+    :fetch again;
+  endwhile (no)
+  if (fetched?) then (yes)
+    :extract candidate
+    (XHR JSON record, else DOM label/value pairs; or the SODA row);
+    if (F2 signals: anchor and >= min_signals?) then (pass)
+      :winner;
+    else (fail)
+      :keep as judge candidate,
+      try the next strategy;
+    endif
+  else (no)
+    if (soda_row and Socrata unreachable?) then (yes)
+      :use the stored permits.raw_row
+      (degraded);
+    else (no)
+      :note the error,
+      try the next strategy;
+    endif
+  endif
+}
+
+if (winner?) then (yes)
+elseif (judge enabled and a candidate exists?) then (yes)
+  :LLM judge (skills.judge, temperature 0);
+  note right: advisory; "relevant" rescues the\ncandidate as degraded
+else (no)
+endif
+
+if (accepted?) then (yes)
+  :normalize -> content_text
+  (catalog lines, PORTAL ONLY section, SOURCE)
+  + fields + sha256 hash;
+  :upsert detail_snapshots on (permit_id, content_hash);
+  :processing_state -> DETAIL_READY;
+else (no)
+  :processing_state -> DETAIL_FAILED with state_error
+  (only if no usable snapshot yet);
+endif
+:record detail_fetch_results row;
+stop
+@enduml

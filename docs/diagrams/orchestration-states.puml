@@ -1,0 +1,53 @@
+@startuml orchestration-states
+' ============================================================================
+' Permit lifecycle state machine (permits.processing_state)
+' Companion to: docs/orchestration.md (state machine section)
+' Source of truth: src/permit_trade_skills/orchestration/states.py (EDGES)
+' Render: java -jar /opt/plantuml/plantuml.jar -tsvg docs/diagrams/orchestration-states.puml
+' ============================================================================
+
+hide empty description
+skinparam shadowing false
+skinparam ArrowColor #444444
+skinparam state {
+  BackgroundColor #FFFFFF
+  BorderColor #555555
+}
+skinparam legendBackgroundColor #FAFAFA
+
+state SYNCED
+state DETAIL_READY
+state DETAIL_FAILED #FBEAEA
+state SKILLS_INFERRED #D9EAD9
+state SKILLS_FAILED #FBEAEA
+state SKILLS_SKIPPED #EEEEEE
+state SKILLS_APPROVED #CFE2CF
+state SKILLS_REJECTED #EEEEEE
+
+[*] --> SYNCED
+SYNCED --> DETAIL_READY : detail ok
+SYNCED --> DETAIL_FAILED : detail failed
+DETAIL_FAILED --> DETAIL_READY : retry ok
+DETAIL_READY --> SKILLS_INFERRED : infer ok
+SKILLS_FAILED --> SKILLS_INFERRED : retry ok
+DETAIL_READY --> SKILLS_FAILED : infer failed
+DETAIL_FAILED --> SKILLS_SKIPPED : not retryable
+DETAIL_READY --> SKILLS_SKIPPED : not eligible
+SKILLS_INFERRED --> SKILLS_APPROVED : human approve
+SKILLS_INFERRED --> SKILLS_REJECTED : human reject
+
+SYNCED -[#999999,dashed]-> SKILLS_INFERRED
+SYNCED -[#999999,dashed]-> SKILLS_FAILED
+DETAIL_FAILED -[#999999,dashed]-> SKILLS_INFERRED
+DETAIL_FAILED -[#999999,dashed]-> SKILLS_FAILED
+
+legend right
+  Writers: Stage 05 detail (detail ok / failed),
+  Stage 06 skills (infer ok / failed; dashed = degraded
+  inference from catalog fields, pts skills --allow-degraded),
+  Stage 07 worker (SKILLS_SKIPPED), Stage 07 review (approve / reject).
+  Retryable failures stay *_FAILED with a retry_backlog row
+  (max 3 attempts). Same-state writes are not transitions.
+endlegend
+
+@enduml
