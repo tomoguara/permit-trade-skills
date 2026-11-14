@@ -1,0 +1,52 @@
+@startuml Discovery Component Diagram
+title Discovery Stage - Component Architecture
+skin rose
+skinparam shadowing true
+
+package "Discovery Module" {
+  [catalog_client.py\nCatalogClient] as catalog
+  [verifier.py\nVerifier] as verifier
+  [suggest.py\nScorer] as scorer
+  [validate.py\nValidator] as validator
+  [mapping.py\nMapping] as mapping
+  [registry.py\nRegistry] as registry
+  [DiscoveryEngine] as engine
+}
+
+package "CLI Layer" {
+  [discover.py\nCLI] as discover_cli
+}
+
+package "External Systems" {
+  [catalog.data.gov\nCKAN API] as catalog_api
+  [PostgreSQL\nJurisdiction Registry] as db
+}
+
+package "User Data" {
+  [Local JSON\n(permits export)] as local_data
+  [Discovery Dossier\n(output)] as dossier
+}
+
+' Dependencies
+discover_cli --> engine : uses\n(pts discovery\ndiscover/register)
+engine --> catalog : searches\nfor candidates
+engine --> verifier : probes\nplatform type
+engine --> scorer : ranks\ncandidates
+engine --> validator : validates\nbefore register
+engine --> mapping : guesses\nfield/status maps
+engine --> registry : stores\njurisdictions
+registry --> db : reads/writes
+catalog_api --> db : data source
+catalog_api --> local_data : --local-file\nfallback
+
+legend right
+  <b>Key Components:</b>
+  - CatalogClient: Searches catalog.data.gov via CKAN API
+  - Verifier: Probes URLs to detect platform (Socrata/CKAN/Other)
+  - Scorer: Ranks candidates with weighted factors
+  - Validator: Validates config before registration
+  - Registry: Manages PostgreSQL jurisdiction storage
+  - DiscoveryEngine: Orchestrates all discovery components
+endlegend
+
+@enduml

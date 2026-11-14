@@ -1,0 +1,62 @@
+@startuml Agentic Orchestration Component Diagram
+title Agentic Orchestration (Stage 07) - Component Architecture
+skin rose
+skinparam shadowing true
+skinparam wrapWidth 300
+
+package "Orchestration Module" {
+  
+  package "Planner Agent" {
+    [Planner\n(LLM loop + budget)\nplanner.py] as planner
+    [ToolExecutor\n(toolset-v1 + guards)] as executor
+  }
+  
+  package "Pipeline Worker" {
+    [PipelineWorker\n(batch processing)] as worker
+  }
+  
+  package "Human Review" {
+    [ReviewService\n(propose/decide)] as review
+  }
+}
+
+package "Services" {
+  [Stage 05\nDetailService] as detail_svc
+  [Stage 06\nSkillService] as skill_svc
+}
+
+package "Store Protocol" {
+  [OrchestrationStore\n(ports.py)] as store
+}
+
+' Planner Agent
+planner --> executor : uses
+executor --> detail_svc : ensure_detail/get_detail
+executor --> skill_svc : infer_trade_skills/get_skill_inference
+executor --> review : submit_review
+executor --> store : read/write
+
+' Pipeline Worker
+worker --> detail_svc : drives extraction
+worker --> skill_svc : drives inference
+worker --> store : queue management
+
+' Human Review
+review --> store : queue/decisions
+review --> skill_svc : get latest
+
+' Legend
+legend right
+  <b>Three Components:</b>
+  1. <b>Planner Agent</b>: LLM-driven tool caller with budgets, schema validation, and replay
+  2. <b>Pipeline Worker</b>: Durable batch processor (retry + concurrency + state machine)
+  3. <b>Human Review</b>: Agent proposes; human decides (approve/reject/needs_human)
+  
+  <b>Services:</b>
+  - Stage 05: Detail extraction from official portals
+  - Stage 06: LLM-based skill inference
+  
+  <b>Store:</b> Events, pipeline runs, queues, and review tracking
+endlegend
+
+@enduml

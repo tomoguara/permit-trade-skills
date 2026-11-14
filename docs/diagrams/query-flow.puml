@@ -1,0 +1,74 @@
+@startuml query-flow
+' ============================================================================
+' Stage 04: POST /api/v1/query (natural-language permit query)
+' Companion to: docs/api.md (Q2)
+' Render: java -jar /opt/plantuml/plantuml.jar -tsvg docs/diagrams/query-flow.puml
+' ============================================================================
+
+skinparam shadowing false
+skinparam sequenceMessageAlign left
+skinparam responseMessageBelowArrow true
+skinparam ArrowColor #444444
+skinparam sequence {
+  LifeLineBorderColor #888888
+  ParticipantBorderColor #555555
+  ParticipantBackgroundColor #FFFFFF
+  ActorBorderColor #555555
+  ActorBackgroundColor #FFFFFF
+  GroupBorderColor #888888
+  GroupBackgroundColor #F7F7F7
+}
+skinparam note {
+  BackgroundColor #FFF9E6
+  BorderColor #C9B87A
+}
+
+actor "Client" as client
+participant "API middleware\n(trace id, rate limit)" as mw
+participant "QueryService.ask" as svc
+participant "NLUParser" as nlu
+database "nlu_cache" as cache
+participant "LLM provider\n(Ollama or OpenAI)" as llm
+participant "interpret()\n+ jurisdiction match" as interp
+participant "PermitRepository" as repo
+database "permits" as permits
+
+client -> mw : POST /api/v1/query\n{question, jurisdiction?}
+mw -> svc : ask(question, jurisdiction)
+svc -> nlu : parse(question, jurisdiction, known values)
+nlu -> cache : get(sha256 key)
+alt cache hit
+  cache --> nlu : cached parse
+else cache miss
+  nlu -> llm : complete(system, user, nlu_schema, temperature 0)
+  alt provider down or invalid JSON (after 2 retries)
+    llm --> nlu : LLMError
+    nlu --> client : 503 NLU_UNAVAILABLE (problem+json, retryable)
+  end
+  llm --> nlu : JSON parse
+  nlu -> cache : put(key, parse, 24h)
+end
+nlu --> svc : NluParse
+svc -> interp : resolve jurisdiction_in_question
+alt named place not registered
+  interp --> client : 422 JURISDICTION_NOT_REGISTERED
+end
+svc -> interp : interpret(parse)
+interp --> svc : PermitQuery + problems
+note right of svc
+  unfulfilled_filters =
+  unrecognized entities + invalid values
+end note
+alt core requirement unfulfillable
+  svc --> client : 200, rows [], executed false,\nclarification (llm_generated)
+else query runs
+  svc -> repo : list(PermitQuery)  (keyset page)
+  repo -> permits : SELECT ... ORDER BY sort, id
+  permits --> repo : rows
+  repo --> svc : CursorPage
+  svc -> svc : echo = render_echo(PermitQuery)
+  svc --> mw : rows + query + echo + assumptions
+  mw --> client : 200 (X-Trace-Id, X-RateLimit-*)
+end
+
+@enduml

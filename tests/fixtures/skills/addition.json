@@ -1,0 +1,109 @@
+{
+  "name": "addition",
+  "about": "Real Seattle record 7152387-CN: addition + alterations, heat pump, envelope change, tree protection.",
+  "permit": {
+    "id": 2,
+    "jurisdiction_id": "seattle-kingcounty-wa",
+    "processing_state": "DETAIL_READY",
+    "permit_number": "7152387-CN",
+    "status": "ISSUED",
+    "permit_class": "Single Family/Duplex",
+    "permit_class_mapped": "Residential",
+    "permit_type_mapped": "Building",
+    "permit_type_desc": "Addition/Alteration",
+    "valuation": 170000,
+    "issued_at": "2026-09-24T00:00:00",
+    "address": "12527 DAYTON AVE N",
+    "description": "Construct addition and alterations to existing one-family dwelling  per plan.",
+    "detail_url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=7152387-CN"
+  },
+  "detail": {
+    "permit_number": "7152387-CN",
+    "jurisdiction": "seattle-kingcounty-wa",
+    "snapshot_id": 20,
+    "fields": {},
+    "degraded": false,
+    "notes": [],
+    "final_url": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=69031",
+    "content_text": "PERMIT: 7152387-CN\nSTATUS: Issued\nADDRESS: 12527 DAYTON AVE N\nCITY: SEATTLE\nSTATE: WA\nZIP: 98133\nISSUED: 2026-09-24T00:00:00.000\nAPPLIED: 2026-07-31T00:00:00.000\nEXPIRES: 2028-03-24T00:00:00.000\nDESCRIPTION: Construct addition and alterations to existing one-family dwelling per plan.\nCLASSIFICATION: Single Family/Duplex\nCLASSIFICATION_MAPPED: Residential\nPERMIT_TYPE: Building\nPERMIT_TYPE_DESC: Addition/Alteration\nEST_PROJECT_COST: 170000.0000\nDETAIL_URL.URL: https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=7152387-CN\nDAYSINITIALPLANREVIEW: 18\nDAYSOUTCORRECTIONS: 14\nDAYSPLANREVIEWCITY: 36\nDEPENDENTBUILDING: 0\nHOUSINGCATEGORY: Single-Family Add/Alt\nHOUSINGUNITS: 0.0\nHOUSINGUNITSADDED: 0.0\nHOUSINGUNITSREMOVED: 0.0\nINITIALREVIEWCOMPLETEDATE: 2026-08-19T00:00:00.000\nLATITUDE: 47.72039597\nLOCATION1.LATITUDE: 47.72039597\nLOCATION1.LONGITUDE: -122.35325091\nLONGITUDE: -122.35325091\nNUMBERREVIEWCYCLES: 2\nPLANREVIEWCOMPLETEDATE: 2026-09-21T00:00:00.000\nREADYTOISSUEDATE: 2026-09-24T00:00:00.000\nTOTALDAYSPLANREVIEW: 51\nPORTAL ONLY:\n# of Existing Bicycle Parking Spots: 0\n# of Existing Offsite Parking: 0\n# of Existing Onsite Parking: 0\n# of Proposed Accessible Parking: 0\n# of Proposed Bicycle Parking Spots: 0\n# of Proposed Offsite Parking: 0\n# of Proposed Onsite Parking: 0\nAction Type: Add/Alt\nAllowance Factor: 1.25\nApplication Completed Date: 07/31/2026\nApplication Information: PERMIT APPLICATION COMMON\nAre there residential (non-commercial) tenants/renters currently living in the property?: No\nAre you changing the envelope?: Yes\nAre you doing more than 2,000 square feet of earth disturbance?: No\nChoose the Primary Property Use: Single Family/Duplex\nCompliance Category: Residential\nCompliance Path: Prescriptive\nContractor License: RAVENDB952KP\nDate Added: 09/16/2026\nEnergy Credit Option: 21-CR 1.0, All Other Groups, Option 2.1 – Efficient Building Option\nEnergy Credit Option: 21-CR 1.0, All Other Groups, Option 3.6 – Efficient Building Option\nEnergy Credit Option: 21-CR 3.0, System Type 4\nExisting Occupancy: R-3 Single Family Dwelling\nExpiration Date: 03/24/2028\nFire Alarm: No\nFloor Area (square feet): 655\nFloor or Area: 1\nFloor(s): 0\nHeating Fuel Type Proposed: Residential: Electric Heat Pump\nIntake Value: Alteration: 55991\nIntake Value: New: 114009\nIs a certificate of occupancy required?: No\nIs any portion of the building semi-heated or unheated?: Yes\nIs there a commercial kitchen hood exhaust system?: No\nIs there a fume hood?: No\nIs there a spray paint booth?: No\nIs this a high-rise?: No\nIs this a Light Rail Temporary Use for Construction application?: No\nIs this a substantial alteration?: Yes\nIs this building a Floating Residence?: No\nIs work in the right-of-way (street or alley) required?: No\nIs your development site in an environmentally critical area (ECA)?: No\nIssue Value: Alteration: 55991\nIssue Value: New: 114009\nKey Inspection Issue: Tree Protection Requirement\nKey Issue Description: Two Tier 2 cedars near southeast corner of property to be protected.\nMain Existing Use of Building: Residential\nMinimum BTUs: 7420\nMust this be recorded?: No\nMust this be recorded?: No\nMust this be recorded?: No\nMust this be recorded?: No\nNew and Replaced Hard Surface > 750 sq ft?: No\nNumber of Added Units: 0\nNumber of Curb Cuts for This Permit: 0\nNumber of Existing Below-Grade Building Stories: 0\nNumber of Existing Building Stories: 1\nNumber of Existing Units: 1\nNumber of Mezzanines: 0\nNumber of Proposed Below-Grade Building Stories: 0\nNumber of Proposed Building Stories: 1\nNumber of Removed Units: 0\nNumber of Sleeping Rooms: 0\nOccupancy Group: R-3 Single Family Dwelling\nOffsite Parking Location: 0\nOther Fire Protection System: No\nOther Information: LAND USE PROPOSED\nParcel Information: Development Site Parcel:DV1112370 * Block:-- Lot:-- Subdivision:--\nPartial Fire Protection System: No\nPermit Issued Date: 09/24/2026\nProject Description: Hofman DeYoung Addition Construct addition and alterations to existing one-family dwelling, per plan.\nProject Value: 170000\nReview: Tree\nReview Level: Full +\nReviewer: mcgarrd\nSprinkler Standard: None\nSprinklers Meet NFPA 13: No\nSprinklers Meet NFPA 13R: No\nSq. Ft.: 0\nTotal Intake Value: 170000\nTotal Issued Value: 170000\nTotal Revision Value: 0\nType of Construction: Type VB\nType of Housing Unit: Detached Single-Family\nUnit ID: Add'n\nUse: Single-Family Dwelling Unit\nWaste Diversion Plan Required: No\nWhat building code was used for your design?: 2021 SRC\nWhere on your property are you working?: East side of property, street front.\nWho will be performing all the work?: Licensed Contractor\nWill you change the building use or occupancy?: No\nWill your application include a new standard plan?: Yes\nWork Location: 12527 DAYTON AVE N 26859 *\nSOURCE: https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=69031\n",
+    "fetch_strategy": "redirect_chase",
+    "content_hash": "747402edcfb5a6545c8d47ef7c0c34c35487296bddb4df4f3bdf5c1d1e730bdd"
+  },
+  "response": {
+    "skills": [
+      {
+        "skill": "Wood framing of the new addition (walls, floor and roof structure)",
+        "trade": "Framing",
+        "evidence": "Construct addition and alterations to existing one-family dwelling per plan.",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=69031",
+        "confidence": "medium"
+      },
+      {
+        "skill": "Foundation and footing construction for the addition",
+        "trade": "Concrete",
+        "evidence": "Hofman DeYoung Addition Construct addition and alterations to existing one-family dwelling, per plan.",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=69031",
+        "confidence": "low"
+      },
+      {
+        "skill": "Building envelope work: exterior wall and roof tie-in, weather barrier",
+        "trade": "Siding",
+        "evidence": "Are you changing the envelope?: Yes",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=69031",
+        "confidence": "medium"
+      },
+      {
+        "skill": "Electric heat pump installation and commissioning",
+        "trade": "HVAC",
+        "evidence": "Heating Fuel Type Proposed: Residential: Electric Heat Pump",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=69031",
+        "confidence": "medium"
+      },
+      {
+        "skill": "Energy-code insulation and air sealing",
+        "trade": "Insulation",
+        "evidence": "Energy Credit Option: 21-CR 1.0, All Other Groups, Option 2.1 – Efficient Building Option",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=69031",
+        "confidence": "low"
+      },
+      {
+        "skill": "Tree protection fencing around retained cedars during construction",
+        "trade": "Landscaping",
+        "evidence": "Two Tier 2 cedars near southeast corner of property to be protected.",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=69031",
+        "confidence": "medium"
+      }
+    ],
+    "assumptions": [
+      "Foundation work is assumed for a ground-level addition; the record does not describe it.",
+      "Insulation scope is inferred from the energy-credit option; quantities are not stated.",
+      "No plumbing work is described; none inferred."
+    ],
+    "overall_confidence": "medium",
+    "licensing_notes": [
+      "Who will be performing all the work?: Licensed Contractor"
+    ]
+  },
+  "expected": {
+    "outcome": "accepted",
+    "present": [
+      [
+        "framing",
+        "carpentry"
+      ],
+      [
+        "hvac",
+        "heat pump"
+      ]
+    ],
+    "absent": [
+      "plumbing",
+      "weld"
+    ],
+    "overall_in": [
+      "low"
+    ],
+    "skills": 6,
+    "dropped": 0
+  }
+}

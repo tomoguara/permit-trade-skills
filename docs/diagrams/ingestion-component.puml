@@ -1,0 +1,52 @@
+@startuml Ingestion Component Diagram
+title Ingestion Module - Component Architecture
+skin rose
+skinparam shadowing true
+skinparam defaultTextAlignment center
+
+package "Permit Trade Skills Application" {
+  node "CLI Layer" {
+    [pts sync sync\nCLI] as cli_sync
+  }
+
+  node "Ingestion Module" {
+    [SyncEngine\norchestrator] as engine
+    [SodaClient\nSocrata API] as soda
+    [PermitNormalizer] as normalizer
+  }
+
+  node "Supporting Modules" {
+    [EmbeddingService] as embedding_svc
+    [Registry\n(jurisdiction config)] as registry
+    [Repositories] as repos
+  }
+}
+
+database "PostgreSQL\npermits, sync_metadata,\nstatus_history" as postgres
+
+package "User" {
+  [Data Engineer] as user
+}
+
+' Main sync flow
+user --> cli_sync : run sync
+cli_sync --> engine : trigger
+engine --> registry : fetch jurisdiction config
+engine --> soda : pull raw rows
+soda --> normalizer : transform
+normalizer --> engine : PermitRecord
+engine --> embedding_svc : compute embeddings
+embedding_svc --> engine : embeddings
+engine --> repos : upsert to DB
+repos --> postgres : write
+
+' Report output
+engine --> cli_sync : SyncReport
+cli_sync --> user : JSON to stdout
+
+legend
+  <b>Core Flow:</b> CLI -> SyncEngine -> Pull -> Normalize -> Embed -> Upsert -> DB
+  <br/><b>Supporting:</b> Registry (config), Repositories (DB access)
+endlegend
+
+@enduml

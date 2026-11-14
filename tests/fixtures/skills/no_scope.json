@@ -1,0 +1,66 @@
+{
+  "name": "no_scope",
+  "about": "Catalog-only (soda_row) record: no portal scope-of-work; expect low confidence and an assumption.",
+  "permit": {
+    "id": 5,
+    "jurisdiction_id": "seattle-kingcounty-wa",
+    "processing_state": "DETAIL_READY",
+    "permit_number": "7200002-CN",
+    "status": "ISSUED",
+    "permit_class": "Single Family/Duplex",
+    "permit_class_mapped": "Residential",
+    "permit_type_mapped": "Building",
+    "permit_type_desc": "Addition/Alteration",
+    "valuation": 40000.0,
+    "issued_at": "2026-10-20T00:00:00",
+    "address": "4518 S FONTANELLE ST",
+    "description": "Construct alterations to existing single family residence per plan subject to field inspection (STFI).",
+    "detail_url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=7200002-CN"
+  },
+  "detail": {
+    "permit_number": "7200002-CN",
+    "jurisdiction": "seattle-kingcounty-wa",
+    "snapshot_id": 50,
+    "fields": {},
+    "degraded": false,
+    "notes": [],
+    "final_url": "https://cos-data.seattle.gov/resource/76t5-zqzr.json?$where=permitnum='7200002-CN'&$limit=1",
+    "content_text": "PERMIT: 7200002-CN\nSTATUS: Issued\nADDRESS: 4518 S FONTANELLE ST\nCITY: SEATTLE\nSTATE: WA\nZIP: 98118\nISSUED: 2026-10-20T00:00:00.000\nAPPLIED: 2026-10-01T00:00:00.000\nDESCRIPTION: Construct alterations to existing single family residence per plan subject to field inspection (STFI).\nCLASSIFICATION: Single Family/Duplex\nCLASSIFICATION_MAPPED: Residential\nPERMIT_TYPE: Building\nPERMIT_TYPE_DESC: Addition/Alteration\nEST_PROJECT_COST: 40000.0000\nDETAIL_URL.URL: https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=7200002-CN\nSOURCE: https://cos-data.seattle.gov/resource/76t5-zqzr.json?$where=permitnum='7200002-CN'&$limit=1",
+    "fetch_strategy": "soda_row",
+    "content_hash": "c4137abbf35ed2ec57e702b5d450e8cc5456e1ec8d9b84d4ca94a40166762f4f"
+  },
+  "response": {
+    "skills": [
+      {
+        "skill": "General interior alteration carpentry",
+        "trade": "Carpentry",
+        "evidence": "Construct alterations to existing single family residence per plan subject to field inspection (STFI).",
+        "evidence_source": "https://cos-data.seattle.gov/resource/76t5-zqzr.json?$where=permitnum='7200002-CN'&$limit=1",
+        "confidence": "low"
+      }
+    ],
+    "assumptions": [
+      "The detail has no scope-of-work section; only the catalog description is available, so the trades involved cannot be confirmed."
+    ],
+    "overall_confidence": "low",
+    "licensing_notes": []
+  },
+  "expected": {
+    "outcome": "accepted",
+    "present": [
+      [
+        "carpentry"
+      ]
+    ],
+    "absent": [
+      "plumbing",
+      "electrical",
+      "hvac"
+    ],
+    "overall_in": [
+      "low"
+    ],
+    "skills": 1,
+    "dropped": 0
+  }
+}

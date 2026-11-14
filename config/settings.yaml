@@ -1,0 +1,155 @@
+# Permit Trade Skills runtime settings (overview §8: config/settings.yaml).
+#
+# Location: $PTS_SETTINGS, else the nearest config/settings.yaml above the
+# working directory, else this file in the repository. Secrets (API keys) are
+# never stored here: each provider names the environment variable (shell or
+# .env) that holds its key.
+
+llm:
+  # true  -> every LLM role uses the local Ollama profile below
+  # false -> every LLM role uses the OpenAI profile below
+  # Override per process with PTS_USE_LOCAL_OLLAMA_MODEL=true|false.
+  use_local_ollama_model: true
+
+  timeout_s: 120          # per HTTP request
+  max_retries: 2          # retries after the first attempt (exponential backoff)
+
+  providers:
+    openai:
+      base_url: https://api.openai.com     # OpenAI-compatible: POST {base_url}/v1/chat/completions
+      api_key_env: OPENAI_API_KEY
+      models:                              # model per role
+        nlu.parser: gpt-4.1-mini         # gpt-4o-mini
+        skills.infer: gpt-4.1            # Stage 06 trade-skill inference (strong model)
+        skills.judge: gpt-4.1-mini       # Stage 05 detail relevance judge (off unless detail.judge_enabled)
+        agent.planner: gpt-4.1           # Stage 07 planner agent (`pts agent goal`)
+        eval.judge: gpt-4.1-mini         # Stage 08 LLM-as-judge; must differ from skills.infer (enforced)
+      # USD per 1M tokens, used to report Completion.cost
+      prices:
+        gpt-4.1: {input: 2.00, output: 8.00}
+        gpt-4.1-mini: {input: 0.40, output: 1.60}
+        gpt-4o-mini: {input: 0.15, output: 0.60}
+
+    ollama:
+      base_url: http://localhost:11434
+      api_key_env: OLLAMA_API_KEY          # optional; local Ollama ignores it
+      models:
+        nlu.parser: qwen3.8:latest
+        skills.infer: qwen3.8:latest
+        skills.judge: qwen3.8:latest
+        agent.planner: qwen3.8:latest
+        eval.judge: gemma4:31b           # a different model family from skills.infer (enforced)
+      # Ollama's thinking control for reasoning models ("none" disables thinking:
+      # ~1.5 s instead of ~10 s per parse). Omit for models without thinking.
+      reasoning_effort: none
+
+api:
+  # In-process limiter, requests per minute per client IP (0 disables).
+  # Production deployments rate-limit at the gateway instead.
+  # Override per process with PTS_RATE_LIMIT_PER_MINUTE.
+  rate_limit_per_minute: 60
+
+nlu:
+  cache_ttl_hours: 24
+
+# Stage 02 ingestion (`pts sync sync`, `pts permit show --raw`, Socrata column checks).
+ingest:
+  # Sent on every Socrata request. Add a contact (URL or email) so data
+  # portals can reach you, e.g. "PermitTradeSkills/1.0 (+https://example.org/contact)".
+  # Override per process with PTS_INGEST_USER_AGENT.
+  user_agent: "PermitTradeSkills/1.0 (public permit records sync; read-only)"
+  # Requests per minute per host (0 disables). A jurisdiction's
+  # detail_strategy.detail.rate_limits_per_minute[<host>] overrides it
+  # (Seattle: 20/min for cos-data.seattle.gov, ~10 min for a full pull).
+  # Override per process with PTS_INGEST_RATE_LIMIT_PER_MINUTE.
+  rate_limit_per_minute: 60
+
+# Stage 05 detail extraction (`pts detail ...`). Per-jurisdiction settings
+# (fetch strategy, allowed hosts, field order, per-host rate limits) live in the
+# registry: jurisdictions.detail_strategy.detail. See docs/detail.md.
+detail:
+  # LLM relevance judge (role skills.judge): runs only when every strategy fails
+  # the deterministic signal check. Off by default: the happy path makes no LLM calls.
+  judge_enabled: false
+  min_snapshot_age_hours: 24   # skip a re-fetch when the latest snapshot is younger and the catalog row is unchanged
+  concurrency: 3               # default --concurrency (max_concurrency caps it)
+  max_concurrency: 8
+  user_agent: "PermitTradeSkills/0.1 (public permit record lookup; read-only)"
+  nav_timeout_s: 20            # per HTTP request / page navigation
+  settle_timeout_s: 8          # Playwright network-idle wait
+  total_budget_s: 60           # per permit, all strategies and retries
+  retries: 2                   # per strategy, after the first attempt
+  backoff_s: [1, 3]
+  max_retry_after_s: 30        # cap on an honoured Retry-After
+  rate_limit_per_minute: 20    # per host, unless the registry sets one for the host
+  human_gate_cooldown_s: 3600  # after a CAPTCHA, stop trying that host for this long
+  cache_size: 512              # DetailService.latest in-process LRU
+
+# Stage 06 trade-skill inference (`pts skills ...`, role skills.infer). See docs/trade-skills.md.
+skills:
+  temperature: 0.1          # must be <= 0.2 (reproducibility)
+  max_tokens: 4000          # completion budget per call
+  max_context_chars: 8000   # detail text sent to the model; longer texts are trimmed by signal priority
+  allowed_statuses: [ISSUED]  # canonical statuses eligible for inference (e.g. add COMPLETED)
+
+# Stage 07 orchestration (`pts pipeline ...`, `pts agent ...`, `pts review ...`). See docs/orchestration.md.
+orchestration:
+  pipeline:
+    workers: 4               # default --workers: permits processed at once
+    max_workers: 16          # cap on --workers
+    max_minutes: 60          # default --max-minutes: stop scheduling after this; in-flight permits finish
+    limit: 25                # default --limit: permits per run
+    max_attempts: 3          # attempts per step across runs; then the permit stays *_FAILED (exhausted)
+    attempts_per_run: 2      # attempts per step within one run
+    backoff_s: [30, 120]     # wait before attempt 2, 3 (in the same run, or as retry_backlog.next_retry_at)
+    detail_timeout_s: 120    # wall cap per detail step attempt
+    infer_timeout_s: 120     # wall cap per inference step attempt
+    drain_s: 30              # after SIGTERM/SIGINT: wait this long for in-flight permits, then cancel
+  agent:                     # planner budgets (hard, enforced in code); role llm.providers.*.models.agent.planner
+    temperature: 0.0
+    max_tokens: 4000         # completion budget per planner turn
+    max_iterations: 12       # planner turns; the 13th is a hard stop with a partial report
+    max_tool_calls: 10       # calls past this are refused (the planner can still answer)
+    max_expensive_calls: 4   # infer_trade_skills calls
+    max_wall_s: 300          # hard stop (checked every turn)
+    max_result_chars: 4000   # per tool result shown in the planner prompt (the transcript keeps it whole)
+
+# Stage 08 evaluation (`pts eval ...`, `pts label ...`, `pts quality ...`, `pts alerts ...`).
+# See docs/quality.md (the Quality Definition) and docs/quality_runbook.md.
+eval:
+  golden_root: evals/golden           # golden sets: <golden_root>/<dataset dir>/{trade-set,nl-query,extraction}.jsonl
+  evidence_root: evals/evidence       # live run reports: <evidence_root>/<dataset dir>/eval/
+  dataset_dirs:                       # jurisdiction -> dataset directory name
+    seattle-kingcounty-wa: seattle
+  trade_set_statuses: [ISSUED, COMPLETED]   # statuses Dataset A may contain (H2 infers them without saving)
+  judge:                              # role llm.providers.*.models.eval.judge
+    temperature: 0.0
+    max_tokens: 2000
+    sample_rate: 0.30                 # share of a run's inferences judged, stratified by overall_confidence
+  h4_live_sample: 15                  # newest snapshots checked with an automatic must-appear list
+  # Release gate thresholds (`pts quality gate`). hard: a breach FAILs the gate;
+  # otherwise a breach makes it CONDITIONAL (promotion needs an owner sign-off).
+  thresholds:
+    H1.faithfulness: {min: 1.0, hard: true}       # accepted rows whose every quote is verbatim
+    H2.recall: {min: 0.80}                         # recall@required, non-degraded
+    H2.trap_hallucination_rate: {max: 0.10}        # share of precision traps the output claimed
+    H2.degraded_recall: {min: 0.50}                # degraded-mode bucket, gated separately
+    H3.full_match: {min: 0.90}                     # NL full-parameter match
+    H4.must_appear: {min: 0.90}                    # extraction checklist lines found verbatim
+    H4.catalog_grounding: {min: 1.0, hard: true}   # soda_row snapshots contain their catalog values
+    H5.fabrications: {max: 0, hard: true}          # agent reports citing unseen permits/skills
+    H6.loss: {max: 0.0, hard: true}                # source rows missing from the store
+    H7.violations: {max: 0, hard: true}            # illegal transitions + agent self-approvals
+  drift:                              # `pts alerts check` (nightly)
+    window_hours: 24                  # the recent window...
+    baseline_days: 7                  # ...compared with the days before it
+    min_samples: 10                   # per window, else the detector is skipped
+    ks_alpha: 0.01                    # confidence-distribution KS test
+    unknown_status_jump_pts: 2.0      # UNKNOWN status share increase (percentage points)
+    degraded_jump_pts: 20.0           # degraded detail-snapshot share increase (percentage points)
+    h2_recall_min: 0.80               # latest H2 recall below this alerts
+    webhook_url: ""                   # POST each new alert as JSON; override with PTS_ALERT_WEBHOOK_URL
+  slo:                                # `pts eval slo`
+    inference_within_hours: 24        # ISSUED permit -> accepted inference within this long of its first sync
+    inference_target: 0.95
+    p95_ready_hours: 72               # P95 issued -> approved-ready (accepted inference)

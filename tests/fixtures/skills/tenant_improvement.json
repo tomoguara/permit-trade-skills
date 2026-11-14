@@ -1,0 +1,127 @@
+{
+  "name": "tenant_improvement",
+  "about": "Synthetic commercial tenant improvement (dental clinic) with an explicit multi-trade scope.",
+  "permit": {
+    "id": 4,
+    "jurisdiction_id": "seattle-kingcounty-wa",
+    "processing_state": "DETAIL_READY",
+    "permit_number": "7190001-CN",
+    "status": "ISSUED",
+    "permit_class": "Commercial",
+    "permit_class_mapped": "Non-Residential",
+    "permit_type_mapped": "Building",
+    "permit_type_desc": "Addition/Alteration",
+    "valuation": 420000.0,
+    "issued_at": "2026-10-14T00:00:00",
+    "address": "1501 4TH AVE",
+    "description": "Tenant improvement to convert 3rd floor office space to dental clinic, subject to field inspection.",
+    "detail_url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=7190001-CN"
+  },
+  "detail": {
+    "permit_number": "7190001-CN",
+    "jurisdiction": "seattle-kingcounty-wa",
+    "snapshot_id": 40,
+    "fields": {},
+    "degraded": false,
+    "notes": [],
+    "final_url": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=99001",
+    "content_text": "PERMIT: 7190001-CN\nSTATUS: Issued\nADDRESS: 1501 4TH AVE\nCITY: SEATTLE\nSTATE: WA\nZIP: 98101\nISSUED: 2026-10-14T00:00:00.000\nAPPLIED: 2026-08-20T00:00:00.000\nDESCRIPTION: Tenant improvement to convert 3rd floor office space to dental clinic, subject to field inspection.\nCLASSIFICATION: Commercial\nCLASSIFICATION_MAPPED: Non-Residential\nPERMIT_TYPE: Building\nPERMIT_TYPE_DESC: Addition/Alteration\nEST_PROJECT_COST: 420000.0000\nDETAIL_URL.URL: https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=7190001-CN\nPORTAL ONLY:\nAction Type: Add/Alt\nDescribe any other mechanical systems to be installed as part of this project.: New VAV boxes and supply ductwork extensions for the clinic layout.\nFire Alarm: Yes\nIs there a commercial kitchen hood exhaust system?: No\nProject Description: Tenant improvement: new interior partitions with metal studs and gypsum drywall, suspended acoustical ceiling, new electrical lighting and outlets, plumbing for 6 dental operatory sinks, and HVAC ductwork modifications. Subject to field inspection.\nSprinklers Meet NFPA 13: Yes\nType of Construction: Type IA\nWork Location: 1501 4TH AVE 3rd floor\nSOURCE: https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=99001",
+    "fetch_strategy": "redirect_chase",
+    "content_hash": "866c9a653dcd74fdd3fcc18f78907409051cb6dd4418443167a3c66a29aacbb2"
+  },
+  "response": {
+    "skills": [
+      {
+        "skill": "Metal stud partition framing",
+        "trade": "Framing",
+        "evidence": "new interior partitions with metal studs",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=99001",
+        "confidence": "high"
+      },
+      {
+        "skill": "Gypsum drywall installation and finishing",
+        "trade": "Drywall",
+        "evidence": "gypsum drywall",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=99001",
+        "confidence": "high"
+      },
+      {
+        "skill": "Suspended acoustical ceiling installation",
+        "trade": "Carpentry",
+        "evidence": "suspended acoustical ceiling",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=99001",
+        "confidence": "high"
+      },
+      {
+        "skill": "Lighting and receptacle circuit installation",
+        "trade": "Electrical",
+        "evidence": "new electrical lighting and outlets",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=99001",
+        "confidence": "high"
+      },
+      {
+        "skill": "Plumbing rough-in and fixture setting for clinic sinks",
+        "trade": "Plumbing",
+        "evidence": "plumbing for 6 dental operatory sinks",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=99001",
+        "confidence": "high"
+      },
+      {
+        "skill": "HVAC ductwork modification and VAV box installation",
+        "trade": "HVAC",
+        "evidence": "New VAV boxes and supply ductwork extensions for the clinic layout.",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=99001",
+        "confidence": "high"
+      },
+      {
+        "skill": "Sheet metal duct fabrication for ductwork modifications",
+        "trade": "Sheet Metal",
+        "evidence": "HVAC ductwork modifications",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=99001",
+        "confidence": "high"
+      },
+      {
+        "skill": "Sprinkler head relocation for the new layout",
+        "trade": "Fire Protection",
+        "evidence": "Sprinklers Meet NFPA 13: Yes",
+        "evidence_source": "https://services.seattle.gov/Portal/cap/CapDetail.aspx?type=1000&fromACA=Y&agencyCode=SEATTLE&Module=DPDPermits&capID1=26SCI&capID2=00000&capID3=99001",
+        "confidence": "medium"
+      }
+    ],
+    "assumptions": [
+      "Sprinkler head relocation is inferred from an NFPA 13 system in a re-partitioned space."
+    ],
+    "overall_confidence": "high",
+    "licensing_notes": []
+  },
+  "expected": {
+    "outcome": "accepted",
+    "present": [
+      [
+        "framing"
+      ],
+      [
+        "drywall"
+      ],
+      [
+        "electrical"
+      ],
+      [
+        "plumbing"
+      ],
+      [
+        "hvac"
+      ]
+    ],
+    "absent": [
+      "roofing",
+      "concrete",
+      "weld"
+    ],
+    "overall_in": [
+      "medium"
+    ],
+    "skills": 8,
+    "dropped": 0
+  }
+}

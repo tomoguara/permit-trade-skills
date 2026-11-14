@@ -1,0 +1,90 @@
+@startuml Detail Extraction Component Diagram
+title Detail Extraction Stage - Component Architecture
+skin rose
+skinparam shadowing true
+
+package "Detail Stage Module" {
+  [Service Layer] as service
+  [Pipeline Processor] as pipeline
+  [Fetcher] as fetcher
+  [Validator] as validator
+  [Normalizer] as normalize
+  [Config] as config
+}
+
+package "Persistence" {
+  [Store] as store
+}
+
+package "External" {
+  [PostgreSQL] as db
+  [Detail Portal] as portal
+  [SODA API] as soda
+  [LLM] as llm
+}
+
+' Service Layer
+service --> pipeline : orchestrates
+service --> store : persists
+
+' Pipeline
+pipeline --> config : loads
+pipeline --> validator : validates
+pipeline --> normalize : normalizes
+pipeline --> fetcher : fetches
+pipeline --> store : persists
+
+' Fetcher
+fetcher --> portal : HTTP
+fetcher --> soda : HTTP
+fetcher .> llm : conditional
+
+' Validation and normalization
+validator --> config : uses rules
+normalize --> config : uses field_order
+
+' Store
+store --> db : reads/writes
+
+' Diagram legend
+legend right
+  <b>Core Components:</b>
+  
+  <b>Service Layer</b>:
+  - Public API (DetailService)
+  - ensure_fresh(), latest(), fetch_batch()
+  
+  <b>Pipeline Processor</b>:
+  - Per-permit processing (F1-F4)
+  - TTL/dedup, strategy loop, storage
+  
+  <b>Fetcher</b>:
+  - HttpFetcher: portal/SODA via httpx
+  - PlaywrightFetcher: JS-rendered portals
+  - Rate limiting & robots.txt compliance
+  
+  <b>Validator</b> (F2):
+  - Five signals: anchor, address, date, description, other
+  - Minimum threshold (default 4/5)
+  
+  <b>Normalizer</b>:
+  - Portal DOM extraction
+  - SODA row extraction
+  - Deterministic content_text & fields
+  
+  <b>Config</b>:
+  - Per-jurisdiction settings
+  - Strategies, allowed_hosts, field_order
+  
+  <b>Store</b>:
+  - detail_snapshots table
+  - detail_fetch_runs/results ledger
+  
+  <b>External Systems</b>:
+  - PostgreSQL with custom tables
+  - Official detail portals (Accela, etc.)
+  - Socrata SODA API (fallback)
+  - Optional LLM for judge when needed
+endlegend
+
+@enduml

@@ -1,0 +1,30 @@
+{"id": "nl-01", "question": "Which building permits were issued in Seattle in the last 90 days for residential additions over $50k?", "expected": {"status": ["ISSUED"], "permit_class": "Residential", "desc_keyword": "addition", "issued_after": "@today-90d", "min_cost": 50000}}
+{"id": "nl-02", "question": "Show me pending permits in Seattle", "expected": {"status": ["PENDING"]}}
+{"id": "nl-03", "question": "List completed permits issued in 2025", "expected": {"status": ["COMPLETED"], "issued_after": "2025-01-01", "issued_before": "2026-01-01"}}
+{"id": "nl-04", "question": "Which permits are currently under inspection?", "expected": {"status": ["IN_INSPECTION"]}}
+{"id": "nl-05", "question": "Find expired residential permits", "expected": {"status": ["EXPIRED"], "permit_class": "Residential"}}
+{"id": "nl-06", "question": "Show canceled commercial permits", "expected": {"status": ["CANCELED"], "permit_class": "Commercial"}}
+{"id": "nl-07", "question": "Demolition permits issued since 2026-01-01", "expected": {"status": ["ISSUED"], "permit_type": "Demolition", "issued_after": "2026-01-01"}}
+{"id": "nl-08", "question": "Issued permits near the Space Needle", "expected": {"status": ["ISSUED"]}, "expected_unfulfilled": ["Space Needle"]}
+{"id": "nl-09", "question": "What are the most expensive permits issued this year?", "expected": {"status": ["ISSUED"], "issued_after": "@year-start", "sort": "cost_desc"}}
+{"id": "nl-10", "question": "Permits for ADU construction that were issued in the last 30 days", "expected": {"status": ["ISSUED"], "desc_keyword": "ADU", "issued_after": "@today-30d"}}
+{"id": "nl-11", "question": "Show solar panel permits", "expected": {"desc_keyword": "solar"}}
+{"id": "nl-12", "question": "Pending permits applied for in the last 60 days", "expected": {"status": ["PENDING"], "applied_after": "@today-60d"}}
+{"id": "nl-13", "question": "Issued permits in ZIP 98122 under $10,000", "expected": {"status": ["ISSUED"], "zip": "98122", "max_cost": 10000}}
+{"id": "nl-14", "question": "Show me closed permits", "expected": {"status": ["COMPLETED"]}}
+{"id": "nl-15", "question": "Issued non-residential permits over $1 million", "expected": {"status": ["ISSUED"], "permit_class": "Non-Residential", "min_cost": 1000000}}
+{"id": "nl-16", "question": "Residential permits that are not canceled or expired", "expected": {"permit_class": "Residential", "statuses_exclude": ["CANCELED", "EXPIRED"]}}
+{"id": "nl-17", "question": "Basement permits issued since June 1, 2026", "expected": {"status": ["ISSUED"], "desc_keyword": "basement", "issued_after": "2026-06-01"}}
+{"id": "nl-18", "question": "Show the newest pending permit applications", "expected": {"status": ["PENDING"], "sort": "applied_desc"}}
+{"id": "nl-19", "question": "Roof permits issued last month", "expected": {"status": ["ISSUED"], "permit_type": "Roof", "issued_after": "@last-month-start", "issued_before": "@month-start"}}
+{"id": "nl-20", "question": "Issued residential permits in the last 90 days", "expected": {"status": ["ISSUED"], "permit_class": "Residential", "issued_after": "@today-90d"}}
+{"id": "nl-21", "question": "Grading permits issued since January 2026", "expected": {"status": ["ISSUED"], "permit_type": "Grading", "issued_after": "2026-01-01"}}
+{"id": "nl-22", "question": "Show expired permits in ZIP 98103", "expected": {"status": ["EXPIRED"], "zip": "98103"}}
+{"id": "nl-23", "question": "Issued multifamily permits over $500,000", "expected": {"status": ["ISSUED"], "permit_class": "Multifamily", "min_cost": 500000}}
+{"id": "nl-24", "question": "Which permits for deck work were issued in the last 60 days?", "expected": {"status": ["ISSUED"], "desc_keyword": "deck", "issued_after": "@today-60d"}}
+{"id": "nl-25", "question": "Pending demolition permits", "expected": {"status": ["PENDING"], "permit_type": "Demolition"}}
+{"id": "nl-26", "question": "Completed roof permits under $20,000", "expected": {"status": ["COMPLETED"], "permit_type": "Roof", "max_cost": 20000}}
+{"id": "nl-27", "question": "Show the most recently applied-for permits in ZIP 98118", "expected": {"zip": "98118", "sort": "applied_desc"}}
+{"id": "nl-28", "question": "Canceled permits applied for since 2026-01-01", "expected": {"status": ["CANCELED"], "applied_after": "2026-01-01"}}
+{"id": "nl-29", "question": "Issued permits that mention a garage", "expected": {"status": ["ISSUED"], "desc_keyword": "garage"}}
+{"id": "nl-30", "question": "Issued residential permits within 2 miles of Green Lake", "expected": {"status": ["ISSUED"], "permit_class": "Residential"}, "expected_unfulfilled": ["Green Lake"]}

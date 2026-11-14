@@ -1,0 +1,145 @@
+@startuml Query Component Diagram
+title Query, NL Understanding & Hybrid Retrieval API Stage - Component Architecture
+skin rose
+skinparam shadowing true
+
+package "Query Stage (S4) - User-Facing Surface" {
+
+  package "REST API Layer" {
+    [api.py\nFastAPI Router] as api_router
+    [TraceAndLimitMiddleware] as api_middleware
+  }
+
+  package "Query Service" {
+    [service.py\nQueryService] as query_service
+    [echo.py\nrender_echo] as echo_renderer
+  }
+
+  package "Natural Language Understanding" {
+    [nlu.py\nNLUParser] as nlu_parser
+    [nlu.py\ninterpret()] as nlu_interpret
+    [nlu.py\nmatch_jurisdictions] as nlu_jurisdictions
+  }
+
+  package "Hybrid Retrieval" {
+    [retrieve.py\nretrieve()] as hybrid_retrieve
+    [retrieve.py\nrrf_fuse] as rrf_fusion
+  }
+
+  package "LLM Provider Abstraction" {
+    [llm/__init__.py\nLLMProvider] as llm_provider
+    [llm/openai_compat.py\nOpenAICompatibleProvider] as llm_openai
+    [llm/fake.py\nFakeProvider] as llm_fake
+  }
+
+  package "Tools (for Agents)" {
+    [tools.py\ncall_tool] as tool_caller
+    [tools.py\nsearch_permits] as tool_search
+    [tools.py\nget_permit] as tool_get
+    [tools.py\npermit_status_counts] as tool_counts
+    [tools.py\nlist_jurisdictions] as tool_list
+  }
+
+  package "CLI Layer" {
+    [cli/query.py\npts query] as cli_query
+  }
+}
+
+package "Canonical Data Store" {
+  [store/query.py\nPermitQuery] as store_query
+  [store/repos.py\nPermitRepository] as store_repo
+  [store/repos.py\nNluCacheRepository] as store_nlu_cache
+  [store/repos.py\nJurisdictionRepository] as store_jurisdiction
+  database "PostgreSQL\npermits + nlu_cache + jurisdictions" as store_db
+}
+
+package "External Systems" {
+  [LLM API\n(Ollama/OpenAI)] as llm_api
+  [PostgreSQL\n(pgvector + pg_trgm)] as db_extensions
+}
+
+' API Layer dependencies
+api_middleware --> api_router : applies\\ntrace_id + rate limiting
+api_router --> query_service : routes to\\nQueryService methods
+cli_query --> query_service : uses directly
+
+' Query Service composition
+query_service --> echo_renderer : renders\\nplain-English echo
+query_service --> nlu_parser : parse questions
+query_service --> nlu_jurisdictions : resolve named jurisdictions
+query_service --> nlu_interpret : convert NLU to PermitQuery
+query_service --> hybrid_retrieve : hybrid search
+query_service --> tool_caller : tool surface
+query_service --> store_repo : permit reads
+query_service --> store_nlu_cache : cache NLU parses
+query_service --> store_jurisdiction : list jurisdictions
+
+' Hybrid Retrieval composition
+hybrid_retrieve --> rrf_fusion : fuse ranked lists
+hybrid_retrieve --> store_repo : structured + text + vector search
+hybrid_retrieve --> llm_provider : get embedding model
+
+' LLM Provider
+llm_provider --> llm_openai : implements OpenAI-compatible API
+llm_provider --> llm_fake : for tests
+llm_api .> llm_provider : calls
+llm_openai --> llm_api : HTTP chat completions
+
+' Tools
+tool_caller --> tool_search : dispatches
+tool_caller --> tool_get : dispatches
+tool_caller --> tool_counts : dispatches
+tool_caller --> tool_list : dispatches
+tool_search --> query_service : delegates
+tool_get --> query_service : delegates
+tool_counts --> query_service : delegates
+tool_list --> query_service : delegates
+
+' Store dependencies
+store_query --> store_db : generates SQL
+store_repo --> store_db : executes queries
+store_nlu_cache --> store_db : reads/writes
+store_jurisdiction --> store_db : reads
+
+' Database extensions
+store_db ..> db_extensions : uses pgvector for\\ndescription_embedding
+store_db ..> db_extensions : uses pg_trgm for\\ndescription similarity
+
+legend top right
+  <b>Key Components:</b>
+  
+  <b>REST API Layer</b>:
+  - FastAPI router with trace ID propagation
+  - Rate limiting middleware (per-IP, per-minute)
+  
+  <b>Query Service</b>:
+  - Single service behind all user-facing surfaces
+  - Implements REST endpoints, tools, and CLI
+  
+  <b>NLU (Natural Language Understanding)</b>:
+  - LLM-based parsing with strict JSON schema
+  - Jurisdiction resolution and interpretation
+  - 24-hour caching of parsed questions
+  
+  <b>Hybrid Retrieval</b>:
+  - Structured filters + trigram text + pgvector
+  - Reciprocal Rank Fusion (RRF) for result merging
+  - k=60, top 2*k candidates per mode
+  
+  <b>Tool Surface</b>:
+  - search_permits, get_permit, permit_status_counts, list_jurisdictions
+  - JSON schemas for LLM function calling
+  - Supports dry_run mode
+  
+  <b>Data Access</b>:
+  - All reads go through store repositories
+  - NLU cache in PostgreSQL for query reuse
+  - Jurisdiction registry with field/status mappings
+  
+  <b>LLM Abstraction</b>:
+  - OpenAI-compatible provider (configurable)
+  - Ollama (local) or OpenAI (cloud)
+  - Temperature=0 for NLU parsing
+endlegend
+
+@enduml

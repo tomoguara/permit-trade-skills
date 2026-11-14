@@ -1,0 +1,6 @@
+[
+  {"url": "https://portal.example.gov/api/config", "type": "json",
+   "body": "{\"theme\": \"dark\", \"features\": {\"search\": true, \"status\": \"ok\"}}"},
+  {"url": "https://portal.example.gov/api/records/7083363-CN", "type": "json",
+   "body": "{\"data\": {\"permitNumber\": \"7083363-CN\", \"permitStatus\": \"Issued\", \"dateIssued\": \"2026-01-15\", \"description\": \"Construct alterations to the basement of an existing one family dwelling, per plan.\", \"siteAddress\": \"3010 E CHERRY ST\", \"permitType\": \"Addition/Alteration\", \"workClass\": \"Add/Alt\", \"inspections\": [\"Framing\", \"Final\"], \"valuation\": \"25000\"}}"}
+]

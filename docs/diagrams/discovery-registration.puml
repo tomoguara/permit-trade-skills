@@ -1,0 +1,84 @@
+@startuml Discovery & Registration Flow
+title Discovery and Registration Stage - Component Architecture
+skin rose
+skinparam shadowing true
+
+package "User / CLI" {
+  [pts discovery\\ndiscover] as cli_discover
+  [pts seeds\\nseattle] as cli_seeds
+}
+
+package "Discovery Engine" {
+  [CatalogClient] as catalog_client
+  [Verifier] as verifier
+  [Scorer] as scorer
+}
+
+package "Output" {
+  [Discovery Dossier\\n(dossier.json)] as dossier
+}
+
+package "Registration Engine" {
+  [pts discovery\\nregister] as cli_register
+}
+
+package "PostgreSQL" {
+  [(jurisdictions)] as jurisdictions_db
+  [(probes)] as probes_db
+}
+
+' Entry points
+cli_discover --> catalog_client : searches catalog.data.gov
+catalog_client --> scorer : returns candidates
+scorer --> verifier : scores top 5
+verifier --> scorer : probes platforms
+scorer --> dossier : writes dossier with\\nscores and maps
+dossier --> cli_register : input for register
+cli_register --> jurisdictions_db : stores jurisdiction config
+cli_register --> probes_db : stores probe results
+cli_seeds --> jurisdictions_db : seeds default config\\n(seattle-kingcounty-wa)
+
+note right of dossier
+  Dossier contains:
+  - Candidate rankings
+  - Platform probes
+  - Field map guesses
+  - Status map guesses
+  - Validation notes
+end note
+
+legend right
+  <b>Components:</b>
+  
+  <b>CatalogClient</b>: Searches catalog.data.gov via CKAN API
+  - Queries for jurisdiction permit datasets
+  - Returns ranked candidates
+  
+  <b>Verifier</b>: Probes platform endpoints
+  - Detects platform type (Socrata/CKAN/Other)
+  - Validates API accessibility
+  
+  <b>Scorer</b>: Ranks candidates with weighted factors
+  - Platform compatibility
+  - Dataset freshness
+  - Record count
+  - Field coverage
+  
+  <b>Jurisdictions Table</b>: Central registry
+  - Identity (slug, name)
+  - Source (dataset_id, platform)
+  - Config (field_map, status_map)
+  - Active/inactive flag
+  
+  <b>Probes Table</b>: Platform test results
+  - Endpoint validation
+  - Feature detection
+  - Error logs
+  
+  <b>Data Flow:</b>
+  1. Discovery searches catalog → scores candidates → writes dossier
+  2. Registration reads dossier → stores to jurisdictions + probes
+  3. Seeds directly loads pre-configured jurisdictions
+endlegend
+
+@enduml

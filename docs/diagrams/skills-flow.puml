@@ -1,0 +1,89 @@
+@startuml skills-flow
+' ============================================================================
+' Stage 06: per-permit trade-skill inference (skills.infer.infer_skills)
+' Companion to: docs/skills.md (K2-K6)
+' Render: java -jar /opt/plantuml/plantuml.jar -tsvg docs/diagrams/skills-flow.puml
+' ============================================================================
+
+skinparam shadowing false
+skinparam ArrowColor #444444
+skinparam activity {
+  BackgroundColor #FFFFFF
+  BorderColor #555555
+  DiamondBackgroundColor #F7F7F7
+  DiamondBorderColor #888888
+}
+skinparam partition {
+  BorderColor #888888
+  BackgroundColor #FAFAFA
+}
+skinparam note {
+  BackgroundColor #FFF9E6
+  BorderColor #C9B87A
+}
+
+start
+:permit (catalog row) + latest detail snapshot (Stage 05);
+if (status in allowed_statuses?\n(default ISSUED)) then (no)
+  :NotEligible
+  (no LLM call, no state change);
+  stop
+else (yes)
+endif
+if (stored snapshot?) then (yes)
+  :substrate = content_text,
+  source = final_url;
+elseif (allow_degraded and detail_url?) then (yes)
+  :substrate = catalog fields,
+  source = detail_url (degraded);
+else (no)
+  :NotEligible ("run pts detail fetch");
+  stop
+endif
+:context: trade signals, excerpt
+(whole text up to 8,000 chars),
+context_hash;
+if (substrate names the permit number?) then (no)
+  :GROUNDING_FAILED (wrong-permit detail);
+  :SKILLS_FAILED + state_error;
+  stop
+else (yes)
+endif
+if (row with the same input_cache_key?) then (yes)
+  :return it (cached, no LLM call);
+  stop
+else (no)
+endif
+
+partition "LLM (role skills.infer, temperature 0.1, JSON schema)" {
+  :call with evidence_source pinned to the source URL;
+  if (valid output?) then (no)
+    :retry once with the error appended;
+  else (yes)
+  endif
+}
+note right
+  provider down -> PROVIDER_UNAVAILABLE
+  invalid twice -> SCHEMA_INVALID
+  empty skills  -> NO_SKILLS
+  (each: SKILLS_FAILED + state_error)
+end note
+
+:grounding gate, per skill:
+evidence verbatim in the substrate,
+evidence_source == source,
+evidence is not an instruction;
+if (any skill passed?) then (no)
+  :GROUNDING_FAILED;
+  :SKILLS_FAILED + state_error;
+  stop
+else (yes)
+endif
+:drop failed skills (dropped_skills);
+:signal cross-check (advisory):
+high signal with no skill -> assumption;
+:overall_confidence (K4 caps);
+:append skill_inferences row (PENDING);
+:processing_state -> SKILLS_INFERRED;
+stop
+@enduml

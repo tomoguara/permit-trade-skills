@@ -1,0 +1,15 @@
+{"meta": {"version": 3, "generated": "2026-11-06T12:00:00Z"},
+ "record": {
+   "recordNumber": "7083363-CN",
+   "recordStatus": "Issued",
+   "issuedDate": "2026-01-15",
+   "appliedDate": "2025-11-03",
+   "workLocation": "3010 E CHERRY ST, SEATTLE, WA 98122",
+   "projectDescription": "Construct alterations to the basement of an existing one family dwelling, per plan.",
+   "recordType": "Construction Permit",
+   "classification": "Single Family/Duplex",
+   "scopeOfWork": "Basement remodel; new bedroom egress window; smoke and CO detectors",
+   "trades": ["Framing", "Electrical", "Window installation"],
+   "inspections": [{"type": "Framing", "status": "Scheduled"}, {"type": "Final", "status": "Pending"}],
+   "jobValue": 25000
+ }}

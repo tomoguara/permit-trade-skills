@@ -1,0 +1,66 @@
+{
+  "recorded_at": "2026-11-09T19:37:25+00:00",
+  "test": "tests/integration/test_detail_live.py",
+  "permit_number": "7128921-CN",
+  "catalog": {
+    "address": "10431 56TH AVE S",
+    "description": "Allow housing for (1) new detached dwelling unit  per land use code. Existing one-family dwelling to remain. Construct one-family dwelling  per standard plan #6804831-SP.",
+    "issued_at": "2026-11-07T00:00:00",
+    "detail_url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=7128921-CN"
+  },
+  "document": {
+    "permit_number": "7128921-CN",
+    "jurisdiction": "seattle-kingcounty-wa",
+    "snapshot_id": 1,
+    "final_url": "https://cos-data.seattle.gov/resource/76t5-zqzr.json?$where=permitnum='7128921-CN'&$limit=1",
+    "content_text": "PERMIT: 7128921-CN\nSTATUS: Issued\nADDRESS: 10431 56TH AVE S\nCITY: SEATTLE\nSTATE: WA\nZIP: 98178\nISSUED: 2026-11-07T00:00:00.000\nAPPLIED: 2026-06-03T00:00:00.000\nEXPIRES: 2028-05-07T00:00:00.000\nDESCRIPTION: Allow housing for (1) new detached dwelling unit per land use code. Existing one-family dwelling to remain. Construct one-family dwelling per standard plan #6804831-SP.\nCLASSIFICATION: Single Family/Duplex\nCLASSIFICATION_MAPPED: Residential\nPERMIT_TYPE: Building\nPERMIT_TYPE_DESC: New\nEST_PROJECT_COST: 179584.0000\nDETAIL_URL.URL: https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=7128921-CN\nDAYSINITIALPLANREVIEW: 11\nDAYSOUTCORRECTIONS: 105\nDAYSPLANREVIEWCITY: 41\nDEPENDENTBUILDING: 0\nHOUSINGCATEGORY: N/A\nHOUSINGUNITS: 1.0\nHOUSINGUNITSADDED: 1.0\nHOUSINGUNITSREMOVED: 0.0\nINITIALREVIEWCOMPLETEDATE: 2026-06-15T00:00:00.000\nLATITUDE: 47.50735557\nLOCATION1.LATITUDE: 47.50735557\nLOCATION1.LONGITUDE: -122.26383546\nLONGITUDE: -122.26383546\nNUMBERREVIEWCYCLES: 3\nPLANREVIEWCOMPLETEDATE: 2026-10-28T00:00:00.000\nREADYTOISSUEDATE: 2026-10-28T00:00:00.000\nTOTALDAYSPLANREVIEW: 147\nSOURCE: https://cos-data.seattle.gov/resource/76t5-zqzr.json?$where=permitnum='7128921-CN'&$limit=1\n",
+    "fields": {
+      "catalog": {
+        "address": "10431 56TH AVE S",
+        "applied_date": "2026-06-03T00:00:00.000",
+        "city": "SEATTLE",
+        "classification": "Residential",
+        "description": "Allow housing for (1) new detached dwelling unit per land use code. Existing one-family dwelling to remain. Construct one-family dwelling per standard plan #6804831-SP.",
+        "expires_date": "2028-05-07T00:00:00.000",
+        "issued_date": "2026-11-07T00:00:00.000",
+        "permit_class": "Single Family/Duplex",
+        "permit_number": "7128921-CN",
+        "permit_type": "Building",
+        "permit_type_desc": "New",
+        "state": "WA",
+        "status": "Issued",
+        "valuation": "179584.0000",
+        "zip": "98178"
+      }
+    },
+    "fetch_strategy": "soda_row",
+    "fetched_at": "2026-11-09T19:37:25.807732Z",
+    "content_hash": "e6ea7d346e3ca0d2e3fe9b18afb13254246bf738faf576e286545332d0df4e64",
+    "degraded": true,
+    "notes": [
+      "redirect_chase: validation failed (4/4 signals, anchor=no)"
+    ],
+    "signals": {
+      "count": 5,
+      "min_signals": 4,
+      "anchor": true,
+      "passed": true,
+      "matched": {
+        "anchor": true,
+        "address": true,
+        "date": true,
+        "description": true,
+        "other": true
+      },
+      "details": {
+        "anchor": "record number field '7128921-CN'",
+        "address_overlap": 1.0,
+        "description": {
+          "shared": 13,
+          "jaccard": 1.0
+        }
+      }
+    }
+  },
+  "missing_citations": []
+}

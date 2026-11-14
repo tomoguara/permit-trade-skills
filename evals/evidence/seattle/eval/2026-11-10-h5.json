@@ -1,0 +1,95 @@
+{
+  "suite": "H5",
+  "run_id": "eval-h5-20261111T013623-2ba2ce",
+  "jurisdiction": "seattle-kingcounty-wa",
+  "build_id": "live-2026-11-10",
+  "metrics": {
+    "fabrications": 0.0,
+    "integrity_rate": 1.0
+  },
+  "counts": {
+    "runs": 5,
+    "live_goals": 0,
+    "integrity_mismatch": 0
+  },
+  "info": {
+    "duration_ms": 12
+  },
+  "warnings": [],
+  "model": null,
+  "prompt_version": null,
+  "llm_calls": 0,
+  "cache_hits": 0,
+  "started_at": "2026-11-11T01:36:23.980043Z",
+  "finished_at": "2026-11-11T01:36:23.992961Z",
+  "items_total": 5,
+  "items_failed": 0,
+  "worst": [],
+  "items": [
+    {
+      "key": "agent-20261110T233417-70a3f5",
+      "origin": "stored",
+      "goal": "issued commercial permits over $500k in the last 30 days, with their trade skills",
+      "integrity": "PASSED",
+      "stored_integrity": "PASSED",
+      "integrity_mismatch": false,
+      "violations": [],
+      "fabrications": 0,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "agent-20261110T211931-3b5067",
+      "origin": "stored",
+      "goal": "issued residential permits over $500k in the last 90 days, with their trade skills",
+      "integrity": "PASSED",
+      "stored_integrity": "PASSED",
+      "integrity_mismatch": false,
+      "violations": [],
+      "fabrications": 0,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "agent-20261110T211502-973302",
+      "origin": "stored",
+      "goal": "issued residential permits over $200k in the last 90 days, with their trade skills",
+      "integrity": "PASSED",
+      "stored_integrity": "PASSED",
+      "integrity_mismatch": false,
+      "violations": [],
+      "fabrications": 0,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "agent-20261110T211019-f28fca",
+      "origin": "stored",
+      "goal": "issued residential permits over $100k in the last 90 days, with their trade skills",
+      "integrity": "PASSED",
+      "stored_integrity": "PASSED",
+      "integrity_mismatch": false,
+      "violations": [],
+      "fabrications": 0,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    },
+    {
+      "key": "agent-20261110T194619-0b0535",
+      "origin": "stored",
+      "goal": "Seattle: permits ISSUED last 90 days, Residential, cost >= 25000 — top 5 by cost, and the trade skills for each",
+      "integrity": "PASSED",
+      "stored_integrity": "PASSED",
+      "integrity_mismatch": false,
+      "violations": [],
+      "fabrications": 0,
+      "passed": true,
+      "score": 1.0,
+      "reason": null
+    }
+  ]
+}

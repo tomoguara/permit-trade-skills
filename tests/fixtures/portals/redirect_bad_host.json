@@ -1,0 +1,4 @@
+{"_comment": "Fixture: LinkToRecord answers 302 to a host off the allow-list. The fetcher must block it before requesting it.",
+ "start": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=7083363-CN",
+ "status": 302,
+ "location": "https://evil.example.net/collect?altId=7083363-CN"}

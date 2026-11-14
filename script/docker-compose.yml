@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg18
+    container_name: permit-trade-skills-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: permit_trade_skills
+    ports:
+      - "5432:5432"
+    volumes:
+      - permit_trade_skills_data:/var/lib/postgresql
+    restart: unless-stopped
+
+volumes:
+  permit_trade_skills_data:

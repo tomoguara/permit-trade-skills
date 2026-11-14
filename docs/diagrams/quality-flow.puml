@@ -1,0 +1,51 @@
+@startuml quality-flow
+' ============================================================================
+' Stage 08 quality layer: golden sets -> harnesses -> gate; monitoring -> alerts
+' Companion to: docs/quality.md and docs/quality_runbook.md
+' Render: java -jar /opt/plantuml/plantuml.jar -tsvg docs/diagrams/quality-flow.puml
+' ============================================================================
+
+skinparam shadowing false
+skinparam defaultFontSize 12
+skinparam ArrowColor #444444
+skinparam rectangle {
+  BorderColor #555555
+  BackgroundColor #FFFFFF
+}
+skinparam database {
+  BorderColor #555555
+  BackgroundColor #EEF3FA
+}
+left to right direction
+
+rectangle "pts label\nannotate / judge / export" as label #D9EAD9
+rectangle "Golden sets\nA trade-set, B nl-query,\nC extraction (JSONL)" as golden #D9EAD9
+database "Postgres\npermits, snapshots,\nskill_inferences, events" as db
+rectangle "Harnesses H1-H7\npts eval run" as harness #FFF2CC
+rectangle "Judge (eval.judge)\nadvisory" as judge #FFF2CC
+database "eval_results" as results
+rectangle "Release gate\npts quality gate" as gate #F4CCCC
+database "build_gates" as gates
+rectangle "Drift detectors\npts alerts check" as drift #FCE5CD
+database "drift_alerts" as alerts
+rectangle "Triage\npts eval diagnose" as diag #FCE5CD
+rectangle "Human review\npts review (Stage 07)" as review #D9EAD9
+
+label --> golden
+db --> label
+golden --> harness
+db --> harness
+db --> judge
+harness --> results
+judge --> results
+results --> gate
+gate --> gates
+db --> drift
+results --> drift
+drift --> alerts
+alerts --> diag
+results --> diag
+judge ..> review : NEEDS_HUMAN
+harness ..> review : H1 NEEDS_HUMAN
+
+@enduml
